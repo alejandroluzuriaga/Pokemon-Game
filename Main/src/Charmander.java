@@ -5,3 +5,4 @@ public class Charmander {
     private int lore;
 
     private String dato;
+}
