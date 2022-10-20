@@ -3,6 +3,6 @@ public class Charmander {
     private int ataque;
     private boolean pedo;
     private int lore;
-
+    private int prueba;
     private String dato;
 }
