@@ -1,3 +1,6 @@
+package Movimiento;
+import Pookemon.*;
+
 public class Ofensivo extends Movimiento{
     
     public Ofensivo (String nombre) {
@@ -30,14 +33,15 @@ public class Ofensivo extends Movimiento{
     }
 
     @Override
-    public void activar (Pookemon pok1, Pookemon pok2){
+    public void activar (Pokemon pok1, Pokemon pok2){
         if (this.usos<this.usosMaximos){
             pok2.setSaludActual((int)(pok2.getSaludActual() - Damage(pok1, pok2)));
+            System.out.println("Pruebita Damage "+Damage(pok1, pok2));
             usos++;
         } 
     }
 
-    private double Damage (Pookemon pookemon1, Pookemon pookemon2){
+    private double Damage (Pokemon pookemon1, Pokemon pookemon2){
         double modEfecto;
         double x = Math.floor(Math.random()*(85-100+1)+100);
         double CH = Math.floor(Math.random()*(0-100+1)+100);
@@ -78,4 +82,10 @@ public class Ofensivo extends Movimiento{
         }
   }
 
+  @Override
+  public String toString(){
+    return ("{"+
+        " Valor = "+this.valor + " Usos = "+this.usos+" UsosMaximos = "+this.usosMaximos+" Nombre = "+this.nombre+" Tipo ="+this.tipo+" Es Especial = "+this.usoEspecial+ "}");
+  
+    }
 }

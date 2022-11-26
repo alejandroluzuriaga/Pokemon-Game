@@ -1,3 +1,6 @@
+package Movimiento;
+import Pookemon.*;
+
 public class ModificadorPoder extends Movimiento{
     
     public ModificadorPoder (String nombre) {
@@ -24,7 +27,7 @@ public class ModificadorPoder extends Movimiento{
     }
 
     @Override
-    public void activar(Pookemon emisor, Pookemon receptor){
+    public void activar(Pokemon emisor, Pokemon receptor){
         if (usos<usosMaximos){
             if (valor<0){
                 receptor.setPoder(receptor.getPoder()+valor);
@@ -33,5 +36,11 @@ public class ModificadorPoder extends Movimiento{
             }
             usos++;
         } 
+    }
+
+    @Override
+  public String toString(){ //CAMBIAR
+    return ("{"+
+        " Valor = "+this.valor + " Usos = "+this.usos+" UsosMaximos = "+this.usosMaximos+" Nombre = "+this.nombre+" Tipo ="+this.tipo+" Es Especial = "+this.usoEspecial+ "}");
     }
 }

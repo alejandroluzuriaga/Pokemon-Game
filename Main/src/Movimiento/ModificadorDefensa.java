@@ -1,3 +1,6 @@
+package Movimiento;
+import Pookemon.*;
+
 public class ModificadorDefensa extends Movimiento {
 
     public ModificadorDefensa (String nombre) {
@@ -18,7 +21,7 @@ public class ModificadorDefensa extends Movimiento {
     }
 
 	@Override
-	public void activar(Pookemon emisor, Pookemon receptor) {
+	public void activar(Pokemon emisor, Pokemon receptor) {
 		if (this.usos<this.usosMaximos){
             if (this.valor<0){
                 receptor.setDefensa(receptor.getDefensa()+this.valor);
@@ -28,4 +31,10 @@ public class ModificadorDefensa extends Movimiento {
             usos++;
         }
 	}
+
+    @Override
+    public String toString(){ //CAMBIAR
+      return ("{"+
+          " Valor = "+this.valor + " Usos = "+this.usos+" UsosMaximos = "+this.usosMaximos+" Nombre = "+this.nombre+" Tipo ="+this.tipo+" Es Especial = "+this.usoEspecial+ "}");
+      }
 }
