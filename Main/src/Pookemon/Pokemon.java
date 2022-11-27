@@ -167,15 +167,10 @@ public class Pokemon {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        
-        // final Pokemon other = (Pokemon) obj;
-        // return this.equals(obj); // Creo que lo resolvería this.nombre.equals(other.nombre)
-        
-        Pokemon pok = (Pokemon) obj;
-        return pok.getNombre().equals(getNombre());
+        final Pokemon other = (Pokemon) obj;
+        return Objects.equals(this.nombre, other.nombre); // ñ
 
     }
-    // return obj.equals(this.nombre, other.nombre)
 
     /**
      *
@@ -190,8 +185,7 @@ public class Pokemon {
     
     
     public Pokemon evolucionar() {
-        //if ("Charmander".equals((this.getClass()).getSimpleName())) {
-        if ("Charmander" == (this.getClass()).getSimpleName()) {
+        if ("Charmander".equals((this.getClass()).getSimpleName())) {
             if (this.nivel >= 10) {
                 System.out.println("");
                 System.out.println("****CHARMANDER EVOLUCIONA A CHARMELEON****");
@@ -222,10 +216,6 @@ public class Pokemon {
             return this;
         }
     }
-
-    public void subirNivel() {
-        this.nivel ++;
-    }
-
+ 
 
 }
