@@ -1,4 +1,5 @@
 package Pookemon;
+import Movimiento.*;
 
 public class Blastoise extends Pokemon {
     
@@ -37,5 +38,12 @@ public class Blastoise extends Pokemon {
         this.setSaludActual((int) (pokemonSinEvolucionar.getSaludActual() * 1.2));   
         this.setPoderEspecial((int) (pokemonSinEvolucionar.getPoderEspecial() * 1.2));
         this.setDefensaEspecial((int) (pokemonSinEvolucionar.getDefensaEspecial() * 1.2));
+
+        Ofensivo ofensivo = new Ofensivo("aguabendita");
+        Ofensivo ofensivoEspecial = new Ofensivo("aguabenditaEsp");
+        ModificadorDefensa modificador_defensa = new ModificadorDefensa("Pocion_Defensa");
+        ModificadorPoder modificador_Poder = new ModificadorPoder("Poder - 4");
+
+        Movimiento[] Movs1 = {ofensivo, modificador_defensa, modificador_Poder};
     }
 }

@@ -1,4 +1,5 @@
 package Pookemon;
+import Movimiento.*;
 
 public class Squirtle extends Pokemon {
     
@@ -17,6 +18,14 @@ public class Squirtle extends Pokemon {
         this.setSaludActual((int) ((valorBase + nivel) * (Math.random()*10+1)));   
         this.setPoderEspecial((int) ((valorBase + (nivel*1.5)) * (Math.random()*10+1)));
         this.setDefensaEspecial((int) ((valorBase + (nivel*1.5)) * (Math.random()*10+1)));
+
+        Ofensivo ofensivo = new Ofensivo("aguabendita");
+        ModificadorDefensa modificador_defensa = new ModificadorDefensa("Pocion_Defensa");
+        ModificadorPoder modificador_Poder = new ModificadorPoder("Poder - 4");
+
+        Movimiento[] Movs1 = {ofensivo, modificador_defensa, modificador_Poder};
+
+        setMovimientos(Movs1);
     }
 
 }

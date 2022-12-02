@@ -1,5 +1,5 @@
 package Pookemon;
-
+import Movimiento.*;
 public class Charmeleon extends Pokemon {
     
     // Constructor para crear Charmeleon como evolucion
@@ -36,6 +36,15 @@ public class Charmeleon extends Pokemon {
         this.setSaludActual((int) ((valorBase + nivel) * (Math.random()*10+1)));   
         this.setPoderEspecial((int) ((valorBase + (nivel*1.5)) * (Math.random()*10+1)));
         this.setDefensaEspecial((int) ((valorBase + (nivel*1.5)) * (Math.random()*10+1)));
+
+        Ofensivo ofensivo = new Ofensivo("Barrido");
+        Ofensivo ofensivoEspecial = new Ofensivo("BarridoEsp"); //Como es evolución, se le añade un ataqueEspecial
+        ModificadorDefensa modificador_defensa = new ModificadorDefensa("Pocion_Defensa");
+        ModificadorPoder modificador_Poder = new ModificadorPoder("Poder +8 TAPOTENTE");
+
+        Movimiento[] Movs1 = {ofensivo, ofensivoEspecial, modificador_defensa, modificador_Poder};
+
+        setMovimientos(Movs1);
     }
     
 }

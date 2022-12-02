@@ -5,13 +5,13 @@ public class ModificadorDefensa extends Movimiento {
 
     public ModificadorDefensa (String nombre) {
         switch (nombre){
-            case "aumentoEmisor":
+            case "Pocion_Defensa": //Sube defensa al emisor
                 this.nombre=nombre;
                 this.usos=0;
                 this.usosMaximos=10;
                 this.valor=5;
             break;
-            case "decrementoReceptor":
+            case "Latigo": //Baja defensa del receptor
                 this.nombre=nombre;
                 this.usos=0;
                 this.usosMaximos=15;

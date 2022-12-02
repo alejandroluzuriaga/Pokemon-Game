@@ -1,19 +1,20 @@
 package Entrenador;
+
 import Pookemon.*;
+import java.util.Scanner;
 import Combate.*;
+import java.util.ArrayList;
 
 public class Entrenador {
     private String nombre;
     private int identificador;
     private Pokemon pokemonActivo;
     private int turno;
-    private Pokemon[] pokemons = new Pokemon[3];
+    private ArrayList<Pokemon> pokemons;
 
-    // CONSTRUCTORES
-    public Entrenador(String nombre, int identificador, Pokemon[] pokemons) {
+      public Entrenador(String nombre, int identificador) {
         setNombre(nombre);
         setIdentificador(identificador);
-        setPokemons(pokemons);
     }
 
     // GETTERS & SETTERS
@@ -34,9 +35,9 @@ public class Entrenador {
         return turno;
     }
 
-    public Pokemon[] getPokemons() {
+    public ArrayList<Pokemon> getPokemons() {
         return pokemons;
-    }
+}
 
     public void setNombre(String nombre) {
         if (nombre != null) {
@@ -52,29 +53,28 @@ public class Entrenador {
         }
     }
 
-    public void setPokemonActivo(Pokemon pokemonActivo) {
-        this.pokemonActivo = pokemonActivo;
+    public void setPokemonActivo() {
+            System.out.println("Elije el pokemon que quieres usar:");
+            for (int i = 0; i < pokemons.size(); ++i)
+                System.out.println("- Opción: "+(i+1)+ " " + this.pokemons.get(i).getNombre());
+            
+            Scanner pokemon = new Scanner(System.in);
+            int opcion = pokemon.nextInt();
+            this.pokemonActivo = pokemons.get(opcion-1);
+            pokemon.close();
     }
 
     public void setTurno(int turno) {
         this.turno = turno;
     }
 
-    public void setPokemons(Pokemon[] pokemons) {
-        boolean Null = false;
-        for (Pokemon i : pokemons) {
-            if (i == null) {
-                Null = true;
-            }
-        }
-        if (!Null) {
-            this.pokemons = pokemons;
-        } else {
-            System.out.println("El array no tiene 3 pokemons");
-        }
-    }
+    public void setPokemons(ArrayList<Pokemon> pokemons) {
+        this.pokemons = pokemons;
+}
 
     // OTROS MÉTODOS
+
+    
 
     //Crear objeto combate
         //Set atributos fecha, personajes_involucrados
@@ -88,26 +88,32 @@ public class Entrenador {
 
     public Combate combatir (Entrenador otroEntrenador){
         // Entrenador turno;
-        
         Combate combate = new Combate(this, otroEntrenador);
+        this.setPokemonActivo();
+        otroEntrenador.setPokemonActivo();
         
-        while 
-
-            //
-
-        
-        return combate;
-    }
-
-    private Pokemon elegir(){
-
-        return 
+        if (this.getPokemonActivo().getVelocidad()>otroEntrenador.getPokemonActivo().getVelocidad()){
+            do{
+                this.turno();
+                otroEntrenador.turno();
+                combate.setNumRondas(combate.getNumRondas()+1);
+            }while (true);
+        }else{
+            do{
+                otroEntrenador.turno();
+                this.turno();
+                combate.setNumRondas(combate.getNumRondas()+1);
+            }while (true);
+        }
     }
 
     private void turno(){
+        this.setPokemonActivo();
+
+        
         //menu pokemon a elegir
         //menu movimiento a elegir
-
+            }
     }
 
     public String toString() {
@@ -117,9 +123,31 @@ public class Entrenador {
         "\n Identificador: " + 
         this.getIdentificador() + 
         "\n Pokemons: " + 
-        "\n \t" + this.pokemons[0].getNombre() +
-        "\n \t" + this.pokemons[1].getNombre() +
-        "\n \t" + this.pokemons[2].getNombre() +
+        "\n \t" + this.pokemons.get(0).getNombre() +
+        "\n \t" + this.pokemons.get(1).getNombre() +
+        "\n \t" + this.pokemons.get(2).getNombre() +
         "}";
     }
+
+    public void anadirPokemon(Pokemon pokemon){
+        if ((pokemons.size() < 3)){
+                pokemons.add(pokemon);
+        } else{
+            System.out.println("Lista de pokemons llena");
+        }
+    }
+
+    public void elegirMovimiento (){
+        Scanner keyboard = new Scanner (System.in);
+            int opcion2 = 0;
+            do {
+                System.out.println("Elija el movimiento");
+                System.out.println("Opción 1: Ofensivo");
+                System.out.println("Opción 2: Modificar poder");
+                System.out.println("Opción 3: Modificar defensa");
+                System.out.println("Opción 4: Cambiar pokemon activo");
+            opcion2 = keyboard.nextInt();
+        }
+    }
+
 }

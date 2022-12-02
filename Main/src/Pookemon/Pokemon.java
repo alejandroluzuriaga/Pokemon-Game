@@ -1,15 +1,16 @@
 package Pookemon;
 
+import Movimiento.*;
+
 public class Pokemon {
     private String nombre, entrenador, saludo, tipo;
     private int poder, velocidad, saludMax, saludActual, poderEspecial, defensa, defensaEspecial, nivel;
-    // private Movimiento [] movimientos;
+    private Movimiento[] movimientos;
 
     
     // Constructores 
 
-    public Pokemon() {
-    }
+    
 
     //Getters
     public String getNombre() {
@@ -152,25 +153,28 @@ public class Pokemon {
         }
     }
 
+    public void setMovimientos(Movimiento[] movimientos) {
+        this.movimientos = movimientos;
+    }
+
     
     
     // Otros métodos
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Pokemon other = (Pokemon) obj;
-        return Objects.equals(this.nombre, other.nombre); // ñ
-
-    }
+    // @Override
+    // public boolean equals(Object obj) {
+    //     if (this == obj) {
+    //         return true;
+    //     }
+    //     if (obj == null) {
+    //         return false;
+    //     }
+    //     if (getClass() != obj.getClass()) {
+    //         return false;
+    //     }
+    //     final Pokemon other = (Pokemon) obj;
+    //     return Objects.equals(this.nombre, other.nombre); 
+    // }
 
     /**
      *
@@ -216,6 +220,6 @@ public class Pokemon {
             return this;
         }
     }
- 
-
 }
+
+//Tuvimos que crear y añadir movimientos a cada tipo de pokemon en sus respectivas clases.

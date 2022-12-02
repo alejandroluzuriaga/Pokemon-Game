@@ -13,7 +13,23 @@ public class Ofensivo extends Movimiento{
                 this.valor=7;
                 this.usoEspecial=false;
             break;
+            case "BarridoEsp":
+                this.nombre=nombre;
+                this.tipo="Fuego";
+                this.usos=0;
+                this.usosMaximos=20;
+                this.valor=7;
+                this.usoEspecial=true;
+            break;
             case "lanzasemen":
+                this.nombre=nombre;
+                this.tipo="Planta";
+                this.usos=0;
+                this.usosMaximos=25;
+                this.valor=4;
+                this.usoEspecial=false;
+            break;
+            case "lanzasemenEsp":
                 this.nombre=nombre;
                 this.tipo="Planta";
                 this.usos=0;
@@ -24,6 +40,30 @@ public class Ofensivo extends Movimiento{
             case "aguabendita":
                 this.nombre=nombre;
                 this.tipo="Agua";
+                this.usos=0;
+                this.usosMaximos=25;
+                this.valor=10;
+                this.usoEspecial=false;
+            break;
+            case "aguabenditaEsp":
+                this.nombre=nombre;
+                this.tipo="Agua";
+                this.usos=0;
+                this.usosMaximos=25;
+                this.valor=10;
+                this.usoEspecial=true;
+            break;
+            case "culo":
+                this.nombre=nombre;
+                this.tipo="Normal";
+                this.usos=0;
+                this.usosMaximos=25;
+                this.valor=10;
+                this.usoEspecial=false;
+            break;
+            case "culoEsp":
+                this.nombre=nombre;
+                this.tipo="Normal";
                 this.usos=0;
                 this.usosMaximos=25;
                 this.valor=10;
