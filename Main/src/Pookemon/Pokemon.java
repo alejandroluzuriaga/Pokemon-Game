@@ -2,20 +2,20 @@ package Pookemon;
 
 import java.util.ArrayList;
 import Movimiento.*;
+import Entrenador.*;
 
 public class Pokemon {
-    private String nombre, entrenador, saludo, tipo;
+    private String nombre, saludo, tipo;
+    private Entrenador entrenador;
     private int poder, velocidad, saludMax, saludActual, poderEspecial, defensa, defensaEspecial, nivel;
     private ArrayList<Movimiento> movimientos;
-
-    // Constructores
 
     // Getters
     public String getNombre() {
         return nombre;
     }
 
-    public String getEntrenador() {
+    public Entrenador getEntrenador() {
         return entrenador;
     }
 
@@ -69,7 +69,7 @@ public class Pokemon {
         this.nombre = nombre;
     }
 
-    public void setEntrenador(String entrenador) {
+    public void setEntrenador(Entrenador entrenador) {
         this.entrenador = entrenador;
     }
 
@@ -87,7 +87,6 @@ public class Pokemon {
         } else {
             System.out.println("Valor no válido, debe ser superior a 0");
         }
-
     }
 
     public void setVelocidad(int velocidad) {
@@ -107,11 +106,12 @@ public class Pokemon {
     }
 
     public void setSaludActual(int saludActual) {
-        if (saludActual > 0) {
-            this.saludActual = saludActual;
-        } else {
-            System.out.println("Valor no válido, debe ser superior a 0");
-        }
+        this.saludActual = saludActual;
+        // if (saludActual > 0) {
+        //     this.saludActual = saludActual;
+        // } else {
+        //     System.out.println("Valor no válido, debe ser superior a 0");
+        // }
     }
 
     public void setPoderEspecial(int poderEspecial) {
@@ -152,25 +152,7 @@ public class Pokemon {
 
     // Otros métodos
 
-    // @Override
-    // public boolean equals(Object obj) {
-    // if (this == obj) {
-    // return true;
-    // }
-    // if (obj == null) {
-    // return false;
-    // }
-    // if (getClass() != obj.getClass()) {
-    // return false;
-    // }
-    // final Pokemon other = (Pokemon) obj;
-    // return Objects.equals(this.nombre, other.nombre);
-    // }
 
-    /**
-     *
-     * @return
-     */
 
     
     @Override
@@ -179,7 +161,7 @@ public class Pokemon {
                 "\t\n nombre: " + nombre +
                 "\t\n Nivel: " + nivel +
                 "\t\n Tipo: " + tipo +
-                "\t\n Entrenador: " + entrenador +
+                "\t\n Entrenador: " + entrenador.getNombre() +
                 "\t\n Saludo: " + saludo + 
                 "\t\n Velocidad: " + velocidad +
                 "\t\n Poder: " + poder +
@@ -192,36 +174,33 @@ public class Pokemon {
     }
 
     public Pokemon evolucionar() {
-        if ("Charmander".equals((this.getClass()).getSimpleName())) {
-            if (this.nivel >= 10) {
-                System.out.println("");
-                System.out.println("****CHARMANDER EVOLUCIONA A CHARMELEON****");
-                System.out.println("");
-                return new Charmeleon(11, "Charmeleon1", this);
-            } else {
-                System.out.println("No tienes suficiente nivel para evolucionar. Te quedas con el que estás");
+        String opcion = this.getClass().getSimpleName();
+        switch (opcion){
+            case "Charmander":
+                    if (this.nivel >= 10) {
+                        System.out.println("");
+                        System.out.println("****CHARMANDER EVOLUCIONA A CHARMELEON****");
+                        System.out.println("");
+                        return new Charmeleon(11, "Charmeleon1", this);
+                    } else {
+                        System.out.println("No tienes suficiente nivel para evolucionar. Te quedas con el que estás");
+                        return this;
+                    }
+                    break;
+            case "Squirtle":
+                if (this.nivel >= 10) {
+                    System.out.println("");
+                    System.out.println("****SQUIRTLE EVOLUCIONA A BLASTOISE****");
+                    System.out.println("");
+                    return new Blastoise(11, "Blastoise1", this);
+                } else {
+                    System.out.println("No tienes suficiente nivel para evolucionar. Te quedas con el que estás");
+                    return this;
+                }
+                break;
+            default: 
+                System.out.println("No existe evolución para ese Pokemon. Te quedas con el que estás");
                 return this;
-            }
-        }
-
-        else if ("Squirtle".equals((this.getClass()).getSimpleName())) {
-            if (this.nivel >= 10) {
-                System.out.println("");
-                System.out.println("****SQUIRTLE EVOLUCIONA A BLASTOISE****");
-                System.out.println("");
-                return new Blastoise(11, "Blastoise1");
-            } else {
-                System.out.println("No tienes suficiente nivel para evolucionar. Te quedas con el que estás");
-                return this;
-            }
-        }
-
-        else {
-            System.out.println("No existe evolución para ese Pokemon. Te quedas con el que estás");
-            return this;
-        }
+                break;
     }
 }
-
-// Tuvimos que crear y añadir movimientos a cada tipo de pokemon en sus
-// respectivas clases.

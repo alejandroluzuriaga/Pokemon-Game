@@ -2,23 +2,28 @@ package Combate;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+
 import Entrenador.*;
 
 public class Combate {
     private String fecha;
     private int numRondas;
-    private Entrenador[] personajesInvolucrados = new Entrenador[2];
+    private ArrayList<Entrenador> personajesInvolucrados = new ArrayList<Entrenador>();
     private Entrenador ganador;
 
-    //CONSTRUCTORES
 
-    public Combate(Entrenador entrenador1, Entrenador entrenador2){
-        personajesInvolucrados[0] = entrenador1;
-        personajesInvolucrados[1] = entrenador2;
+    //CONSTRUCTOR
+
+    public Combate (Entrenador entrenador1, Entrenador entrenador2){
+        personajesInvolucrados.add(entrenador1);
+        personajesInvolucrados.add(entrenador2);
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/uuuu hh:mm a");
         setFecha(now.format(dtf));
     }
+
+
     //SETTERS Y GETTERS
 
     public String getFecha() {
@@ -29,7 +34,7 @@ public class Combate {
         return numRondas;
     }
     
-    public Entrenador[] getPersonajesInvolucrados() {
+    public ArrayList<Entrenador> getPersonajesInvolucrados() {
         return personajesInvolucrados;
     }
 
@@ -45,14 +50,11 @@ public class Combate {
         this.numRondas = numRondas;
     }
 
-    public void setPersonajesInvolucrados(Entrenador[] personajesInvolucrados) {
+    public void setPersonajesInvolucrados(ArrayList<Entrenador> personajesInvolucrados) {
         this.personajesInvolucrados = personajesInvolucrados;
     }
 
     public void setGanador(Entrenador ganador) {
         this.ganador = ganador;
     }
-
-    
-
 }

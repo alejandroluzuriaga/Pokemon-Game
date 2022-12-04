@@ -31,10 +31,4 @@ public class ModificadorDefensa extends Movimiento {
             usos++;
         }
 	}
-
-    @Override
-    public String toString(){ //CAMBIAR
-      return ("{"+
-          " Valor = "+this.valor + " Usos = "+this.usos+" UsosMaximos = "+this.usosMaximos+" Nombre = "+this.nombre+" Tipo ="+this.tipo+" Es Especial = "+this.usoEspecial+ "}");
-      }
 }

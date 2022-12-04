@@ -11,6 +11,14 @@ public abstract class Movimiento {
     }
 
     public abstract void activar(Pokemon pok1, Pokemon pok2);
-    public abstract String toString();
+    
+    public String toString() {
+        return "Nombre = " + this.nombre + 
+        "\n Valor = " + this.valor + 
+        "\n Usos = " + this.usos + 
+        "\n UsosMaximos = " + this.usosMaximos + 
+        "\n Tipo =" + this.tipo + 
+        "\n Es Especial = " + this.usoEspecial;
+    };
 
 }
