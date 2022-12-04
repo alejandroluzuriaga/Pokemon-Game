@@ -1,4 +1,6 @@
 package Pookemon;
+import java.util.ArrayList;
+
 import Movimiento.*;
 public class Charmeleon extends Pokemon {
     
@@ -11,18 +13,18 @@ public class Charmeleon extends Pokemon {
         this.setNivel(nivel);
         
         // Usamos el Pokemon anterior a la evolucion para incrementar sus "poderes"  
-        this.setPoder ((int) (pokemonSinEvolucionar.getPoder() * 1.2));   // Le sumamos el nivel y multiplicamos por un valor aleatorio (entre 1 y 10)       
+        this.setPoder ((int) (pokemonSinEvolucionar.getPoder() * 1.2)); // Le sumamos el nivel y multiplicamos por un valor aleatorio (entre 1 y 10)
         this.setDefensa ((int) (pokemonSinEvolucionar.getDefensa() * 1.2));
-        this.setVelocidad((int) (pokemonSinEvolucionar.getVelocidad() * 1.2));        
-        this.setSaludMax((int) (pokemonSinEvolucionar.getSaludMax() * 1.2));       
-        this.setSaludActual((int) (pokemonSinEvolucionar.getSaludActual() * 1.2));   
+        this.setVelocidad((int) (pokemonSinEvolucionar.getVelocidad() * 1.2));
+        this.setSaludMax((int) (pokemonSinEvolucionar.getSaludMax() * 1.2));
+        this.setSaludActual((int) (pokemonSinEvolucionar.getSaludActual() * 1.2));
         this.setPoderEspecial((int) (pokemonSinEvolucionar.getPoderEspecial() * 1.2));
         this.setDefensaEspecial((int) (pokemonSinEvolucionar.getDefensaEspecial() * 1.2));
+        setMovimientosPrivate();
     }
         
         // Constructor para crear Charmeleon desde 0
-        public Charmeleon(int nivel, String nombre){
-       
+    public Charmeleon(int nivel, String nombre){
         this.setNombre(nombre);
         this.setSaludo("DRACARYSSSSSSSS"); 
         this.setTipo("Fuego");
@@ -36,15 +38,20 @@ public class Charmeleon extends Pokemon {
         this.setSaludActual((int) ((valorBase + nivel) * (Math.random()*10+1)));   
         this.setPoderEspecial((int) ((valorBase + (nivel*1.5)) * (Math.random()*10+1)));
         this.setDefensaEspecial((int) ((valorBase + (nivel*1.5)) * (Math.random()*10+1)));
+        setMovimientosPrivate();
+    }
 
+    private void setMovimientosPrivate () {
         Ofensivo ofensivo = new Ofensivo("Barrido");
         Ofensivo ofensivoEspecial = new Ofensivo("BarridoEsp"); //Como es evolución, se le añade un ataqueEspecial
         ModificadorDefensa modificador_defensa = new ModificadorDefensa("Pocion_Defensa");
         ModificadorPoder modificador_Poder = new ModificadorPoder("Poder +8 TAPOTENTE");
 
-        Movimiento[] Movs1 = {ofensivo, ofensivoEspecial, modificador_defensa, modificador_Poder};
-
-        setMovimientos(Movs1);
+        ArrayList<Movimiento> movimientos = new ArrayList<Movimiento>();
+        movimientos.add(ofensivo);
+        movimientos.add(ofensivoEspecial);
+        movimientos.add(modificador_defensa);
+        movimientos.add(modificador_Poder);
+        setMovimientos(movimientos);
     }
-    
 }

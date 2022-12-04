@@ -1,4 +1,6 @@
 package Pookemon;
+import java.util.ArrayList;
+
 import Movimiento.*;
 
 public class Squirtle extends Pokemon {
@@ -23,9 +25,11 @@ public class Squirtle extends Pokemon {
         ModificadorDefensa modificador_defensa = new ModificadorDefensa("Pocion_Defensa");
         ModificadorPoder modificador_Poder = new ModificadorPoder("Poder - 4");
 
-        Movimiento[] Movs1 = {ofensivo, modificador_defensa, modificador_Poder};
-
-        setMovimientos(Movs1);
+        ArrayList<Movimiento> movimientos = new ArrayList<Movimiento>();
+        movimientos.add(ofensivo);
+        movimientos.add(modificador_defensa);
+        movimientos.add(modificador_Poder);
+        setMovimientos(movimientos);
     }
 
 }

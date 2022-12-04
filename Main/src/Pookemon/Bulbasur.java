@@ -1,4 +1,6 @@
 package Pookemon;
+import java.util.ArrayList;
+
 import Movimiento.*;
 
 public class Bulbasur extends Pokemon {
@@ -23,8 +25,10 @@ public class Bulbasur extends Pokemon {
         ModificadorDefensa modificador_defensa = new ModificadorDefensa("Latigoa");
         ModificadorPoder modificador_Poder = new ModificadorPoder("Poder - 4");
 
-        Movimiento[] Movs1 = {ofensivo, modificador_defensa, modificador_Poder};
-
-        setMovimientos(Movs1);
+        ArrayList<Movimiento> movimientos = new ArrayList<Movimiento>();
+        movimientos.add(ofensivo);
+        movimientos.add(modificador_defensa);
+        movimientos.add(modificador_Poder);
+        setMovimientos(movimientos);
     }
 }
