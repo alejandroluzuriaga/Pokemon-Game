@@ -177,16 +177,17 @@ public class Pokemon {
         String opcion = this.getClass().getSimpleName();
         switch (opcion){
             case "Charmander":
-                    if (this.nivel >= 10) {
-                        System.out.println("");
-                        System.out.println("****CHARMANDER EVOLUCIONA A CHARMELEON****");
-                        System.out.println("");
-                        return new Charmeleon(11, "Charmeleon1", this);
-                    } else {
-                        System.out.println("No tienes suficiente nivel para evolucionar. Te quedas con el que estás");
-                        return this;
-                    }
-                    break;
+                if (this.nivel >= 10) {
+                    System.out.println("");
+                    System.out.println("****CHARMANDER EVOLUCIONA A CHARMELEON****");
+                    System.out.println("");
+                    return new Charmeleon(11, "Charmeleon1", this);
+                    
+                } else {
+                    System.out.println("No tienes suficiente nivel para evolucionar. Te quedas con el que estás");
+                    return this;
+                }
+                
             case "Squirtle":
                 if (this.nivel >= 10) {
                     System.out.println("");
@@ -197,10 +198,10 @@ public class Pokemon {
                     System.out.println("No tienes suficiente nivel para evolucionar. Te quedas con el que estás");
                     return this;
                 }
-                break;
+
             default: 
                 System.out.println("No existe evolución para ese Pokemon. Te quedas con el que estás");
                 return this;
-                break;
+        }
     }
 }

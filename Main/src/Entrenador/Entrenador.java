@@ -58,7 +58,7 @@ public class Entrenador {
         if (this.pokemons.size()==1) {
             this.pokemonActivo=pokemons.get(0);
         }else{   
-            System.out.println(this.getNombre() + ", elije el pokemon que quieres usar:");
+            System.out.println(this.getNombre() + ", elige el pokemon que quieres usar:");
             for (int i = 0; i < pokemons.size(); ++i)
             System.out.println("- Opción "+(i+1)+ ": " + this.pokemons.get(i).getNombre());
             
@@ -143,7 +143,7 @@ public class Entrenador {
     }
 
     public void elegirMovimiento (Entrenador otroEntrenador){
-        System.out.println(this.getNombre() + ", elije el movimiento que quieres usar:");
+        System.out.println(this.getNombre() + ", elige el movimiento que quieres usar:");
         for (int i = 0; i < this.pokemonActivo.getMovimientos().size(); ++i)
             System.out.println("- Opción " + (i+1) + ": " + this.pokemonActivo.getMovimientos().get(i).getNombre());
         
