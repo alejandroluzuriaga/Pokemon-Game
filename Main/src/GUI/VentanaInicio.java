@@ -13,8 +13,8 @@ public class VentanaInicio implements ActionListener {
 
     public VentanaInicio (){
         tituloPrincipal = new JLabel("POOkemon");
-        tituloPrincipal.setBounds(0,0,1600,300);
-        tituloPrincipal.setIcon(new ImageIcon("./src/GUI/Imagenes/logo_100x100.png"));
+        tituloPrincipal.setBounds(0,0,1600,400);
+        tituloPrincipal.setIcon(new ImageIcon("./src/GUI/Imagenes/logo_200x200.png"));
         tituloPrincipal.setVerticalTextPosition(JLabel.BOTTOM);
         tituloPrincipal.setHorizontalTextPosition(JLabel.CENTER);
         tituloPrincipal.setHorizontalAlignment(JLabel.CENTER);
@@ -23,7 +23,7 @@ public class VentanaInicio implements ActionListener {
         tituloPrincipal.setIconTextGap(20);
 
         crearMundoNuevo = new JButton("CREAR MUNDO NUEVO");
-        crearMundoNuevo.setBounds(660,400,280,60);
+        crearMundoNuevo.setBounds(660,450,280,60);
         crearMundoNuevo.setHorizontalAlignment(JButton.CENTER);
         crearMundoNuevo.setFont(new Font("Courier New", Font.PLAIN, 20));
         crearMundoNuevo.setFocusable(false);
@@ -34,7 +34,7 @@ public class VentanaInicio implements ActionListener {
         crearMundoNuevo.addActionListener(this);
         
         cargarMundo = new JButton("CARGAR MUNDO");
-        cargarMundo.setBounds(660,470,280,60);
+        cargarMundo.setBounds(660,520,280,60);
         cargarMundo.setHorizontalAlignment(JButton.CENTER);
         cargarMundo.setFont(new Font("Courier New", Font.PLAIN, 20));
         cargarMundo.setFocusable(false);
@@ -75,7 +75,7 @@ public class VentanaInicio implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==crearMundoNuevo){
             VentanaInicio.dispose();
-            VentanaMundo ventanaMundo = new VentanaMundo();
+            new VentanaMundo();
         }
         if (e.getSource()==cargarMundo){
             VentanaInicio.dispose();
@@ -84,4 +84,6 @@ public class VentanaInicio implements ActionListener {
             VentanaInicio.dispose();
         }
     }
+
+
 }

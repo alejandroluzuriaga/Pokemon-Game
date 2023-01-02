@@ -21,7 +21,7 @@ public class Entrenador {
     // GETTERS & SETTERS
 
     public String getNombre() {
-        return nombre;
+            return nombre;
     }
 
     public int getIdentificador() {

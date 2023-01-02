@@ -6,20 +6,28 @@ import java.awt.event.*;
 import java.util.ArrayList;
 
 public class VentanaMundo implements ActionListener{
-    private JFrame VentanaMundo = new JFrame();
+    public static VentanaMundo iVentanaMundo;
+
+    private JFrame VentanaNuevoMundo = new JFrame();
     private JButton volver;
     private JLabel tituloMundo;
     private JPanel panelPokemons;
     private JPanel panelEntrenadores;
+    private JPanel panelListaPokemons;
     private JPanel panelListaEntrenadores;
-    private ArrayList<JButton> botonesP = new ArrayList<>();
-    private JButton anadirEntrenador;
+    private ArrayList<BotonPokemon> botonesP = new ArrayList<>();
+    private JButton anadirPokemon;
     private ArrayList<JButton> botonesE = new ArrayList<>();
-    private VentanaMundo ventanaMundo;
+    private JButton anadirEntrenador;
+
+    private Color cLetra = new Color (240, 245, 249);
+    private Color cBotonesClaro = new Color (201,214,223);
+    private Color cBotonesOscuro = new Color (58,71,80);
+    private Color cFondo = new Color (48,56,65);
 
     public VentanaMundo(){
-        ventanaMundo = this;
-
+        iVentanaMundo = this;
+        
         // VOLVER ///////////////////////////////////////////////////////////////////////////////////
         volver = new JButton("VOLVER");
         volver.setBounds(15,790,130,60);
@@ -27,7 +35,7 @@ public class VentanaMundo implements ActionListener{
         volver.setIcon(new ImageIcon("./src/GUI/Imagenes/volver.png"));
         volver.setFont(new Font("Courier New", Font.PLAIN, 18));
         volver.setFocusable(false);
-        volver.setForeground(new Color (240, 245, 249));
+        volver.setForeground(cLetra);
         volver.setIconTextGap(10);
         volver.setBackground(null);
         volver.setBorder(null);       
@@ -40,14 +48,14 @@ public class VentanaMundo implements ActionListener{
         tituloMundo.setIcon(new ImageIcon("./src/GUI/Imagenes/createWorld.png"));
         tituloMundo.setHorizontalAlignment(JLabel.CENTER);
         tituloMundo.setFont(new Font("Courier New", Font.BOLD, 50));
-        tituloMundo.setForeground(new Color (240, 245, 249));
+        tituloMundo.setForeground(cLetra);
         tituloMundo.setIconTextGap(10);
 
 
         // PANEL POKEMONS ///////////////////////////////////////////////////////////////////////////
         panelPokemons = new JPanel();
         panelPokemons.setBounds(300,170,300,500);
-        panelPokemons.setBackground(new Color (82, 97, 107));
+        panelPokemons.setBackground(cBotonesOscuro);
         panelPokemons.setBorder(BorderFactory.createEtchedBorder());
         panelPokemons.setLayout(new BorderLayout());
             
@@ -56,60 +64,34 @@ public class VentanaMundo implements ActionListener{
             tituloPokemons.setHorizontalAlignment(JLabel.CENTER);
             tituloPokemons.setPreferredSize(new Dimension(0,80));
             tituloPokemons.setFont(new Font("Courier New", Font.BOLD, 24));
-            tituloPokemons.setForeground(new Color (201, 214, 223));
+            tituloPokemons.setForeground(cBotonesClaro);
             
             // LISTA POKEMONS (PANEL POKEMONS) /////////////////////////////////////////////////////
-            JPanel panelListaPokemons = new JPanel();
+            panelListaPokemons = new JPanel();
             panelListaPokemons.setLayout(new GridLayout(0,1,0,5));
-            // JButton boton1 = new JButton("Pookemon 1");
-            // botonesP.add(boton1);
-            // JButton boton2 = new JButton("Pookemon 2");
-            // botonesP.add(boton2);
-            // JButton boton3 = new JButton("Pookemon 3");
-            // botonesP.add(boton3);
-            // JButton boton4 = new JButton("Pookemon 4");
-            // botonesP.add(boton4);
-            // JButton boton5 = new JButton("Pookemon 5");
-            // botonesP.add(boton5);
-            // JButton boton6 = new JButton("Pookemon 6");
-            // botonesP.add(boton6);
-            // JButton boton7 = new JButton("Pookemon 7");
-            // botonesP.add(boton7);
-            // JButton boton8 = new JButton("Pookemon 8");
-            // botonesP.add(boton8);
-
-            for (int i=0; i<botonesP.size();i++){
-                panelListaPokemons.add(botonesP.get(i));
-                botonesP.get(i).setPreferredSize(new Dimension(0,70));
-                botonesP.get(i).setBackground(new Color (238,238,238));
-                botonesP.get(i).setFocusable(false);
-                botonesP.get(i).setFont(new Font("Courier New", Font.BOLD, 16));
-                botonesP.get(i).setIcon(new ImageIcon("./src/GUI/Imagenes/pikachu.png"));
-                botonesP.get(i).setHorizontalAlignment(JButton.LEFT);
-                botonesP.get(i).setOpaque(true);
-            }
             
             // LISTA POKEMONS + SCROLL (PANEL POKEMONS) ///////////////////////////////////////////
             JScrollPane panelScrollPokemons = new JScrollPane(panelListaPokemons, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
             // ANADIR POKEMON (PANEL POKEMONS) /////////////////////////////////////////////////////
-            JButton anadirPokemon = new JButton("Añadir Pokemon");
+            anadirPokemon = new JButton("Añadir Pokemon");
             anadirPokemon.setPreferredSize(new Dimension(0,40));
             anadirPokemon.setHorizontalAlignment(JLabel.CENTER);
             anadirPokemon.setFont(new Font("Courier New", Font.BOLD, 12));
             anadirPokemon.setFocusable(false);
-            anadirPokemon.setForeground(new Color (82, 97, 107));
-            anadirPokemon.setBackground(new Color (201,214,223));
+            anadirPokemon.setForeground(cBotonesOscuro);
+            anadirPokemon.setBackground(cBotonesClaro);
+            anadirPokemon.addActionListener(this);
 
-        // COMPONENTES - PANEL POKEMONS /////////////////////////////////////////////////////////////
-        panelPokemons.add(tituloPokemons, BorderLayout.NORTH);
-        panelPokemons.add(panelScrollPokemons, BorderLayout.CENTER);
-        panelPokemons.add(anadirPokemon, BorderLayout.SOUTH);
+            // COMPONENTES - PANEL POKEMONS /////////////////////////////////////////////////////////////
+            panelPokemons.add(tituloPokemons, BorderLayout.NORTH);
+            panelPokemons.add(panelScrollPokemons, BorderLayout.CENTER);
+            panelPokemons.add(anadirPokemon, BorderLayout.SOUTH);
         
         // PANEL ENTRENADORES ///////////////////////////////////////////////////////////////////////
         panelEntrenadores = new JPanel();
         panelEntrenadores.setBounds(1000,170,300,500);
-        panelEntrenadores.setBackground(new Color (82, 97, 107));
+        panelEntrenadores.setBackground(cBotonesOscuro);
         panelEntrenadores.setBorder(BorderFactory.createEtchedBorder());
         panelEntrenadores.setLayout(new BorderLayout());
         
@@ -118,13 +100,11 @@ public class VentanaMundo implements ActionListener{
             tituloEntrenadores.setHorizontalAlignment(JLabel.CENTER);
             tituloEntrenadores.setPreferredSize(new Dimension(0,80));
             tituloEntrenadores.setFont(new Font("Courier New", Font.BOLD, 25));
-            tituloEntrenadores.setForeground(new Color (201, 214, 223));
+            tituloEntrenadores.setForeground(cBotonesClaro);
             
             // LISTA ENTRENADORES (PANEL ENTRENADORES) ////////////////////////////////////////////
             panelListaEntrenadores = new JPanel();
             panelListaEntrenadores.setLayout(new GridLayout(0,1,0,5));
-            
-            anadirEntrenadorPanel ();
 
             // LISTA ENTRENADORES + SCROLL (PANEL ENTRENADORES) ///////////////////////////////////
             JScrollPane panelScrollEntrenadores = new JScrollPane(panelListaEntrenadores, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -135,8 +115,8 @@ public class VentanaMundo implements ActionListener{
             anadirEntrenador.setHorizontalAlignment(JLabel.CENTER);
             anadirEntrenador.setFont(new Font("Courier New", Font.BOLD, 12));
             anadirEntrenador.setFocusable(false);
-            anadirEntrenador.setForeground(new Color (82, 97, 107));
-            anadirEntrenador.setBackground(new Color (201,214,223));
+            anadirEntrenador.setForeground(cBotonesOscuro);
+            anadirEntrenador.setBackground(cBotonesClaro);
             anadirEntrenador.addActionListener(this);
 
             // COMPONENTES - PANEL ENTRENADORES ///////////////////////////////////////////////////
@@ -147,48 +127,79 @@ public class VentanaMundo implements ActionListener{
 
         // WORLD WINDOW ///////////////////////////////////////////////////////////////////////////
         ImageIcon imageWindow = new ImageIcon("./src/GUI/Imagenes/logo.png");
-        VentanaMundo.setIconImage(imageWindow.getImage());
-        VentanaMundo.setTitle("POOkemon");
-        VentanaMundo.setResizable(false);
-        VentanaMundo.setSize(1600,900);
-        VentanaMundo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
-        VentanaMundo.getContentPane().setBackground(new Color (48,56,65));
-        // VentanaMundo.setUndecorated(true);
-        VentanaMundo.setLayout(null);
-        VentanaMundo.add(volver);
-        VentanaMundo.add(tituloMundo);
-        VentanaMundo.add(panelPokemons);
-        VentanaMundo.add(panelEntrenadores);
-        VentanaMundo.setLocationRelativeTo(null);
-        VentanaMundo.setVisible(true);
-    }
-
-    public void anadirEntrenadorPanel (){
-        for (int i=0; i<botonesE.size();i++){
-            botonesE.get(i).setPreferredSize(new Dimension(0,50));
-            botonesE.get(i).setBackground(new Color (238,238,238));
-            botonesE.get(i).setFocusable(false);
-            botonesE.get(i).setFont(new Font("Courier New", Font.BOLD, 16));
-            botonesE.get(i).setIcon(new ImageIcon("./src/GUI/Imagenes/pikachu.png"));
-            botonesE.get(i).setHorizontalAlignment(JButton.LEFT);
-            panelListaEntrenadores.add(botonesE.get(i));
-        }
+        VentanaNuevoMundo.setIconImage(imageWindow.getImage());
+        VentanaNuevoMundo.setTitle("POOkemon");
+        VentanaNuevoMundo.setResizable(false);
+        VentanaNuevoMundo.setSize(1600,900);
+        VentanaNuevoMundo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        VentanaNuevoMundo.getContentPane().setBackground(cFondo);
+        // VentanaNuevoMundo.setUndecorated(true);
+        VentanaNuevoMundo.setLayout(null);
+        VentanaNuevoMundo.add(volver);
+        VentanaNuevoMundo.add(tituloMundo);
+        VentanaNuevoMundo.add(panelPokemons);
+        VentanaNuevoMundo.add(panelEntrenadores);
+        VentanaNuevoMundo.setLocationRelativeTo(null);
+        VentanaNuevoMundo.setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==volver){
-            VentanaMundo.dispose();
-            new VentanaInicio();
+            int confirm = JOptionPane.showConfirmDialog(null, "¿Seguro que deseas salir del mundo?", "Atención", JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION){
+                VentanaNuevoMundo.dispose();
+                new VentanaInicio();
+            } else{
+                
+            }
         }
         if (e.getSource()==anadirEntrenador){
             new AnadirEntrenador();
-            anadirEntrenadorPanel();
+        }
+        if (e.getSource()==anadirPokemon){
+            new AnadirPokemon();
+        }
+        if(panelListaPokemons.getComponentCount()!=0){
+            for(int i=0;i<panelListaPokemons.getComponentCount();i++){
+                if (e.getSource()==panelListaPokemons.getComponent(i)){
+                    System.out.println(botonesP.get(i).getPokemon().toString());
+                }
+            }
         }
     }
 
-    public void actualizarPanel (JButton boton){
-        panelListaEntrenadores.add(boton);
+    public boolean contieneEntrenador (String nombre) {
+        boolean existe = false;
+        for (int i=0; i<botonesE.size(); i++){
+            if(botonesE.get(i).getText()==nombre){
+                existe = true;
+            }
+        }
+        return existe;
     }
 
+
+
+    // Getters
+
+    public JPanel getPanelListaEntrenadores() {
+        return panelListaEntrenadores;
+    }
+
+    public JFrame getVentanaNuevoMundo() {
+        return VentanaNuevoMundo;
+    }
+
+    public ArrayList<JButton> getBotonesE() {
+        return botonesE;
+    }
+
+    public ArrayList<BotonPokemon> getBotonesP() {
+        return botonesP;
+    }
+
+    public JPanel getPanelListaPokemons() {
+        return panelListaPokemons;
+    }
 }

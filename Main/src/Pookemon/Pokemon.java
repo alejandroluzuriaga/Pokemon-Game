@@ -16,8 +16,9 @@ public class Pokemon {
     }
 
     public Entrenador getEntrenador() {
-        return entrenador;
-    }
+            return entrenador;
+        }
+
 
     public String getSaludo() {
         return saludo;
@@ -152,16 +153,13 @@ public class Pokemon {
 
     // Otros métodos
 
-
-
-    
     @Override
     public String toString() {
         return "Pokemon{" +
                 "\t\n nombre: " + nombre +
                 "\t\n Nivel: " + nivel +
                 "\t\n Tipo: " + tipo +
-                "\t\n Entrenador: " + entrenador.getNombre() +
+                "\t\n Entrenador: " + condicionExistenciaEntrenador() +
                 "\t\n Saludo: " + saludo + 
                 "\t\n Velocidad: " + velocidad +
                 "\t\n Poder: " + poder +
@@ -171,6 +169,14 @@ public class Pokemon {
                 "\t\n SaludActual: " + saludActual +
                 "\t\n SaludMax: " + saludMax + 
                 '}';
+    }
+
+    public String condicionExistenciaEntrenador (){
+        if(entrenador==null){
+            return "-";
+        }else{
+            return this.entrenador.getNombre();
+        }
     }
 
     public Pokemon evolucionar() {
