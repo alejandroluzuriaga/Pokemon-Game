@@ -15,7 +15,6 @@ public class AnadirEntrenador implements ActionListener{
     private ButtonGroup grupoEntrenadores;
     private JLabel imagenPersonaje;
     private JButton botonGuardar;
-    private JButton boton;
     
 
     private Color cLetra = new Color (240, 245, 249);
@@ -132,36 +131,32 @@ public class AnadirEntrenador implements ActionListener{
             if(botonLoreto.isSelected()){
                 if (!(VentanaMundo.iVentanaMundo.contieneEntrenador("LORETO"))){
                     crearCasilla("LORETO");
-                    VentanaNuevoEntrenador.dispose();
-                    actualizarVentana();
+                    VentanaMundo.iVentanaMundo.actualizarVentana();
                 }else{
                     VentanaNuevoEntrenador.dispose();
                 }
             } else if(botonSilvia.isSelected()){
                 if (!(VentanaMundo.iVentanaMundo.contieneEntrenador("SILVIA"))){
                     crearCasilla("SILVIA");
-                    VentanaNuevoEntrenador.dispose();
-                    actualizarVentana();
+                    VentanaMundo.iVentanaMundo.actualizarVentana();
                 }else{
                     VentanaNuevoEntrenador.dispose();
                 }
             } else if(botonOleksandr.isSelected()){
                 if (!(VentanaMundo.iVentanaMundo.contieneEntrenador("OLEKSANDR"))){
                     crearCasilla("OLEKSANDR");
-                    VentanaNuevoEntrenador.dispose();
-                    actualizarVentana();
+                    VentanaMundo.iVentanaMundo.actualizarVentana();
                 }else{
                     VentanaNuevoEntrenador.dispose();
                 }
             } else if(botonAlejandro.isSelected()){
                 if (!(VentanaMundo.iVentanaMundo.contieneEntrenador("ALEJANDRO"))){
                     crearCasilla("ALEJANDRO");
-                    VentanaNuevoEntrenador.dispose();
-                    actualizarVentana();
+                    VentanaMundo.iVentanaMundo.actualizarVentana();
                 }else{
                     VentanaNuevoEntrenador.dispose();
                 }
-            } else {System.out.println("Error");}
+            }
         }
     }
 
@@ -174,9 +169,10 @@ public class AnadirEntrenador implements ActionListener{
     }
 
     public void crearCasilla (String nombre){
-        boton = new JButton(nombre);
+        BotonPokemon boton = new BotonPokemon();
+        boton.setText(nombre);
         boton.setPreferredSize(new Dimension(0,70));
-        boton.setBackground(new Color (238,238,238));
+        boton.setBackground(cLetra);
         boton.setFocusable(false);
         boton.setFont(new Font("Courier New", Font.BOLD, 16));
         if (nombre=="LORETO"){
@@ -192,18 +188,14 @@ public class AnadirEntrenador implements ActionListener{
         boton.setHorizontalAlignment(JButton.CENTER);
         boton.setHorizontalTextPosition(JButton.LEFT);
         boton.setIconTextGap(20);
+        boton.addActionListener(VentanaMundo.iVentanaMundo);
         VentanaMundo.iVentanaMundo.getBotonesE().add(boton);
         VentanaMundo.iVentanaMundo.getPanelListaEntrenadores().add(boton);
         VentanaMundo.iVentanaMundo.getPanelListaEntrenadores().getComponents();
+        VentanaMundo.iVentanaMundo.getGrupoBotonesPokemon().add(boton);
+        VentanaNuevoEntrenador.dispose();
     }
 
-
-
-    public void actualizarVentana(){
-        VentanaMundo.iVentanaMundo.getVentanaNuevoMundo().invalidate();
-        VentanaMundo.iVentanaMundo.getVentanaNuevoMundo().validate();
-        VentanaMundo.iVentanaMundo.getVentanaNuevoMundo().repaint();
-    }
 }
 
 

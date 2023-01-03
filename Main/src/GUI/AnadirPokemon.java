@@ -30,32 +30,32 @@ public class AnadirPokemon implements ActionListener{
     AnadirPokemon(){
         botonBulbasaur = new JToggleButton("BULBASAUR");
             botonBulbasaur.setBounds(200,45,170,40);
-            modificarBotonSeleccionEntrenador(botonBulbasaur);
+            modificarBotonSeleccionPokemon(botonBulbasaur);
             botonBulbasaur.addActionListener(this);
 
         botonCharmander = new JToggleButton("CHARMANDER");
             botonCharmander.setBounds(200,95,170,40);
-            modificarBotonSeleccionEntrenador(botonCharmander);
+            modificarBotonSeleccionPokemon(botonCharmander);
             botonCharmander.addActionListener(this);
 
         botonRattata = new JToggleButton("RATTATA");
             botonRattata.setBounds(200,145,170,40);
-            modificarBotonSeleccionEntrenador(botonRattata);
+            modificarBotonSeleccionPokemon(botonRattata);
             botonRattata.addActionListener(this);
 
         botonSquirtle = new JToggleButton("SQUIRTLE");
             botonSquirtle.setBounds(200,195,170,40);
-            modificarBotonSeleccionEntrenador(botonSquirtle);
+            modificarBotonSeleccionPokemon(botonSquirtle);
             botonSquirtle.addActionListener(this);
 
         botonCharmeleon = new JToggleButton("CHARMALEON");
             botonCharmeleon.setBounds(200,270,170,40);
-            modificarBotonSeleccionEntrenador(botonCharmeleon);
+            modificarBotonSeleccionPokemon(botonCharmeleon);
             botonCharmeleon.addActionListener(this);
 
         botonBlastoise = new JToggleButton("BLASTOISE");
             botonBlastoise.setBounds(200,320,170,40);
-            modificarBotonSeleccionEntrenador(botonBlastoise);
+            modificarBotonSeleccionPokemon(botonBlastoise);
             botonBlastoise.addActionListener(this);
 
         botonAleatorio = new JToggleButton("ALEATORIO");
@@ -207,22 +207,22 @@ public class AnadirPokemon implements ActionListener{
         if(e.getSource()==botonGuardar){
             if(botonBulbasaur.isSelected()){
                 crearCasilla("BULBASAUR",nombrePokemon.getText());
-                actualizarVentana();
+                VentanaMundo.iVentanaMundo.actualizarVentana();
             } else if(botonCharmander.isSelected()){
                 crearCasilla("CHARMANDER",nombrePokemon.getText());
-                actualizarVentana();
+                VentanaMundo.iVentanaMundo.actualizarVentana();
             } else if(botonRattata.isSelected()){
                 crearCasilla("RATTATA",nombrePokemon.getText());
-                actualizarVentana();
+                VentanaMundo.iVentanaMundo.actualizarVentana();
             } else if(botonSquirtle.isSelected()){
                 crearCasilla("SQUIRTLE",nombrePokemon.getText());
-                actualizarVentana();
+                VentanaMundo.iVentanaMundo.actualizarVentana();
             } else if(botonCharmeleon.isSelected()){
                 crearCasilla("CHARMALEON",nombrePokemon.getText());
-                actualizarVentana();
+                VentanaMundo.iVentanaMundo.actualizarVentana();
             } else if(botonBlastoise.isSelected()){
                 crearCasilla("BLASTOISE",nombrePokemon.getText());
-                actualizarVentana();
+                VentanaMundo.iVentanaMundo.actualizarVentana();
             } else if(botonAleatorio.isSelected()){
                 String tipo;
                 int i = (int) Math.floor(Math.random()*(6-1+1)+1);
@@ -251,12 +251,12 @@ public class AnadirPokemon implements ActionListener{
                 }
                 crearCasilla(tipo, nombrePokemon.getText());
                 VentanaNuevoPokemon.dispose();
-                actualizarVentana();
+                VentanaMundo.iVentanaMundo.actualizarVentana();
             }
         }
     }
 
-    public void modificarBotonSeleccionEntrenador (JToggleButton boton){
+    public void modificarBotonSeleccionPokemon (JToggleButton boton){
         boton.setFont(new Font("Courier New", Font.BOLD, 15));
         boton.setFocusable(false);
         boton.setForeground(cLetra);
@@ -269,27 +269,27 @@ public class AnadirPokemon implements ActionListener{
         BotonPokemon boton = new BotonPokemon();
         boton.setText(nombre);
         boton.setPreferredSize(new Dimension(0,70));
-        boton.setBackground(new Color (238,238,238));
+        boton.setBackground(cLetra);
         boton.setFocusable(false);
         boton.setFont(new Font("Courier New", Font.BOLD, 16));
         if (tipo=="BULBASAUR"){
             boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Bulbasaur_60.png"));
-            boton.setPokemon(new Bulbasur(1, tipo));
+            boton.setPokemon(new Bulbasur(1, nombre));
         } else if (tipo == "CHARMANDER"){
             boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Charmander_60.png"));
-            boton.setPokemon(new Charmander(1, tipo));
+            boton.setPokemon(new Charmander(1, nombre));
         } else if (tipo == "RATTATA"){
             boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Rattata_60.png"));
-            boton.setPokemon(new Rattata(1, tipo));
+            boton.setPokemon(new Rattata(1, nombre));
         } else if (tipo == "SQUIRTLE"){
             boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Squirtle_60.png"));
-            boton.setPokemon(new Squirtle(1, tipo));
+            boton.setPokemon(new Squirtle(1, nombre));
         } else if (tipo == "CHARMALEON"){
             boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Charmeleon_60.png"));
-            boton.setPokemon(new Charmeleon(1, tipo));
+            boton.setPokemon(new Charmeleon(1, nombre));
         } else if (tipo == "BLASTOISE"){
             boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Blastoise_60.png"));
-            boton.setPokemon(new Blastoise(1, tipo));
+            boton.setPokemon(new Blastoise(1, nombre));
         }
 
         boton.setHorizontalAlignment(JButton.CENTER);
@@ -298,17 +298,13 @@ public class AnadirPokemon implements ActionListener{
         boton.addActionListener(VentanaMundo.iVentanaMundo);
         VentanaMundo.iVentanaMundo.getBotonesP().add(boton);
         VentanaMundo.iVentanaMundo.getPanelListaPokemons().add(boton);
+        VentanaMundo.iVentanaMundo.getGrupoBotonesPokemon().add(boton);
         VentanaNuevoPokemon.dispose();
     }else{
         JOptionPane.showMessageDialog(null, "Ha ocurrido un error. Tienes que especificar un nombre.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    public void actualizarVentana(){
-        VentanaMundo.iVentanaMundo.getVentanaNuevoMundo().invalidate();
-        VentanaMundo.iVentanaMundo.getVentanaNuevoMundo().validate();
-        VentanaMundo.iVentanaMundo.getVentanaNuevoMundo().repaint();
-    }
 
 }
 

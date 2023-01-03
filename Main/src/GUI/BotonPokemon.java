@@ -3,7 +3,7 @@ package GUI;
 import javax.swing.*;
 import Pookemon.*;
 
-public class BotonPokemon extends JButton {
+public class BotonPokemon extends JToggleButton {
     private Pokemon pokemon;
 
     public Pokemon getPokemon() {

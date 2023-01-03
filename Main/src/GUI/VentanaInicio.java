@@ -11,6 +11,10 @@ public class VentanaInicio implements ActionListener {
     private JLabel tituloPrincipal;
     private JFrame VentanaInicio = new JFrame();
 
+    private Color cLetra = new Color (240, 245, 249);
+    private Color cBotonesOscuro = new Color (58,71,80);
+    private Color cFondo = new Color (48,56,65);
+
     public VentanaInicio (){
         tituloPrincipal = new JLabel("POOkemon");
         tituloPrincipal.setBounds(0,0,1600,400);
@@ -19,7 +23,7 @@ public class VentanaInicio implements ActionListener {
         tituloPrincipal.setHorizontalTextPosition(JLabel.CENTER);
         tituloPrincipal.setHorizontalAlignment(JLabel.CENTER);
         tituloPrincipal.setFont(new Font("Courier New", Font.BOLD, 100));
-        tituloPrincipal.setForeground(new Color (240, 245, 249));
+        tituloPrincipal.setForeground(cLetra);
         tituloPrincipal.setIconTextGap(20);
 
         crearMundoNuevo = new JButton("CREAR MUNDO NUEVO");
@@ -27,10 +31,9 @@ public class VentanaInicio implements ActionListener {
         crearMundoNuevo.setHorizontalAlignment(JButton.CENTER);
         crearMundoNuevo.setFont(new Font("Courier New", Font.PLAIN, 20));
         crearMundoNuevo.setFocusable(false);
-        crearMundoNuevo.setForeground(new Color (240, 245, 249));
-        crearMundoNuevo.setBackground(new Color (58,71,80));
+        crearMundoNuevo.setForeground(cLetra);
+        crearMundoNuevo.setBackground(cBotonesOscuro);
         crearMundoNuevo.setBorder(BorderFactory.createEtchedBorder());
-        crearMundoNuevo.setIconTextGap(15);
         crearMundoNuevo.addActionListener(this);
         
         cargarMundo = new JButton("CARGAR MUNDO");
@@ -38,9 +41,8 @@ public class VentanaInicio implements ActionListener {
         cargarMundo.setHorizontalAlignment(JButton.CENTER);
         cargarMundo.setFont(new Font("Courier New", Font.PLAIN, 20));
         cargarMundo.setFocusable(false);
-        cargarMundo.setForeground(new Color (240, 245, 249));
-        cargarMundo.setBackground(new Color (58,71,80));
-        cargarMundo.setIconTextGap(15);
+        cargarMundo.setForeground(cLetra);
+        cargarMundo.setBackground(cBotonesOscuro);
         cargarMundo.setBorder(BorderFactory.createEtchedBorder());
         
         salir = new JButton("SALIR");
@@ -49,7 +51,7 @@ public class VentanaInicio implements ActionListener {
         salir.setIcon(new ImageIcon("./src/GUI/Imagenes/exit.png"));
         salir.setFont(new Font("Courier New", Font.PLAIN, 18));
         salir.setFocusable(false);
-        salir.setForeground(new Color (238,238,238));
+        salir.setForeground(cLetra);
         salir.setBackground(null);
         salir.setBorder(null);
         salir.setIconTextGap(10);
@@ -60,8 +62,7 @@ public class VentanaInicio implements ActionListener {
         VentanaInicio.setResizable(false);
         VentanaInicio.setSize(1600,900);
         VentanaInicio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
-        VentanaInicio.getContentPane().setBackground(new Color (48,56,65));
-        // VentanaInicio.setUndecorated(true);  
+        VentanaInicio.getContentPane().setBackground(cFondo); 
         VentanaInicio.setLayout(null);
         VentanaInicio.add(tituloPrincipal);
         VentanaInicio.add(crearMundoNuevo);
