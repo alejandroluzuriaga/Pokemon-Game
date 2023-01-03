@@ -18,6 +18,7 @@ public class VentanaMundo implements ActionListener{
     private ArrayList<BotonPokemon> botonesP = new ArrayList<>();
     private JButton anadirPokemon;
     private JTextField nombrePokemonSeleccionado;
+    private JTextField tipoPokemonSeleccionado;
     private JPanel panelDetalles;
     private JButton botonModificar;
     private JButton botonEliminar;
@@ -212,7 +213,7 @@ public class VentanaMundo implements ActionListener{
                         nombrePokemonSeleccionado.setPreferredSize(new Dimension(100,20));
                         nombrePokemonSeleccionado.setBorder(null);
                         nombrePokemonSeleccionado.setBackground(null);
-                    JTextField tipoPokemonSeleccionado = new JTextField();
+                    tipoPokemonSeleccionado = new JTextField();
                         tipoPokemonSeleccionado.setText(botonesP.get(i).getPokemon().getTipo());
                         tipoPokemonSeleccionado.setEditable(false);
                         tipoPokemonSeleccionado.setBorder(null);
@@ -353,6 +354,10 @@ public class VentanaMundo implements ActionListener{
                 nombrePokemonSeleccionado.setEditable(true);
                 nombrePokemonSeleccionado.setBackground(cBotonesClaro);
                 nombrePokemonSeleccionado.setForeground(cBotonesOscuro);
+                // tipoPokemonSeleccionado.setEditable(true);
+                // tipoPokemonSeleccionado.setBackground(cBotonesClaro);
+                // tipoPokemonSeleccionado.setForeground(cBotonesOscuro);
+
                 botonEliminar.setVisible(false);
                 botonModificar.setVisible(false);
                 botonGuardarDetalles.setVisible(true);
@@ -362,6 +367,10 @@ public class VentanaMundo implements ActionListener{
                 nombrePokemonSeleccionado.setEditable(false);
                 nombrePokemonSeleccionado.setBackground(cBotonesOscuro);
                 nombrePokemonSeleccionado.setForeground(cBotonesClaro);
+                // tipoPokemonSeleccionado.setEditable(false);
+                // tipoPokemonSeleccionado.setBackground(cBotonesOscuro);
+                // tipoPokemonSeleccionado.setForeground(cBotonesClaro);
+
                 botonEliminar.setVisible(true);
                 botonModificar.setVisible(true);
                 botonGuardarDetalles.setVisible(false);
@@ -374,6 +383,11 @@ public class VentanaMundo implements ActionListener{
                             if(botonesP.get(i)==button){
                                 botonesP.get(i).getPokemon().setNombre(nombrePokemonSeleccionado.getText());
                                 button.setText(nombrePokemonSeleccionado.getText());
+                                // botonesP.get(i).getPokemon().setTipo(tipoPokemonSeleccionado.getText());
+                                
+                                
+                                
+                                
                                 actualizarVentana();
                                 panelListaPokemons.repaint();
                         }
