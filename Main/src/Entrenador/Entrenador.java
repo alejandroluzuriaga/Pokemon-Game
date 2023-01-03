@@ -64,7 +64,6 @@ public class Entrenador {
             
             Scanner pokemon = new Scanner(System.in);
             int opcion = pokemon.nextInt();
-            // pokemon.close();
             this.pokemonActivo = pokemons.get(opcion-1);
         }
         System.out.println("El pokemon activo es:" + this.pokemonActivo.getNombre());

@@ -74,8 +74,8 @@ public class VentanaInicio implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==crearMundoNuevo){
-            VentanaInicio.dispose();
             new VentanaMundo();
+            VentanaInicio.dispose();
         }
         if (e.getSource()==cargarMundo){
             VentanaInicio.dispose();
