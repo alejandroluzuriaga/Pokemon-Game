@@ -4,7 +4,7 @@ import javax.swing.*;
 import Entrenador.*;
 import Pookemon.*;
 
-public class BotonMod extends JToggleButton {
+public class ToggleBotonPokemonEntrenador extends JToggleButton {
     private Pokemon pokemon;
     private Entrenador entrenador;
 

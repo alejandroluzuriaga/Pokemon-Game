@@ -173,7 +173,7 @@ public class AnadirEntrenador implements ActionListener{
     }
 
     public void crearCasilla (String nombre){
-        BotonMod boton = new BotonMod();
+        ToggleBotonPokemonEntrenador boton = new ToggleBotonPokemonEntrenador();
         boton.setText(nombre);
         boton.setPreferredSize(new Dimension(0,70));
         boton.setBackground(cLetra);

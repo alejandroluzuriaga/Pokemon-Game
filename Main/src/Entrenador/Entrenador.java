@@ -16,9 +16,6 @@ public class Entrenador {
     public Entrenador (String nombre, int identificador) {
         setNombre(nombre);
         setIdentificador(identificador);
-        this.anadirPokemon(new Pokemon());
-        this.anadirPokemon(new Pokemon());
-        this.anadirPokemon(new Pokemon());
     }
 
     // GETTERS & SETTERS
@@ -138,6 +135,7 @@ public class Entrenador {
     public void anadirPokemon(Pokemon pokemon){
         if ((pokemons.size() < 3)){
                 pokemons.add(pokemon);
+                pokemon.setEntrenador(this);
         } else{
             System.out.println("Lista de pokemons llena");
         }

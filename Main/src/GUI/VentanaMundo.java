@@ -1,7 +1,6 @@
 package GUI;
 
 import javax.swing.*;
-import Pookemon.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -16,11 +15,12 @@ public class VentanaMundo implements ActionListener{
     
     private JPanel panelPokemons;
     private JPanel panelListaPokemons;
-    private ArrayList<BotonMod> botonesP = new ArrayList<>();
+    private ArrayList<ToggleBotonPokemonEntrenador> botonesPokemon = new ArrayList<>();
     private JButton anadirPokemon;
     private JTextField nombrePokemonSeleccionado;
     private JTextField tipoPokemonSeleccionado;
     private JTextField nivelPokemonSeleccionado;
+    private JTextField entrenadorPokemonSeleccionado;
     private JTextField poderPokemonSeleccionado;
     private JTextField poderEspecialPokemonSeleccionado;
     private JTextField defensaPokemonSeleccionado;
@@ -37,15 +37,15 @@ public class VentanaMundo implements ActionListener{
     
     private JPanel panelEntrenadores;
     private JPanel panelListaEntrenadores;
-    private ArrayList<BotonMod> botonesE = new ArrayList<>();
+    private ArrayList<ToggleBotonPokemonEntrenador> botonesEntrenador = new ArrayList<>();
     private JButton anadirEntrenador;
-    private ArrayList<BotonPokemonDisponible> botonesPokDis = new ArrayList<>();
-    private JToggleButton botonAsignarPokemon1;
-    private JToggleButton botonAsignarPokemon2;
-    private JToggleButton botonAsignarPokemon3;
-    private ButtonGroup grupoBotones2;
+    private ArrayList<BotonPokemon> botonesPokemonsDisponibles = new ArrayList<>();
+    private JButton asignarPokemon;
     private JScrollPane panelScrollPokemonsDisponibles;
     private JPanel panelPokemonsDisponibles = new JPanel();
+    private JButton boton1Eliminar;
+    private JButton boton2Eliminar;
+    private JButton boton3Eliminar;
     private JButton botonCombatir;
     private JButton botonEliminarEntrenador;
 
@@ -189,12 +189,18 @@ public class VentanaMundo implements ActionListener{
                 new VentanaInicio();
             }
         }
+
+
         if (e.getSource()==anadirEntrenador){
             new AnadirEntrenador();
         }
+
+
         if (e.getSource()==anadirPokemon){
             new AnadirPokemon();
         }
+
+
         if(panelListaPokemons.getComponentCount()!=0){
             for(int i=0;i<panelListaPokemons.getComponentCount();i++){
                 if (e.getSource()==panelListaPokemons.getComponent(i)){
@@ -227,53 +233,53 @@ public class VentanaMundo implements ActionListener{
                         etiquetaSaludMax.setHorizontalAlignment(JLabel.RIGHT);
 
                     nombrePokemonSeleccionado = new JTextField();
-                        nombrePokemonSeleccionado.setText(botonesP.get(i).getPokemon().getNombre());
+                        nombrePokemonSeleccionado.setText(botonesPokemon.get(i).getPokemon().getNombre());
                         nombrePokemonSeleccionado.setEditable(false);
                         nombrePokemonSeleccionado.setPreferredSize(new Dimension(100,20));
                         nombrePokemonSeleccionado.setBorder(null);
                         nombrePokemonSeleccionado.setBackground(null);
                     tipoPokemonSeleccionado = new JTextField();
-                        tipoPokemonSeleccionado.setText(botonesP.get(i).getPokemon().getTipo());
+                        tipoPokemonSeleccionado.setText(botonesPokemon.get(i).getPokemon().getTipo());
                         tipoPokemonSeleccionado.setEditable(false);
                         tipoPokemonSeleccionado.setBorder(null);
                         tipoPokemonSeleccionado.setBackground(null);
                     nivelPokemonSeleccionado = new JTextField();
-                        nivelPokemonSeleccionado.setText(String.valueOf(botonesP.get(i).getPokemon().getNivel()));
+                        nivelPokemonSeleccionado.setText(String.valueOf(botonesPokemon.get(i).getPokemon().getNivel()));
                         nivelPokemonSeleccionado.setEditable(false);
                         nivelPokemonSeleccionado.setBorder(null);
                         nivelPokemonSeleccionado.setBackground(null);
-                    JTextField entrenadorPokemonSeleccionado = new JTextField();
-                        entrenadorPokemonSeleccionado.setText(botonesP.get(i).getPokemon().condicionExistenciaEntrenador());
+                    entrenadorPokemonSeleccionado = new JTextField();
+                        entrenadorPokemonSeleccionado.setText(botonesPokemon.get(i).getPokemon().condicionExistenciaEntrenador());
                         entrenadorPokemonSeleccionado.setEditable(false);
                         entrenadorPokemonSeleccionado.setBorder(null);
                         entrenadorPokemonSeleccionado.setBackground(null);
                     poderPokemonSeleccionado = new JTextField();
-                        poderPokemonSeleccionado.setText(String.valueOf(botonesP.get(i).getPokemon().getPoder()));
+                        poderPokemonSeleccionado.setText(String.valueOf(botonesPokemon.get(i).getPokemon().getPoder()));
                         poderPokemonSeleccionado.setEditable(false);
                         poderPokemonSeleccionado.setBorder(null);
                         poderPokemonSeleccionado.setBackground(null);
                     poderEspecialPokemonSeleccionado = new JTextField();
-                        poderEspecialPokemonSeleccionado.setText(String.valueOf(botonesP.get(i).getPokemon().getPoderEspecial()));
+                        poderEspecialPokemonSeleccionado.setText(String.valueOf(botonesPokemon.get(i).getPokemon().getPoderEspecial()));
                         poderEspecialPokemonSeleccionado.setEditable(false);
                         poderEspecialPokemonSeleccionado.setBorder(null);
                         poderEspecialPokemonSeleccionado.setBackground(null);
                     defensaPokemonSeleccionado = new JTextField();
-                        defensaPokemonSeleccionado.setText(String.valueOf(botonesP.get(i).getPokemon().getDefensa()));
+                        defensaPokemonSeleccionado.setText(String.valueOf(botonesPokemon.get(i).getPokemon().getDefensa()));
                         defensaPokemonSeleccionado.setEditable(false);
                         defensaPokemonSeleccionado.setBorder(null);
                         defensaPokemonSeleccionado.setBackground(null);
                     defensaEspecialPokemonSeleccionado = new JTextField();
-                        defensaEspecialPokemonSeleccionado.setText(String.valueOf(botonesP.get(i).getPokemon().getDefensaEspecial()));
+                        defensaEspecialPokemonSeleccionado.setText(String.valueOf(botonesPokemon.get(i).getPokemon().getDefensaEspecial()));
                         defensaEspecialPokemonSeleccionado.setEditable(false);
                         defensaEspecialPokemonSeleccionado.setBorder(null);
                         defensaEspecialPokemonSeleccionado.setBackground(null);
                     velocidadPokemonSeleccionado = new JTextField();
-                        velocidadPokemonSeleccionado.setText(String.valueOf(botonesP.get(i).getPokemon().getVelocidad()));
+                        velocidadPokemonSeleccionado.setText(String.valueOf(botonesPokemon.get(i).getPokemon().getVelocidad()));
                         velocidadPokemonSeleccionado.setEditable(false);
                         velocidadPokemonSeleccionado.setBorder(null);
                         velocidadPokemonSeleccionado.setBackground(null);
                     saludMaxPokemonSeleccionado = new JTextField();
-                        saludMaxPokemonSeleccionado.setText(String.valueOf(botonesP.get(i).getPokemon().getSaludMax()));
+                        saludMaxPokemonSeleccionado.setText(String.valueOf(botonesPokemon.get(i).getPokemon().getSaludMax()));
                         saludMaxPokemonSeleccionado.setEditable(false);
                         saludMaxPokemonSeleccionado.setBorder(null);
                         saludMaxPokemonSeleccionado.setBackground(null);
@@ -368,7 +374,7 @@ public class VentanaMundo implements ActionListener{
                         if (confirm == JOptionPane.YES_OPTION){
                             panelListaPokemons.remove(button);
                             grupoBotones1.remove(button);
-                            botonesP.remove(button);
+                            botonesPokemon.remove(button);
                             panelControl.setVisible(false);
                             actualizarVentana();
                         }
@@ -456,17 +462,17 @@ public class VentanaMundo implements ActionListener{
                 while (botones.hasMoreElements()) {
                     AbstractButton button = (AbstractButton)botones.nextElement();
                     if (button.isSelected()){
-                        for(int i=0; i<botonesP.size();i++){
-                            if(botonesP.get(i)==button){
-                                botonesP.get(i).getPokemon().setNombre(nombrePokemonSeleccionado.getText());
+                        for(int i=0; i<botonesPokemon.size();i++){
+                            if(botonesPokemon.get(i)==button){
+                                botonesPokemon.get(i).getPokemon().setNombre(nombrePokemonSeleccionado.getText());
                                 button.setText(nombrePokemonSeleccionado.getText());
-                                botonesP.get(i).getPokemon().setNivel(Integer.parseInt(nivelPokemonSeleccionado.getText()));
-                                botonesP.get(i).getPokemon().setPoder(Integer.parseInt(poderPokemonSeleccionado.getText()));
-                                botonesP.get(i).getPokemon().setPoderEspecial(Integer.parseInt(poderEspecialPokemonSeleccionado.getText()));
-                                botonesP.get(i).getPokemon().setDefensa(Integer.parseInt(defensaEspecialPokemonSeleccionado.getText()));
-                                botonesP.get(i).getPokemon().setDefensaEspecial((Integer.parseInt(defensaEspecialPokemonSeleccionado.getText())));
-                                botonesP.get(i).getPokemon().setVelocidad(Integer.parseInt(velocidadPokemonSeleccionado.getText()));
-                                botonesP.get(i).getPokemon().setSaludMax(Integer.parseInt(saludMaxPokemonSeleccionado.getText())); 
+                                botonesPokemon.get(i).getPokemon().setNivel(Integer.parseInt(nivelPokemonSeleccionado.getText()));
+                                botonesPokemon.get(i).getPokemon().setPoder(Integer.parseInt(poderPokemonSeleccionado.getText()));
+                                botonesPokemon.get(i).getPokemon().setPoderEspecial(Integer.parseInt(poderEspecialPokemonSeleccionado.getText()));
+                                botonesPokemon.get(i).getPokemon().setDefensa(Integer.parseInt(defensaEspecialPokemonSeleccionado.getText()));
+                                botonesPokemon.get(i).getPokemon().setDefensaEspecial((Integer.parseInt(defensaEspecialPokemonSeleccionado.getText())));
+                                botonesPokemon.get(i).getPokemon().setVelocidad(Integer.parseInt(velocidadPokemonSeleccionado.getText()));
+                                botonesPokemon.get(i).getPokemon().setSaludMax(Integer.parseInt(saludMaxPokemonSeleccionado.getText())); 
                                 actualizarVentana();
                                 panelListaPokemons.repaint();
                             }
@@ -481,59 +487,56 @@ public class VentanaMundo implements ActionListener{
             for(int i=0;i<panelListaEntrenadores.getComponentCount();i++){
                 if (e.getSource()==panelListaEntrenadores.getComponent(i)){
                     panelControl.removeAll();
-                    
-                    botonAsignarPokemon1 = new JToggleButton();
-                        botonAsignarPokemon1.setBounds(15,15,180,120);
-                        botonAsignarPokemon1.setBackground(cBotonesClaro);
-                        if(botonesE.get(i).getEntrenador().getPokemons().get(0).getNombre()==null){
-                            botonAsignarPokemon1.setIcon(new ImageIcon("./src/GUI/Imagenes/plus.png"));
-                            botonAsignarPokemon1.setFocusable(false);
-                            botonAsignarPokemon1.addActionListener(iVentanaMundo);
-                        }else{
-                            botonAsignarPokemon1.setText(botonesE.get(i).getEntrenador().getPokemons().get(0).getNombre());
-                            botonAsignarPokemon1.setFocusable(false);
-                            botonAsignarPokemon1.addActionListener(iVentanaMundo);
-                            if(botonesE.get(i).getEntrenador().getPokemons().get(0).getClass().getSimpleName()=="Bulbasur"){
-                                botonAsignarPokemon1.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Bulbasaur_60.png"));
-                            }
-                        }
-                        
-                    botonAsignarPokemon2 = new JToggleButton();
-                        botonAsignarPokemon2.setBounds(210,15,180,120);
-                        botonAsignarPokemon2.setBackground(cBotonesClaro);
-                        if(botonesE.get(i).getEntrenador().getPokemons().get(1).getNombre()==null){
-                            botonAsignarPokemon2.setIcon(new ImageIcon("./src/GUI/Imagenes/plus.png"));
-                            botonAsignarPokemon2.setFocusable(false);
-                            botonAsignarPokemon2.addActionListener(iVentanaMundo);
-                        }else{
-                            botonAsignarPokemon2.setText(botonesE.get(i).getEntrenador().getPokemons().get(1).getNombre());
-                            botonAsignarPokemon2.setFocusable(false);
-                            botonAsignarPokemon2.addActionListener(iVentanaMundo);
-                            if(botonesE.get(i).getEntrenador().getPokemons().get(1).getClass().getSimpleName()=="Bulbasur"){
-                                botonAsignarPokemon2.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Bulbasaur_60.png"));
-                            }
-                        }
 
-                    botonAsignarPokemon3 = new JToggleButton();
-                        botonAsignarPokemon3.setBounds(405,15,180,120);
-                        botonAsignarPokemon3.setBackground(cBotonesClaro);
-                        if(botonesE.get(i).getEntrenador().getPokemons().get(2).getNombre()==null){
-                            botonAsignarPokemon3.setIcon(new ImageIcon("./src/GUI/Imagenes/plus.png"));
-                            botonAsignarPokemon3.setFocusable(false);
-                            botonAsignarPokemon3.addActionListener(iVentanaMundo);
-                        }else{
-                            botonAsignarPokemon3.setText(botonesE.get(i).getEntrenador().getPokemons().get(2).getNombre());
-                            botonAsignarPokemon3.setFocusable(false);
-                            botonAsignarPokemon3.addActionListener(iVentanaMundo);
-                            if(botonesE.get(i).getEntrenador().getPokemons().get(2).getClass().getSimpleName()=="Bulbasur"){
-                                botonAsignarPokemon3.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Bulbasaur_60.png"));
-                            }
-                        }
+                    asignarPokemon = new JButton("ASIGNAR POKEMON");
+                        asignarPokemon.setBounds(210,200,180,40);
+                        asignarPokemon.addActionListener(iVentanaMundo);
                     
-                    grupoBotones2 = new ButtonGroup();
-                        grupoBotones2.add(botonAsignarPokemon1);
-                        grupoBotones2.add(botonAsignarPokemon2);
-                        grupoBotones2.add(botonAsignarPokemon3);
+                    if(botonesEntrenador.get(i).getEntrenador().getPokemons().size()==0){
+                        crearSlotPokemonDisponible(15,15,180,120);
+                        crearSlotPokemonDisponible(210,15,180,120);
+                        crearSlotPokemonDisponible(405,15,180,120);
+                        asignarPokemon.setVisible(true);
+                    }else if (botonesEntrenador.get(i).getEntrenador().getPokemons().size()==1){
+                        boton1Eliminar = new JButton(botonesEntrenador.get(i).getEntrenador().getPokemons().get(0).getNombre());
+                            boton1Eliminar.setBounds(15,15,180,120);
+                            mostrarIcono (boton1Eliminar,i,0);
+                            panelControl.add(boton1Eliminar);
+
+                        crearSlotPokemonDisponible(210,15,180,120);
+                        crearSlotPokemonDisponible(405,15,180,120);
+
+                        asignarPokemon.setVisible(true);
+                    }else if (botonesEntrenador.get(i).getEntrenador().getPokemons().size()==2){
+                        boton1Eliminar = new JButton(botonesEntrenador.get(i).getEntrenador().getPokemons().get(0).getNombre());
+                            
+                            boton1Eliminar.setBounds(15,15,180,120);
+                            mostrarIcono (boton1Eliminar,i,0);
+                            panelControl.add(boton1Eliminar);
+                            
+                            boton2Eliminar = new JButton(botonesEntrenador.get(i).getEntrenador().getPokemons().get(1).getNombre());
+                            boton2Eliminar.setBounds(210,15,180,120);
+                            mostrarIcono (boton2Eliminar,i,1);
+                            panelControl.add(boton2Eliminar);
+                        
+                        crearSlotPokemonDisponible(405,15,180,120);
+                        asignarPokemon.setVisible(true);
+                    }else if (botonesEntrenador.get(i).getEntrenador().getPokemons().size()==3){
+                        boton1Eliminar = new JButton(botonesEntrenador.get(i).getEntrenador().getPokemons().get(0).getNombre());
+                            boton1Eliminar.setBounds(15,15,180,120);
+                            mostrarIcono (boton1Eliminar,i,0);
+                            panelControl.add(boton1Eliminar);
+                        boton2Eliminar = new JButton(botonesEntrenador.get(i).getEntrenador().getPokemons().get(1).getNombre());
+                            boton2Eliminar.setBounds(210,15,180,120);
+                            mostrarIcono (boton2Eliminar,i,1);
+                            panelControl.add(boton2Eliminar);
+                        boton3Eliminar = new JButton(botonesEntrenador.get(i).getEntrenador().getPokemons().get(2).getNombre());
+                            boton3Eliminar.setBounds(405,15,180,120);
+                            mostrarIcono (boton3Eliminar,i,2);
+                            panelControl.add(boton3Eliminar);
+                        asignarPokemon.setVisible(false);
+                    }
+
 
                     panelScrollPokemonsDisponibles = new JScrollPane(panelPokemonsDisponibles,JScrollPane.VERTICAL_SCROLLBAR_NEVER,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
                         panelScrollPokemonsDisponibles.setVisible(false);
@@ -558,9 +561,7 @@ public class VentanaMundo implements ActionListener{
                         botonEliminarEntrenador.addActionListener(iVentanaMundo);
                     
                     panelControl.setLayout(null);
-                    panelControl.add(botonAsignarPokemon1);
-                    panelControl.add(botonAsignarPokemon2);
-                    panelControl.add(botonAsignarPokemon3);
+                    panelControl.add(asignarPokemon);
                     panelControl.add(botonCombatir);
                     panelControl.add(botonEliminarEntrenador);
                     panelControl.setVisible(true);
@@ -577,7 +578,7 @@ public class VentanaMundo implements ActionListener{
                         if (confirm == JOptionPane.YES_OPTION){
                             panelListaEntrenadores.remove(button);
                             grupoBotones1.remove(button);
-                            botonesE.remove(button);
+                            botonesEntrenador.remove(button);
                             panelControl.setVisible(false);
                             actualizarVentana();
                         }
@@ -585,20 +586,21 @@ public class VentanaMundo implements ActionListener{
                 }
             }
 
-            if(e.getSource()==botonAsignarPokemon1){
-                if(botonAsignarPokemon1.getText()==""){
-                
+            if(e.getSource()==asignarPokemon){
+                asignarPokemon.setVisible(false);
+
                 panelPokemonsDisponibles.removeAll();
                 panelPokemonsDisponibles.setLayout(new GridLayout(1,0,15,0));
                 panelPokemonsDisponibles.setBackground(cBotonesOscuro);
                 
-                for (int i=0; i<botonesP.size(); i++){
-                    if(botonesP.get(i).getPokemon().condicionExistenciaEntrenador()=="-"){
-                        BotonPokemonDisponible botonPokemonDisponible = new BotonPokemonDisponible();
-                            botonPokemonDisponible.setText(botonesP.get(i).getPokemon().getNombre());
+                for (int i=0; i<botonesPokemon.size(); i++){
+                    if(botonesPokemon.get(i).getPokemon().condicionExistenciaEntrenador()=="-"){
+                        BotonPokemon botonPokemonDisponible = new BotonPokemon();
+                            botonPokemonDisponible.setPokemon(botonesPokemon.get(i).getPokemon());
+                            botonPokemonDisponible.setText(botonesPokemon.get(i).getPokemon().getNombre());
                             botonPokemonDisponible.setPreferredSize(new Dimension(180,0));
                             botonPokemonDisponible.setVerticalAlignment(JButton.CENTER);
-                            botonPokemonDisponible.setIcon(botonesP.get(i).getIcon());
+                            botonPokemonDisponible.setIcon(botonesPokemon.get(i).getIcon());
                             botonPokemonDisponible.setVerticalTextPosition(JButton.BOTTOM);
                             botonPokemonDisponible.setHorizontalTextPosition(JButton.CENTER);
                             botonPokemonDisponible.setBackground(cBotonesClaro);
@@ -607,7 +609,7 @@ public class VentanaMundo implements ActionListener{
                             botonPokemonDisponible.setFont(new Font("Courier New", Font.BOLD, 15));
                             botonPokemonDisponible.setIconTextGap(10);
                             botonPokemonDisponible.addActionListener(iVentanaMundo);
-                            botonesPokDis.add(botonPokemonDisponible);
+                            botonesPokemonsDisponibles.add(botonPokemonDisponible);
                         panelPokemonsDisponibles.add(botonPokemonDisponible);
                     }
                 }
@@ -616,56 +618,63 @@ public class VentanaMundo implements ActionListener{
                 panelScrollPokemonsDisponibles.setBorder(BorderFactory.createEtchedBorder());
                 panelScrollPokemonsDisponibles.setBackground(cBotonesOscuro);
                 panelScrollPokemonsDisponibles.getHorizontalScrollBar().setBackground(cBotonesOscuro);
-                panelScrollPokemonsDisponibles.repaint();
                 panelScrollPokemonsDisponibles.setVisible(true);
                 panelControl.add(panelScrollPokemonsDisponibles);
-                actualizarVentana();
-                }else{
-                    System.out.println("Eliminar");
-                }
             }
 
             if(panelPokemonsDisponibles.getComponentCount()!=0){
                 for(int i=0;i<panelPokemonsDisponibles.getComponentCount();i++){
                     if (e.getSource()==panelPokemonsDisponibles.getComponent(i)){
-                        String nombreESel = "";
-                        Enumeration<AbstractButton> botones1 = grupoBotones1.getElements();
-                        while (botones1.hasMoreElements()) {
-                            AbstractButton button1 = (AbstractButton)botones1.nextElement();
-                            if (button1.isSelected()){
-                                nombreESel = button1.getText();
+                        Enumeration<AbstractButton> botones = grupoBotones1.getElements();
+                        while (botones.hasMoreElements()) {
+                            AbstractButton botonEntrenadorSeleccionado = (AbstractButton)botones.nextElement();
+                            if (botonEntrenadorSeleccionado.isSelected()){
+                                ((ToggleBotonPokemonEntrenador)botonEntrenadorSeleccionado).getEntrenador().anadirPokemon(botonesPokemonsDisponibles.get(i).getPokemon());
+                                botonesPokemonsDisponibles.clear();
+                                
                             }
                         }
-                        Enumeration<AbstractButton> botonesPDis = grupoBotones2.getElements();
-                        while (botonesPDis.hasMoreElements()) {
-                            AbstractButton buttonCasillaAnadir = (AbstractButton)botonesPDis.nextElement();
-                            if (buttonCasillaAnadir.isSelected()){
-                                buttonCasillaAnadir.setText(((JButton)panelPokemonsDisponibles.getComponent(i)).getText());
-                                buttonCasillaAnadir.setIcon(((JButton)panelPokemonsDisponibles.getComponent(i)).getIcon());
-                                for (int j=0; j<botonesE.size();j++){
-                                    if(botonesE.get(j).getText()==nombreESel){
-                                        botonesE.get(j).getEntrenador().getPokemons().remove(0);
-                                        botonesE.get(j).getEntrenador().anadirPokemon(botonesPokDis.get(0).getPokemon());
-                                    }
-                                }
-                                panelScrollPokemonsDisponibles.setVisible(false);
-                            }
-                        }
+
+                        // Enumeration<AbstractButton> botonesAsignarPokemons = grupoBotones2.getElements();
+                        // while (botonesAsignarPokemons.hasMoreElements()) {
+                        //     AbstractButton botonSeleccionadoAsignarPokemon = (AbstractButton)botonesAsignarPokemons.nextElement();
+                            
+                        //     if (botonSeleccionadoAsignarPokemon.isSelected()){
+                                
+                        //         if(botonSeleccionadoAsignarPokemon==etiquetaAsignarPokemon1){
+                        //             etiquetaAsignarPokemon1.setPokemon(botonesPokemonsDisponibles.get(i).getPokemon());
+                        //             etiquetaAsignarPokemon1.setText(((BotonPokemon)panelPokemonsDisponibles.getComponent(i)).getText());
+                        //             etiquetaAsignarPokemon1.setIcon(((BotonPokemon)panelPokemonsDisponibles.getComponent(i)).getIcon());
+                        //         }
+                        //         if(botonSeleccionadoAsignarPokemon==botonAsignarPokemon2){
+                        //             botonAsignarPokemon2.setPokemon(botonesPokemonsDisponibles.get(i).getPokemon());
+                        //             botonAsignarPokemon2.setText(((BotonPokemon)panelPokemonsDisponibles.getComponent(i)).getText());
+                        //             botonAsignarPokemon2.setIcon(((BotonPokemon)panelPokemonsDisponibles.getComponent(i)).getIcon());
+                        //         }
+                        //         if(botonSeleccionadoAsignarPokemon==botonAsignarPokemon3){
+                        //             botonAsignarPokemon3.setPokemon(botonesPokemonsDisponibles.get(i).getPokemon());
+                        //             botonAsignarPokemon3.setText(((BotonPokemon)panelPokemonsDisponibles.getComponent(i)).getText());
+                        //             botonAsignarPokemon3.setIcon(((BotonPokemon)panelPokemonsDisponibles.getComponent(i)).getIcon());
+                        //         }
+                                
+                        //         for (int j=0; j<botonesEntrenador.size();j++){
+                        //             if(botonesEntrenador.get(j).getText()==nombreEntrenadorSeleccionado){
+                        //                 botonesEntrenador.get(j).getEntrenador().anadirPokemon(botonesPokemonsDisponibles.get(i).getPokemon());
+                        //             }
+                        //         }
+                        //         panelScrollPokemonsDisponibles.setVisible(false);
+                        //  }
+                        //}
                     }
                 }
             }
         }
     }
-    
-
-
-
-
 
     public boolean contieneEntrenador (String nombre) {
         boolean existe = false;
-        for (int i=0; i<botonesE.size(); i++){
-            if(botonesE.get(i).getText()==nombre){
+        for (int i=0; i<botonesEntrenador.size(); i++){
+            if(botonesEntrenador.get(i).getText()==nombre){
                 existe = true;
             }
         }
@@ -678,7 +687,32 @@ public class VentanaMundo implements ActionListener{
         ventanaNuevoMundo.repaint();
     }
 
+    public void crearSlotPokemonDisponible (int x, int y, int ancho, int alto){
+        JLabel etiquetaAsignarPokemon = new JLabel();
+        etiquetaAsignarPokemon.setBounds(x,y,ancho,alto);
+        etiquetaAsignarPokemon.setIcon(new ImageIcon("./src/GUI/Imagenes/pokebola.png"));
+        etiquetaAsignarPokemon.setHorizontalAlignment(JLabel.CENTER);
+        etiquetaAsignarPokemon.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+        etiquetaAsignarPokemon.setBackground(cBotonesOscuro);
+        panelControl.add(etiquetaAsignarPokemon);
+    }
     
+    public void mostrarIcono (JButton botonEliminar, int n, int posPok){
+        if(botonesEntrenador.get(n).getEntrenador().getPokemons().get(posPok).getClass().getSimpleName().equals("Bulbasur")){
+            botonEliminar.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Bulbasaur_60.png"));
+        } else if (botonesEntrenador.get(n).getEntrenador().getPokemons().get(posPok).getClass().getSimpleName().equals("Charmander")){
+            botonEliminar.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Charmander_60.png"));
+        } else if (botonesEntrenador.get(n).getEntrenador().getPokemons().get(posPok).getClass().getSimpleName().equals("Rattata")){
+            botonEliminar.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Rattata_60.png"));
+        } else if (botonesEntrenador.get(n).getEntrenador().getPokemons().get(posPok).getClass().getSimpleName().equals("Squirtle")){
+            botonEliminar.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Squirtle_60.png"));
+        } else if (botonesEntrenador.get(n).getEntrenador().getPokemons().get(posPok).getClass().getSimpleName().equals("Charmeleon")){
+            botonEliminar.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Charmeleon_60.png"));
+        } else if (botonesEntrenador.get(n).getEntrenador().getPokemons().get(posPok).getClass().getSimpleName().equals("Blastoise")){
+            botonEliminar.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Blastoise_60.png"));
+        } 
+    }
+
     // Getters y Setters
 
     public JPanel getPanelListaEntrenadores() {
@@ -689,12 +723,12 @@ public class VentanaMundo implements ActionListener{
         return ventanaNuevoMundo;
     }
 
-    public ArrayList<BotonMod> getBotonesE() {
-        return botonesE;
+    public ArrayList<ToggleBotonPokemonEntrenador> getBotonesE() {
+        return botonesEntrenador;
     }
 
-    public ArrayList<BotonMod> getBotonesP() {
-        return botonesP;
+    public ArrayList<ToggleBotonPokemonEntrenador> getBotonesP() {
+        return botonesPokemon;
     }
 
     public JPanel getPanelListaPokemons() {
@@ -708,13 +742,4 @@ public class VentanaMundo implements ActionListener{
     public void setGrupoBotones1(ButtonGroup grupoBotones1) {
         this.grupoBotones1 = grupoBotones1;
     }
-
-    public ButtonGroup getGrupoBotones2() {
-        return grupoBotones2;
-    }
-
-    public void setGrupoBotones2(ButtonGroup grupoBotones2) {
-        this.grupoBotones2 = grupoBotones2;
-    }
-
 }
