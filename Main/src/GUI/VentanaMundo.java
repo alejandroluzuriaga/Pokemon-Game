@@ -1,6 +1,7 @@
 package GUI;
 
 import javax.swing.*;
+import Pookemon.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -15,22 +16,38 @@ public class VentanaMundo implements ActionListener{
     
     private JPanel panelPokemons;
     private JPanel panelListaPokemons;
-    private ArrayList<BotonPokemon> botonesP = new ArrayList<>();
+    private ArrayList<BotonMod> botonesP = new ArrayList<>();
     private JButton anadirPokemon;
     private JTextField nombrePokemonSeleccionado;
     private JTextField tipoPokemonSeleccionado;
+    private JTextField nivelPokemonSeleccionado;
+    private JTextField poderPokemonSeleccionado;
+    private JTextField poderEspecialPokemonSeleccionado;
+    private JTextField defensaPokemonSeleccionado;
+    private JTextField defensaEspecialPokemonSeleccionado;
+    private JTextField velocidadPokemonSeleccionado;
+    private JTextField saludMaxPokemonSeleccionado;
     private JPanel panelDetalles;
     private JButton botonModificar;
-    private JButton botonEliminar;
+    private JButton botonEliminarPokemon;
     private JButton botonGuardarDetalles;
     private JPanel panelBotonesModDel;
     private JPanel panelControl;
-    private ButtonGroup grupoBotonesPokemon = new ButtonGroup();
+    private ButtonGroup grupoBotones1 = new ButtonGroup();
     
     private JPanel panelEntrenadores;
     private JPanel panelListaEntrenadores;
-    private ArrayList<BotonPokemon> botonesE = new ArrayList<>();
+    private ArrayList<BotonMod> botonesE = new ArrayList<>();
     private JButton anadirEntrenador;
+    private ArrayList<BotonPokemonDisponible> botonesPokDis = new ArrayList<>();
+    private JToggleButton botonAsignarPokemon1;
+    private JToggleButton botonAsignarPokemon2;
+    private JToggleButton botonAsignarPokemon3;
+    private ButtonGroup grupoBotones2;
+    private JScrollPane panelScrollPokemonsDisponibles;
+    private JPanel panelPokemonsDisponibles = new JPanel();
+    private JButton botonCombatir;
+    private JButton botonEliminarEntrenador;
 
     private Color cLetra = new Color (240, 245, 249);
     private Color cBotonesClaro = new Color (201,214,223);
@@ -170,8 +187,6 @@ public class VentanaMundo implements ActionListener{
             if (confirm == JOptionPane.YES_OPTION){
                 ventanaNuevoMundo.dispose();
                 new VentanaInicio();
-            } else{
-                
             }
         }
         if (e.getSource()==anadirEntrenador){
@@ -183,9 +198,13 @@ public class VentanaMundo implements ActionListener{
         if(panelListaPokemons.getComponentCount()!=0){
             for(int i=0;i<panelListaPokemons.getComponentCount();i++){
                 if (e.getSource()==panelListaPokemons.getComponent(i)){
-                    
                     panelControl.removeAll();
                     
+                    panelControl.setLayout(new BorderLayout());
+                    
+                    panelDetalles = new JPanel();
+                        panelDetalles.setLayout(new GridLayout(0,2,10,0));
+
                     JLabel etiquetaNombre = new JLabel("Nombre:");
                         etiquetaNombre.setHorizontalAlignment(JLabel.RIGHT);
                     JLabel etiquetaTipo = new JLabel("Tipo:");
@@ -218,7 +237,7 @@ public class VentanaMundo implements ActionListener{
                         tipoPokemonSeleccionado.setEditable(false);
                         tipoPokemonSeleccionado.setBorder(null);
                         tipoPokemonSeleccionado.setBackground(null);
-                    JTextField nivelPokemonSeleccionado = new JTextField();
+                    nivelPokemonSeleccionado = new JTextField();
                         nivelPokemonSeleccionado.setText(String.valueOf(botonesP.get(i).getPokemon().getNivel()));
                         nivelPokemonSeleccionado.setEditable(false);
                         nivelPokemonSeleccionado.setBorder(null);
@@ -228,39 +247,37 @@ public class VentanaMundo implements ActionListener{
                         entrenadorPokemonSeleccionado.setEditable(false);
                         entrenadorPokemonSeleccionado.setBorder(null);
                         entrenadorPokemonSeleccionado.setBackground(null);
-                    JTextField poderPokemonSeleccionado = new JTextField();
+                    poderPokemonSeleccionado = new JTextField();
                         poderPokemonSeleccionado.setText(String.valueOf(botonesP.get(i).getPokemon().getPoder()));
                         poderPokemonSeleccionado.setEditable(false);
                         poderPokemonSeleccionado.setBorder(null);
                         poderPokemonSeleccionado.setBackground(null);
-                    JTextField poderEspecialPokemonSeleccionado = new JTextField();
+                    poderEspecialPokemonSeleccionado = new JTextField();
                         poderEspecialPokemonSeleccionado.setText(String.valueOf(botonesP.get(i).getPokemon().getPoderEspecial()));
                         poderEspecialPokemonSeleccionado.setEditable(false);
                         poderEspecialPokemonSeleccionado.setBorder(null);
                         poderEspecialPokemonSeleccionado.setBackground(null);
-                    JTextField defensaPokemonSeleccionado = new JTextField();
+                    defensaPokemonSeleccionado = new JTextField();
                         defensaPokemonSeleccionado.setText(String.valueOf(botonesP.get(i).getPokemon().getDefensa()));
                         defensaPokemonSeleccionado.setEditable(false);
                         defensaPokemonSeleccionado.setBorder(null);
                         defensaPokemonSeleccionado.setBackground(null);
-                    JTextField defensaEspecialPokemonSeleccionado = new JTextField();
+                    defensaEspecialPokemonSeleccionado = new JTextField();
                         defensaEspecialPokemonSeleccionado.setText(String.valueOf(botonesP.get(i).getPokemon().getDefensaEspecial()));
                         defensaEspecialPokemonSeleccionado.setEditable(false);
                         defensaEspecialPokemonSeleccionado.setBorder(null);
                         defensaEspecialPokemonSeleccionado.setBackground(null);
-                    JTextField velocidadPokemonSeleccionado = new JTextField();
+                    velocidadPokemonSeleccionado = new JTextField();
                         velocidadPokemonSeleccionado.setText(String.valueOf(botonesP.get(i).getPokemon().getVelocidad()));
                         velocidadPokemonSeleccionado.setEditable(false);
                         velocidadPokemonSeleccionado.setBorder(null);
                         velocidadPokemonSeleccionado.setBackground(null);
-                    JTextField saludMaxPokemonSeleccionado = new JTextField();
+                    saludMaxPokemonSeleccionado = new JTextField();
                         saludMaxPokemonSeleccionado.setText(String.valueOf(botonesP.get(i).getPokemon().getSaludMax()));
                         saludMaxPokemonSeleccionado.setEditable(false);
                         saludMaxPokemonSeleccionado.setBorder(null);
                         saludMaxPokemonSeleccionado.setBackground(null);
                     
-                    panelDetalles = new JPanel();
-                        panelDetalles.setLayout(new GridLayout(0,2,10,0));
                         panelDetalles.setBackground(cBotonesOscuro);
                         panelDetalles.add(etiquetaNombre);
                         panelDetalles.add(nombrePokemonSeleccionado);
@@ -293,42 +310,46 @@ public class VentanaMundo implements ActionListener{
                     }
 
                     botonModificar = new JButton("Modificar");
-                        botonModificar.setBounds(10, 10, 100, 30);
+                        botonModificar.setBounds(225, 5, 150, 30);
                         botonModificar.setHorizontalAlignment(JButton.CENTER);
                         botonModificar.setFont(new Font("Courier New", Font.BOLD, 12));
+                        botonModificar.setIcon(new ImageIcon("./src/GUI/Imagenes/modificar.png"));
+                        botonModificar.setIconTextGap(10);
                         botonModificar.setFocusable(false);
                         botonModificar.setForeground(cBotonesOscuro);
                         botonModificar.setBackground(cBotonesClaro);
                         botonModificar.setBorder(BorderFactory.createEtchedBorder());
                         botonModificar.addActionListener(iVentanaMundo);
 
-                    botonEliminar = new JButton("Eliminar");
-                        botonEliminar.setBounds(470, 10, 120, 30);
-                        botonEliminar.setIcon(new ImageIcon("./src/GUI/Imagenes/papelera.png"));
-                        botonEliminar.setIconTextGap(5);
-                        botonEliminar.setHorizontalAlignment(JButton.CENTER);
-                        botonEliminar.setFont(new Font("Courier New", Font.BOLD, 12));
-                        botonEliminar.setFocusable(false);
-                        botonEliminar.setForeground(cBotonesClaro);
-                        botonEliminar.setBackground(new Color (221,83,83));
-                        botonEliminar.setBorder(BorderFactory.createEtchedBorder());
-                        botonEliminar.addActionListener(iVentanaMundo);
+                    botonEliminarPokemon = new JButton();
+                        botonEliminarPokemon.setBounds(555, 5, 30, 30);
+                        botonEliminarPokemon.setIcon(new ImageIcon("./src/GUI/Imagenes/papelera.png"));
+                        botonEliminarPokemon.setHorizontalAlignment(JButton.CENTER);
+                        botonEliminarPokemon.setFont(new Font("Courier New", Font.BOLD, 12));
+                        botonEliminarPokemon.setFocusable(false);
+                        botonEliminarPokemon.setForeground(cBotonesClaro);
+                        botonEliminarPokemon.setBackground(new Color (221,83,83));
+                        botonEliminarPokemon.setBorder(BorderFactory.createEtchedBorder());
+                        botonEliminarPokemon.addActionListener(iVentanaMundo);
 
                     botonGuardarDetalles = new JButton("Guardar");
                         botonGuardarDetalles.setBounds(10,10,580,30);
                         botonGuardarDetalles.setFont(new Font("Courier New", Font.BOLD, 12));
+                        botonGuardarDetalles.setIcon(new ImageIcon("./src/GUI/Imagenes/guardar_20.png"));
                         botonGuardarDetalles.setFocusable(false);
                         botonGuardarDetalles.setForeground(cBotonesOscuro);
                         botonGuardarDetalles.setBackground(cBotonesClaro);
                         botonGuardarDetalles.setVisible(false);
+                        botonGuardarDetalles.setBorder(BorderFactory.createEtchedBorder());
                         botonGuardarDetalles.addActionListener(iVentanaMundo);
                         
                     panelBotonesModDel = new JPanel();
                         panelBotonesModDel.setLayout(null);
+                        panelBotonesModDel.setBorder(null);
                         panelBotonesModDel.setBackground(cBotonesOscuro);
-                        panelBotonesModDel.setPreferredSize(new Dimension(0,50));
+                        panelBotonesModDel.setPreferredSize(new Dimension(600,50));
                         panelBotonesModDel.add(botonModificar);
-                        panelBotonesModDel.add(botonEliminar);
+                        panelBotonesModDel.add(botonEliminarPokemon);
                         panelBotonesModDel.add(botonGuardarDetalles);
 
                     panelControl.add(panelDetalles, BorderLayout.CENTER);
@@ -337,28 +358,59 @@ public class VentanaMundo implements ActionListener{
                     actualizarVentana();
                 }
             }
-            if(e.getSource()==botonEliminar){
-                Enumeration<AbstractButton> botones = grupoBotonesPokemon.getElements();
+
+            if(e.getSource()==botonEliminarPokemon){
+                Enumeration<AbstractButton> botones = grupoBotones1.getElements();
                 while (botones.hasMoreElements()) {
                     AbstractButton button = (AbstractButton)botones.nextElement();
                     if (button.isSelected()){
-                        panelListaPokemons.remove(button);
-                        grupoBotonesPokemon.remove(button);
-                        botonesP.remove(button);
-                        panelControl.setVisible(false);
-                        actualizarVentana();
+                        int confirm = JOptionPane.showConfirmDialog(null, "¿Seguro que deseas eliminar este pokemon?", "Atención", JOptionPane.YES_NO_OPTION);
+                        if (confirm == JOptionPane.YES_OPTION){
+                            panelListaPokemons.remove(button);
+                            grupoBotones1.remove(button);
+                            botonesP.remove(button);
+                            panelControl.setVisible(false);
+                            actualizarVentana();
+                        }
                     }
                 }
             }
+
             if(e.getSource()==botonModificar){
                 nombrePokemonSeleccionado.setEditable(true);
                 nombrePokemonSeleccionado.setBackground(cBotonesClaro);
                 nombrePokemonSeleccionado.setForeground(cBotonesOscuro);
-                // tipoPokemonSeleccionado.setEditable(true);
-                // tipoPokemonSeleccionado.setBackground(cBotonesClaro);
-                // tipoPokemonSeleccionado.setForeground(cBotonesOscuro);
 
-                botonEliminar.setVisible(false);
+                nivelPokemonSeleccionado.setEditable(true);
+                nivelPokemonSeleccionado.setBackground(cBotonesClaro);
+                nivelPokemonSeleccionado.setForeground(cBotonesOscuro);
+
+                poderPokemonSeleccionado.setEditable(true);
+                poderPokemonSeleccionado.setBackground(cBotonesClaro);
+                poderPokemonSeleccionado.setForeground(cBotonesOscuro);
+
+                poderEspecialPokemonSeleccionado.setEditable(true);
+                poderEspecialPokemonSeleccionado.setBackground(cBotonesClaro);
+                poderEspecialPokemonSeleccionado.setForeground(cBotonesOscuro);
+
+                defensaPokemonSeleccionado.setEditable(true);
+                defensaPokemonSeleccionado.setBackground(cBotonesClaro);
+                defensaPokemonSeleccionado.setForeground(cBotonesOscuro);
+
+                defensaEspecialPokemonSeleccionado.setEditable(true);
+                defensaEspecialPokemonSeleccionado.setBackground(cBotonesClaro);
+                defensaEspecialPokemonSeleccionado.setForeground(cBotonesOscuro);
+
+                velocidadPokemonSeleccionado.setEditable(true);
+                velocidadPokemonSeleccionado.setBackground(cBotonesClaro);
+                velocidadPokemonSeleccionado.setForeground(cBotonesOscuro);
+
+                saludMaxPokemonSeleccionado.setEditable(true);
+                saludMaxPokemonSeleccionado.setBackground(cBotonesClaro);
+                saludMaxPokemonSeleccionado.setForeground(cBotonesOscuro);
+
+
+                botonEliminarPokemon.setVisible(false);
                 botonModificar.setVisible(false);
                 botonGuardarDetalles.setVisible(true);
             }
@@ -367,15 +419,40 @@ public class VentanaMundo implements ActionListener{
                 nombrePokemonSeleccionado.setEditable(false);
                 nombrePokemonSeleccionado.setBackground(cBotonesOscuro);
                 nombrePokemonSeleccionado.setForeground(cBotonesClaro);
-                // tipoPokemonSeleccionado.setEditable(false);
-                // tipoPokemonSeleccionado.setBackground(cBotonesOscuro);
-                // tipoPokemonSeleccionado.setForeground(cBotonesClaro);
 
-                botonEliminar.setVisible(true);
+                nivelPokemonSeleccionado.setEditable(false);
+                nivelPokemonSeleccionado.setBackground(cBotonesOscuro);
+                nivelPokemonSeleccionado.setForeground(cBotonesClaro);
+
+                poderPokemonSeleccionado.setEditable(false);
+                poderPokemonSeleccionado.setBackground(cBotonesOscuro);
+                poderPokemonSeleccionado.setForeground(cBotonesClaro);
+
+                poderEspecialPokemonSeleccionado.setEditable(false);
+                poderEspecialPokemonSeleccionado.setBackground(cBotonesOscuro);
+                poderEspecialPokemonSeleccionado.setForeground(cBotonesClaro);
+
+                defensaPokemonSeleccionado.setEditable(false);
+                defensaPokemonSeleccionado.setBackground(cBotonesOscuro);
+                defensaPokemonSeleccionado.setForeground(cBotonesClaro);
+
+                defensaEspecialPokemonSeleccionado.setEditable(false);
+                defensaEspecialPokemonSeleccionado.setBackground(cBotonesOscuro);
+                defensaEspecialPokemonSeleccionado.setForeground(cBotonesClaro);
+
+                velocidadPokemonSeleccionado.setEditable(false);
+                velocidadPokemonSeleccionado.setBackground(cBotonesOscuro);
+                velocidadPokemonSeleccionado.setForeground(cBotonesClaro);
+
+                saludMaxPokemonSeleccionado.setEditable(false);
+                saludMaxPokemonSeleccionado.setBackground(cBotonesOscuro);
+                saludMaxPokemonSeleccionado.setForeground(cBotonesClaro);
+
+                botonEliminarPokemon.setVisible(true);
                 botonModificar.setVisible(true);
                 botonGuardarDetalles.setVisible(false);
 
-                Enumeration<AbstractButton> botones = grupoBotonesPokemon.getElements();
+                Enumeration<AbstractButton> botones = grupoBotones1.getElements();
                 while (botones.hasMoreElements()) {
                     AbstractButton button = (AbstractButton)botones.nextElement();
                     if (button.isSelected()){
@@ -383,30 +460,207 @@ public class VentanaMundo implements ActionListener{
                             if(botonesP.get(i)==button){
                                 botonesP.get(i).getPokemon().setNombre(nombrePokemonSeleccionado.getText());
                                 button.setText(nombrePokemonSeleccionado.getText());
-                                // botonesP.get(i).getPokemon().setTipo(tipoPokemonSeleccionado.getText());
-                                
-                                
-                                
-                                
+                                botonesP.get(i).getPokemon().setNivel(Integer.parseInt(nivelPokemonSeleccionado.getText()));
+                                botonesP.get(i).getPokemon().setPoder(Integer.parseInt(poderPokemonSeleccionado.getText()));
+                                botonesP.get(i).getPokemon().setPoderEspecial(Integer.parseInt(poderEspecialPokemonSeleccionado.getText()));
+                                botonesP.get(i).getPokemon().setDefensa(Integer.parseInt(defensaEspecialPokemonSeleccionado.getText()));
+                                botonesP.get(i).getPokemon().setDefensaEspecial((Integer.parseInt(defensaEspecialPokemonSeleccionado.getText())));
+                                botonesP.get(i).getPokemon().setVelocidad(Integer.parseInt(velocidadPokemonSeleccionado.getText()));
+                                botonesP.get(i).getPokemon().setSaludMax(Integer.parseInt(saludMaxPokemonSeleccionado.getText())); 
                                 actualizarVentana();
                                 panelListaPokemons.repaint();
-                        }
-                            
+                            }
                         }
                     }
                 }
             }
         }
+
+
         if(panelListaEntrenadores.getComponentCount()!=0){
             for(int i=0;i<panelListaEntrenadores.getComponentCount();i++){
                 if (e.getSource()==panelListaEntrenadores.getComponent(i)){
                     panelControl.removeAll();
-                    panelControl.setVisible(false);
+                    
+                    botonAsignarPokemon1 = new JToggleButton();
+                        botonAsignarPokemon1.setBounds(15,15,180,120);
+                        botonAsignarPokemon1.setBackground(cBotonesClaro);
+                        if(botonesE.get(i).getEntrenador().getPokemons().get(0).getNombre()==null){
+                            botonAsignarPokemon1.setIcon(new ImageIcon("./src/GUI/Imagenes/plus.png"));
+                            botonAsignarPokemon1.setFocusable(false);
+                            botonAsignarPokemon1.addActionListener(iVentanaMundo);
+                        }else{
+                            botonAsignarPokemon1.setText(botonesE.get(i).getEntrenador().getPokemons().get(0).getNombre());
+                            botonAsignarPokemon1.setFocusable(false);
+                            botonAsignarPokemon1.addActionListener(iVentanaMundo);
+                            if(botonesE.get(i).getEntrenador().getPokemons().get(0).getClass().getSimpleName()=="Bulbasur"){
+                                botonAsignarPokemon1.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Bulbasaur_60.png"));
+                            }
+                        }
+                        
+                    botonAsignarPokemon2 = new JToggleButton();
+                        botonAsignarPokemon2.setBounds(210,15,180,120);
+                        botonAsignarPokemon2.setBackground(cBotonesClaro);
+                        if(botonesE.get(i).getEntrenador().getPokemons().get(1).getNombre()==null){
+                            botonAsignarPokemon2.setIcon(new ImageIcon("./src/GUI/Imagenes/plus.png"));
+                            botonAsignarPokemon2.setFocusable(false);
+                            botonAsignarPokemon2.addActionListener(iVentanaMundo);
+                        }else{
+                            botonAsignarPokemon2.setText(botonesE.get(i).getEntrenador().getPokemons().get(1).getNombre());
+                            botonAsignarPokemon2.setFocusable(false);
+                            botonAsignarPokemon2.addActionListener(iVentanaMundo);
+                            if(botonesE.get(i).getEntrenador().getPokemons().get(1).getClass().getSimpleName()=="Bulbasur"){
+                                botonAsignarPokemon2.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Bulbasaur_60.png"));
+                            }
+                        }
+
+                    botonAsignarPokemon3 = new JToggleButton();
+                        botonAsignarPokemon3.setBounds(405,15,180,120);
+                        botonAsignarPokemon3.setBackground(cBotonesClaro);
+                        if(botonesE.get(i).getEntrenador().getPokemons().get(2).getNombre()==null){
+                            botonAsignarPokemon3.setIcon(new ImageIcon("./src/GUI/Imagenes/plus.png"));
+                            botonAsignarPokemon3.setFocusable(false);
+                            botonAsignarPokemon3.addActionListener(iVentanaMundo);
+                        }else{
+                            botonAsignarPokemon3.setText(botonesE.get(i).getEntrenador().getPokemons().get(2).getNombre());
+                            botonAsignarPokemon3.setFocusable(false);
+                            botonAsignarPokemon3.addActionListener(iVentanaMundo);
+                            if(botonesE.get(i).getEntrenador().getPokemons().get(2).getClass().getSimpleName()=="Bulbasur"){
+                                botonAsignarPokemon3.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Bulbasaur_60.png"));
+                            }
+                        }
+                    
+                    grupoBotones2 = new ButtonGroup();
+                        grupoBotones2.add(botonAsignarPokemon1);
+                        grupoBotones2.add(botonAsignarPokemon2);
+                        grupoBotones2.add(botonAsignarPokemon3);
+
+                    panelScrollPokemonsDisponibles = new JScrollPane(panelPokemonsDisponibles,JScrollPane.VERTICAL_SCROLLBAR_NEVER,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+                        panelScrollPokemonsDisponibles.setVisible(false);
+
+                    botonCombatir = new JButton("COMBATIR");
+                        botonCombatir.setBounds(15,300,525,65);
+                        botonCombatir.setHorizontalAlignment(JButton.CENTER);
+                        botonCombatir.setFont(new Font("Courier New", Font.BOLD, 20));
+                        botonCombatir.setFocusable(false);
+                        botonCombatir.setForeground(cBotonesOscuro);
+                        botonCombatir.setBackground(cBotonesClaro);
+                        botonCombatir.setBorder(BorderFactory.createEtchedBorder());
+                        botonCombatir.addActionListener(iVentanaMundo);
+
+                    botonEliminarEntrenador = new JButton();
+                        botonEliminarEntrenador.setBounds(555, 335, 30, 30);
+                        botonEliminarEntrenador.setIcon(new ImageIcon("./src/GUI/Imagenes/papelera.png"));
+                        botonEliminarEntrenador.setHorizontalAlignment(JButton.CENTER);
+                        botonEliminarEntrenador.setFocusable(false);
+                        botonEliminarEntrenador.setBackground(new Color (221,83,83));
+                        botonEliminarEntrenador.setBorder(BorderFactory.createEtchedBorder());
+                        botonEliminarEntrenador.addActionListener(iVentanaMundo);
+                    
+                    panelControl.setLayout(null);
+                    panelControl.add(botonAsignarPokemon1);
+                    panelControl.add(botonAsignarPokemon2);
+                    panelControl.add(botonAsignarPokemon3);
+                    panelControl.add(botonCombatir);
+                    panelControl.add(botonEliminarEntrenador);
+                    panelControl.setVisible(true);
                     actualizarVentana();
+                }
+            }
+
+            if(e.getSource()==botonEliminarEntrenador){
+                Enumeration<AbstractButton> botones = grupoBotones1.getElements();
+                while (botones.hasMoreElements()) {
+                    AbstractButton button = (AbstractButton)botones.nextElement();
+                    if (button.isSelected()){
+                        int confirm = JOptionPane.showConfirmDialog(null, "¿Seguro que deseas eliminar este entrenador?", "Atención", JOptionPane.YES_NO_OPTION);
+                        if (confirm == JOptionPane.YES_OPTION){
+                            panelListaEntrenadores.remove(button);
+                            grupoBotones1.remove(button);
+                            botonesE.remove(button);
+                            panelControl.setVisible(false);
+                            actualizarVentana();
+                        }
+                    }
+                }
+            }
+
+            if(e.getSource()==botonAsignarPokemon1){
+                if(botonAsignarPokemon1.getText()==""){
+                
+                panelPokemonsDisponibles.removeAll();
+                panelPokemonsDisponibles.setLayout(new GridLayout(1,0,15,0));
+                panelPokemonsDisponibles.setBackground(cBotonesOscuro);
+                
+                for (int i=0; i<botonesP.size(); i++){
+                    if(botonesP.get(i).getPokemon().condicionExistenciaEntrenador()=="-"){
+                        BotonPokemonDisponible botonPokemonDisponible = new BotonPokemonDisponible();
+                            botonPokemonDisponible.setText(botonesP.get(i).getPokemon().getNombre());
+                            botonPokemonDisponible.setPreferredSize(new Dimension(180,0));
+                            botonPokemonDisponible.setVerticalAlignment(JButton.CENTER);
+                            botonPokemonDisponible.setIcon(botonesP.get(i).getIcon());
+                            botonPokemonDisponible.setVerticalTextPosition(JButton.BOTTOM);
+                            botonPokemonDisponible.setHorizontalTextPosition(JButton.CENTER);
+                            botonPokemonDisponible.setBackground(cBotonesClaro);
+                            botonPokemonDisponible.setForeground(cBotonesOscuro);
+                            botonPokemonDisponible.setFocusable(false);
+                            botonPokemonDisponible.setFont(new Font("Courier New", Font.BOLD, 15));
+                            botonPokemonDisponible.setIconTextGap(10);
+                            botonPokemonDisponible.addActionListener(iVentanaMundo);
+                            botonesPokDis.add(botonPokemonDisponible);
+                        panelPokemonsDisponibles.add(botonPokemonDisponible);
+                    }
+                }
+
+                panelScrollPokemonsDisponibles.setBounds(15, 150, 570, 135);
+                panelScrollPokemonsDisponibles.setBorder(BorderFactory.createEtchedBorder());
+                panelScrollPokemonsDisponibles.setBackground(cBotonesOscuro);
+                panelScrollPokemonsDisponibles.getHorizontalScrollBar().setBackground(cBotonesOscuro);
+                panelScrollPokemonsDisponibles.repaint();
+                panelScrollPokemonsDisponibles.setVisible(true);
+                panelControl.add(panelScrollPokemonsDisponibles);
+                actualizarVentana();
+                }else{
+                    System.out.println("Eliminar");
+                }
+            }
+
+            if(panelPokemonsDisponibles.getComponentCount()!=0){
+                for(int i=0;i<panelPokemonsDisponibles.getComponentCount();i++){
+                    if (e.getSource()==panelPokemonsDisponibles.getComponent(i)){
+                        String nombreESel = "";
+                        Enumeration<AbstractButton> botones1 = grupoBotones1.getElements();
+                        while (botones1.hasMoreElements()) {
+                            AbstractButton button1 = (AbstractButton)botones1.nextElement();
+                            if (button1.isSelected()){
+                                nombreESel = button1.getText();
+                            }
+                        }
+                        Enumeration<AbstractButton> botonesPDis = grupoBotones2.getElements();
+                        while (botonesPDis.hasMoreElements()) {
+                            AbstractButton buttonCasillaAnadir = (AbstractButton)botonesPDis.nextElement();
+                            if (buttonCasillaAnadir.isSelected()){
+                                buttonCasillaAnadir.setText(((JButton)panelPokemonsDisponibles.getComponent(i)).getText());
+                                buttonCasillaAnadir.setIcon(((JButton)panelPokemonsDisponibles.getComponent(i)).getIcon());
+                                for (int j=0; j<botonesE.size();j++){
+                                    if(botonesE.get(j).getText()==nombreESel){
+                                        botonesE.get(j).getEntrenador().getPokemons().remove(0);
+                                        botonesE.get(j).getEntrenador().anadirPokemon(botonesPokDis.get(0).getPokemon());
+                                    }
+                                }
+                                panelScrollPokemonsDisponibles.setVisible(false);
+                            }
+                        }
+                    }
                 }
             }
         }
     }
+    
+
+
+
+
 
     public boolean contieneEntrenador (String nombre) {
         boolean existe = false;
@@ -424,7 +678,8 @@ public class VentanaMundo implements ActionListener{
         ventanaNuevoMundo.repaint();
     }
 
-    // Getters
+    
+    // Getters y Setters
 
     public JPanel getPanelListaEntrenadores() {
         return panelListaEntrenadores;
@@ -434,11 +689,11 @@ public class VentanaMundo implements ActionListener{
         return ventanaNuevoMundo;
     }
 
-    public ArrayList<BotonPokemon> getBotonesE() {
+    public ArrayList<BotonMod> getBotonesE() {
         return botonesE;
     }
 
-    public ArrayList<BotonPokemon> getBotonesP() {
+    public ArrayList<BotonMod> getBotonesP() {
         return botonesP;
     }
 
@@ -446,8 +701,20 @@ public class VentanaMundo implements ActionListener{
         return panelListaPokemons;
     }
 
-    public ButtonGroup getGrupoBotonesPokemon() {
-        return grupoBotonesPokemon;
+    public ButtonGroup getGrupoBotones1() {
+        return grupoBotones1;
+    }
+
+    public void setGrupoBotones1(ButtonGroup grupoBotones1) {
+        this.grupoBotones1 = grupoBotones1;
+    }
+
+    public ButtonGroup getGrupoBotones2() {
+        return grupoBotones2;
+    }
+
+    public void setGrupoBotones2(ButtonGroup grupoBotones2) {
+        this.grupoBotones2 = grupoBotones2;
     }
 
 }

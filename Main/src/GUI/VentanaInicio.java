@@ -61,7 +61,7 @@ public class VentanaInicio implements ActionListener {
         VentanaInicio.setTitle("POOkemon");
         VentanaInicio.setResizable(false);
         VentanaInicio.setSize(1600,900);
-        VentanaInicio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
+        VentanaInicio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         VentanaInicio.getContentPane().setBackground(cFondo); 
         VentanaInicio.setLayout(null);
         VentanaInicio.add(tituloPrincipal);

@@ -1,6 +1,9 @@
 package GUI;
 
 import javax.swing.*;
+
+import Entrenador.Entrenador;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -14,7 +17,7 @@ public class AnadirEntrenador implements ActionListener{
     private JButton botonLimpiar;
     private ButtonGroup grupoEntrenadores;
     private JLabel imagenPersonaje;
-    private JButton botonGuardar;
+    private JButton botonGuardarEntrenador;
     
 
     private Color cLetra = new Color (240, 245, 249);
@@ -78,22 +81,23 @@ public class AnadirEntrenador implements ActionListener{
             panelPersonajes.add(elegirPersonaje);
             panelPersonajes.add(imagenPersonaje);
 
-        botonGuardar = new JButton("GUARDAR");
-            botonGuardar.setBounds(20,0,645,80);
-            botonGuardar.setHorizontalAlignment(JButton.CENTER);
-            botonGuardar.setIcon(new ImageIcon("lib/botonGuardar.png"));
-            botonGuardar.setFont(new Font("Courier New", Font.BOLD, 25));
-            botonGuardar.setFocusable(false);
-            botonGuardar.setForeground(cBotonesOscuro);
-            botonGuardar.setBackground(cBotonesClaro);
-            botonGuardar.setBorder(BorderFactory.createEtchedBorder());
-            botonGuardar.addActionListener(this);
+        botonGuardarEntrenador = new JButton("GUARDAR");
+            botonGuardarEntrenador.setBounds(20,0,645,80);
+            botonGuardarEntrenador.setHorizontalAlignment(JButton.CENTER);
+            botonGuardarEntrenador.setIcon(new ImageIcon("./src/GUI/Imagenes/guardar_40.png"));
+            botonGuardarEntrenador.setIconTextGap(15);
+            botonGuardarEntrenador.setFont(new Font("Courier New", Font.BOLD, 25));
+            botonGuardarEntrenador.setFocusable(false);
+            botonGuardarEntrenador.setForeground(cBotonesOscuro);
+            botonGuardarEntrenador.setBackground(cBotonesClaro);
+            botonGuardarEntrenador.setBorder(BorderFactory.createEtchedBorder());
+            botonGuardarEntrenador.addActionListener(this);
 
         JPanel panelGuardar = new JPanel();
         panelGuardar.setLayout(null);
         panelGuardar.setPreferredSize(new Dimension(0,100));
         panelGuardar.setBackground(cFondo);
-        panelGuardar.add(botonGuardar);
+        panelGuardar.add(botonGuardarEntrenador);
 
     
         VentanaNuevoEntrenador.setIconImage(new ImageIcon("./src/GUI/Imagenes/logo.png").getImage());
@@ -127,7 +131,7 @@ public class AnadirEntrenador implements ActionListener{
             grupoEntrenadores.clearSelection();
             imagenPersonaje.setIcon(null);
         }
-        if(e.getSource()==botonGuardar){
+        if(e.getSource()==botonGuardarEntrenador){
             if(botonLoreto.isSelected()){
                 if (!(VentanaMundo.iVentanaMundo.contieneEntrenador("LORETO"))){
                     crearCasilla("LORETO");
@@ -169,30 +173,33 @@ public class AnadirEntrenador implements ActionListener{
     }
 
     public void crearCasilla (String nombre){
-        BotonPokemon boton = new BotonPokemon();
+        BotonMod boton = new BotonMod();
         boton.setText(nombre);
         boton.setPreferredSize(new Dimension(0,70));
         boton.setBackground(cLetra);
         boton.setFocusable(false);
         boton.setFont(new Font("Courier New", Font.BOLD, 16));
-        if (nombre=="LORETO"){
-            boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Entrenadores/Loreto_60.png"));
-        } else if (nombre == "SILVIA"){
-            boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Entrenadores/Silvia_60.png"));
-        } else if (nombre == "OLEKSANDR"){
-            boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Entrenadores/Oleksandr_60.png"));
-        } else if (nombre == "ALEJANDRO"){
-            boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Entrenadores/Alejandro_60.png"));
-        }
-
         boton.setHorizontalAlignment(JButton.CENTER);
         boton.setHorizontalTextPosition(JButton.LEFT);
         boton.setIconTextGap(20);
         boton.addActionListener(VentanaMundo.iVentanaMundo);
+        if (nombre=="LORETO"){
+            boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Entrenadores/Loreto_60.png"));
+            boton.setEntrenador(new Entrenador(nombre, 0));
+        } else if (nombre == "SILVIA"){
+            boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Entrenadores/Silvia_60.png"));
+            boton.setEntrenador(new Entrenador(nombre, 1));
+        } else if (nombre == "OLEKSANDR"){
+            boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Entrenadores/Oleksandr_60.png"));
+            boton.setEntrenador(new Entrenador(nombre, 2));
+        } else if (nombre == "ALEJANDRO"){
+            boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Entrenadores/Alejandro_60.png"));
+            boton.setEntrenador(new Entrenador(nombre, 3));
+        }
+
         VentanaMundo.iVentanaMundo.getBotonesE().add(boton);
         VentanaMundo.iVentanaMundo.getPanelListaEntrenadores().add(boton);
-        VentanaMundo.iVentanaMundo.getPanelListaEntrenadores().getComponents();
-        VentanaMundo.iVentanaMundo.getGrupoBotonesPokemon().add(boton);
+        VentanaMundo.iVentanaMundo.getGrupoBotones1().add(boton);
         VentanaNuevoEntrenador.dispose();
     }
 

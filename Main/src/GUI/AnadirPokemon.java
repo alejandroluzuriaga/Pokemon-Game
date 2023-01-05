@@ -20,7 +20,7 @@ public class AnadirPokemon implements ActionListener{
     private JTextField nombrePokemon;
     private JPanel espacioNombre;
     private JLabel imagenPokemon;
-    private JButton botonGuardar;
+    private JButton botonGuardarPokemon;
 
     private Color cLetra = new Color (240, 245, 249);
     private Color cBotonesClaro = new Color (201,214,223);
@@ -60,8 +60,8 @@ public class AnadirPokemon implements ActionListener{
 
         botonAleatorio = new JToggleButton("ALEATORIO");
             botonAleatorio.setBounds(50,175,100,60);
-            botonAleatorio.setIcon(new ImageIcon("./src/GUI/Imagenes/Random.png"));
-            botonAleatorio.setRolloverIcon(new ImageIcon("./src/GUI/Imagenes/Random_Disabled.png"));
+            botonAleatorio.setIcon(new ImageIcon("./src/GUI/Imagenes/dado_30_oscuro.png"));
+            botonAleatorio.setRolloverIcon(new ImageIcon("./src/GUI/Imagenes/dado_30.png"));
             botonAleatorio.setVerticalTextPosition(JToggleButton.BOTTOM);
             botonAleatorio.setHorizontalTextPosition(JToggleButton.CENTER);
             botonAleatorio.setFont(new Font("Courier New", Font.ITALIC, 12));
@@ -138,22 +138,23 @@ public class AnadirPokemon implements ActionListener{
             panelPokemons.add(elegirPokemon);
             panelPokemons.add(panelImagenNombre);
 
-        botonGuardar = new JButton("GUARDAR");
-            botonGuardar.setBounds(20,0,845,80);
-            botonGuardar.setHorizontalAlignment(JButton.CENTER);
-            botonGuardar.setIcon(new ImageIcon("lib/botonGuardar.png"));
-            botonGuardar.setFont(new Font("Courier New", Font.BOLD, 25));
-            botonGuardar.setFocusable(false);
-            botonGuardar.setForeground(cBotonesOscuro);
-            botonGuardar.setBackground(cBotonesClaro);
-            botonGuardar.setBorder(BorderFactory.createEtchedBorder());
-            botonGuardar.addActionListener(this);
+        botonGuardarPokemon = new JButton("GUARDAR");
+            botonGuardarPokemon.setBounds(20,0,845,80);
+            botonGuardarPokemon.setHorizontalAlignment(JButton.CENTER);
+            botonGuardarPokemon.setIcon(new ImageIcon("./src/GUI/Imagenes/guardar_40.png"));
+            botonGuardarPokemon.setIconTextGap(15);
+            botonGuardarPokemon.setFont(new Font("Courier New", Font.BOLD, 25));
+            botonGuardarPokemon.setFocusable(false);
+            botonGuardarPokemon.setForeground(cBotonesOscuro);
+            botonGuardarPokemon.setBackground(cBotonesClaro);
+            botonGuardarPokemon.setBorder(BorderFactory.createEtchedBorder());
+            botonGuardarPokemon.addActionListener(this);
 
         JPanel panelGuardar = new JPanel();
             panelGuardar.setLayout(null);
             panelGuardar.setPreferredSize(new Dimension(0,100));
             panelGuardar.setBackground(cFondo);
-            panelGuardar.add(botonGuardar);
+            panelGuardar.add(botonGuardarPokemon);
 
     
         VentanaNuevoPokemon.setIconImage(new ImageIcon("./src/GUI/Imagenes/logo.png").getImage());
@@ -204,7 +205,7 @@ public class AnadirPokemon implements ActionListener{
             imagenPokemon.setIcon(null);
             espacioNombre.setVisible(false);
         }
-        if(e.getSource()==botonGuardar){
+        if(e.getSource()==botonGuardarPokemon){
             if(botonBulbasaur.isSelected()){
                 crearCasilla("BULBASAUR",nombrePokemon.getText());
                 VentanaMundo.iVentanaMundo.actualizarVentana();
@@ -266,12 +267,17 @@ public class AnadirPokemon implements ActionListener{
 
     public void crearCasilla (String tipo, String nombre){
         if (!(nombre.length()==0)){
-        BotonPokemon boton = new BotonPokemon();
+        BotonMod boton = new BotonMod();
         boton.setText(nombre);
         boton.setPreferredSize(new Dimension(0,70));
         boton.setBackground(cLetra);
+        boton.setForeground(cBotonesOscuro);
         boton.setFocusable(false);
         boton.setFont(new Font("Courier New", Font.BOLD, 16));
+        boton.setHorizontalAlignment(JButton.CENTER);
+        boton.setHorizontalTextPosition(JButton.LEFT);
+        boton.setIconTextGap(20);
+        boton.addActionListener(VentanaMundo.iVentanaMundo);
         if (tipo=="BULBASAUR"){
             boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Bulbasaur_60.png"));
             boton.setPokemon(new Bulbasur(1, nombre));
@@ -292,13 +298,9 @@ public class AnadirPokemon implements ActionListener{
             boton.setPokemon(new Blastoise(1, nombre));
         }
 
-        boton.setHorizontalAlignment(JButton.CENTER);
-        boton.setHorizontalTextPosition(JButton.LEFT);
-        boton.setIconTextGap(20);
-        boton.addActionListener(VentanaMundo.iVentanaMundo);
         VentanaMundo.iVentanaMundo.getBotonesP().add(boton);
         VentanaMundo.iVentanaMundo.getPanelListaPokemons().add(boton);
-        VentanaMundo.iVentanaMundo.getGrupoBotonesPokemon().add(boton);
+        VentanaMundo.iVentanaMundo.getGrupoBotones1().add(boton);
         VentanaNuevoPokemon.dispose();
     }else{
         JOptionPane.showMessageDialog(null, "Ha ocurrido un error. Tienes que especificar un nombre.", "Error", JOptionPane.ERROR_MESSAGE);
