@@ -1,6 +1,9 @@
 package GUI;
 
 import javax.swing.*;
+
+import Entrenador.Entrenador;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -376,6 +379,13 @@ public class VentanaMundo implements ActionListener{
                             grupoBotones1.remove(button);
                             botonesPokemon.remove(button);
                             panelControl.setVisible(false);
+                            for (int j=0; j<botonesEntrenador.size();j++){
+                                for(int k=0; k<botonesEntrenador.get(j).getEntrenador().getPokemons().size(); k++){
+                                    if (botonesEntrenador.get(j).getEntrenador().getPokemons().get(k).getNombre().equals(((ToggleBotonPokemonEntrenador)button).getPokemon().getNombre())){
+                                        botonesEntrenador.get(j).getEntrenador().getPokemons().remove(k);
+                                    }
+                                }
+                            }
                             actualizarVentana();
                         }
                     }
@@ -580,6 +590,9 @@ public class VentanaMundo implements ActionListener{
                             grupoBotones1.remove(button);
                             botonesEntrenador.remove(button);
                             panelControl.setVisible(false);
+                            for (int i=0;i<((ToggleBotonPokemonEntrenador)button).getEntrenador().getPokemons().size();i++){
+                                ((ToggleBotonPokemonEntrenador)button).getEntrenador().getPokemons().get(i).setEntrenador(new Entrenador("-", 0));
+                            }
                             actualizarVentana();
                         }
                     }
@@ -634,37 +647,6 @@ public class VentanaMundo implements ActionListener{
                                 
                             }
                         }
-
-                        // Enumeration<AbstractButton> botonesAsignarPokemons = grupoBotones2.getElements();
-                        // while (botonesAsignarPokemons.hasMoreElements()) {
-                        //     AbstractButton botonSeleccionadoAsignarPokemon = (AbstractButton)botonesAsignarPokemons.nextElement();
-                            
-                        //     if (botonSeleccionadoAsignarPokemon.isSelected()){
-                                
-                        //         if(botonSeleccionadoAsignarPokemon==etiquetaAsignarPokemon1){
-                        //             etiquetaAsignarPokemon1.setPokemon(botonesPokemonsDisponibles.get(i).getPokemon());
-                        //             etiquetaAsignarPokemon1.setText(((BotonPokemon)panelPokemonsDisponibles.getComponent(i)).getText());
-                        //             etiquetaAsignarPokemon1.setIcon(((BotonPokemon)panelPokemonsDisponibles.getComponent(i)).getIcon());
-                        //         }
-                        //         if(botonSeleccionadoAsignarPokemon==botonAsignarPokemon2){
-                        //             botonAsignarPokemon2.setPokemon(botonesPokemonsDisponibles.get(i).getPokemon());
-                        //             botonAsignarPokemon2.setText(((BotonPokemon)panelPokemonsDisponibles.getComponent(i)).getText());
-                        //             botonAsignarPokemon2.setIcon(((BotonPokemon)panelPokemonsDisponibles.getComponent(i)).getIcon());
-                        //         }
-                        //         if(botonSeleccionadoAsignarPokemon==botonAsignarPokemon3){
-                        //             botonAsignarPokemon3.setPokemon(botonesPokemonsDisponibles.get(i).getPokemon());
-                        //             botonAsignarPokemon3.setText(((BotonPokemon)panelPokemonsDisponibles.getComponent(i)).getText());
-                        //             botonAsignarPokemon3.setIcon(((BotonPokemon)panelPokemonsDisponibles.getComponent(i)).getIcon());
-                        //         }
-                                
-                        //         for (int j=0; j<botonesEntrenador.size();j++){
-                        //             if(botonesEntrenador.get(j).getText()==nombreEntrenadorSeleccionado){
-                        //                 botonesEntrenador.get(j).getEntrenador().anadirPokemon(botonesPokemonsDisponibles.get(i).getPokemon());
-                        //             }
-                        //         }
-                        //         panelScrollPokemonsDisponibles.setVisible(false);
-                        //  }
-                        //}
                     }
                 }
             }
@@ -711,6 +693,18 @@ public class VentanaMundo implements ActionListener{
         } else if (botonesEntrenador.get(n).getEntrenador().getPokemons().get(posPok).getClass().getSimpleName().equals("Blastoise")){
             botonEliminar.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Blastoise_60.png"));
         } 
+    }
+
+    public boolean existeNombre (String nom){
+        Boolean aux=false;
+        for (int i=0; i<VentanaMundo.iVentanaMundo.getBotonesP().size(); i++){
+            if (VentanaMundo.iVentanaMundo.getBotonesP().get(i).getPokemon().getNombre().equals(nom)){
+                aux=true;
+            }else{
+                aux=false;
+            }
+        }
+        return aux;
     }
 
     // Getters y Setters
