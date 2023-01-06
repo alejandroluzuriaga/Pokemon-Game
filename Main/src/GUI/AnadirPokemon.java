@@ -72,7 +72,7 @@ public class AnadirPokemon implements ActionListener{
             botonAleatorio.addActionListener(this);
 
         botonLimpiar = new JButton("Quitar Selección");
-            botonLimpiar.setBounds(100,410,170,40);
+            botonLimpiar.setBounds(100,390,170,40);
             botonLimpiar.setFont(new Font("Courier New", Font.ITALIC, 12));
             botonLimpiar.setFocusable(false);
             botonLimpiar.setForeground(cLetra);
@@ -268,41 +268,41 @@ public class AnadirPokemon implements ActionListener{
     public void crearCasilla (String tipo, String nombre){
         
         if (!(nombre.length()==0) && !VentanaMundo.iVentanaMundo.existeNombre(nombre)){
-        ToggleBotonPokemonEntrenador boton = new ToggleBotonPokemonEntrenador();
-        boton.setText(nombre);
-        boton.setPreferredSize(new Dimension(0,70));
-        boton.setBackground(cLetra);
-        boton.setForeground(cBotonesOscuro);
-        boton.setFocusable(false);
-        boton.setFont(new Font("Courier New", Font.BOLD, 16));
-        boton.setHorizontalAlignment(JButton.CENTER);
-        boton.setHorizontalTextPosition(JButton.LEFT);
-        boton.setIconTextGap(20);
-        boton.addActionListener(VentanaMundo.iVentanaMundo);
-        if (tipo=="BULBASAUR"){
-            boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Bulbasaur_60.png"));
-            boton.setPokemon(new Bulbasur(1, nombre));
-        } else if (tipo == "CHARMANDER"){
-            boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Charmander_60.png"));
-            boton.setPokemon(new Charmander(1, nombre));
-        } else if (tipo == "RATTATA"){
-            boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Rattata_60.png"));
-            boton.setPokemon(new Rattata(1, nombre));
-        } else if (tipo == "SQUIRTLE"){
-            boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Squirtle_60.png"));
-            boton.setPokemon(new Squirtle(1, nombre));
-        } else if (tipo == "CHARMALEON"){
-            boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Charmeleon_60.png"));
-            boton.setPokemon(new Charmeleon(1, nombre));
-        } else if (tipo == "BLASTOISE"){
-            boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Blastoise_60.png"));
-            boton.setPokemon(new Blastoise(1, nombre));
-        }
+            ToggleBotonPokemonEntrenador boton = new ToggleBotonPokemonEntrenador();
+            boton.setText(nombre);
+            boton.setPreferredSize(new Dimension(0,70));
+            boton.setBackground(cLetra);
+            boton.setForeground(cBotonesOscuro);
+            boton.setFocusable(false);
+            boton.setFont(new Font("Courier New", Font.BOLD, 16));
+            boton.setHorizontalAlignment(JButton.CENTER);
+            boton.setHorizontalTextPosition(JButton.LEFT);
+            boton.setIconTextGap(20);
+            boton.addActionListener(VentanaMundo.iVentanaMundo);
+            if (tipo=="BULBASAUR"){
+                boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Bulbasaur_60.png"));
+                boton.setPokemon(new Bulbasur(1, nombre));
+            } else if (tipo == "CHARMANDER"){
+                boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Charmander_60.png"));
+                boton.setPokemon(new Charmander(1, nombre));
+            } else if (tipo == "RATTATA"){
+                boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Rattata_60.png"));
+                boton.setPokemon(new Rattata(1, nombre));
+            } else if (tipo == "SQUIRTLE"){
+                boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Squirtle_60.png"));
+                boton.setPokemon(new Squirtle(1, nombre));
+            } else if (tipo == "CHARMALEON"){
+                boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Charmeleon_60.png"));
+                boton.setPokemon(new Charmeleon(1, nombre));
+            } else if (tipo == "BLASTOISE"){
+                boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Blastoise_60.png"));
+                boton.setPokemon(new Blastoise(1, nombre));
+            }
 
-        VentanaMundo.iVentanaMundo.getBotonesP().add(boton);
-        VentanaMundo.iVentanaMundo.getPanelListaPokemons().add(boton);
-        VentanaMundo.iVentanaMundo.getGrupoBotones1().add(boton);
-        VentanaNuevoPokemon.dispose();
+            VentanaMundo.iVentanaMundo.getBotonesP().add(boton);
+            VentanaMundo.iVentanaMundo.getPanelListaPokemons().add(boton);
+            VentanaMundo.iVentanaMundo.getGrupoBotones1().add(boton);
+            VentanaNuevoPokemon.dispose();
         
         } else if (VentanaMundo.iVentanaMundo.existeNombre(nombre)){
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error. No pueden haber dos nombres iguales", "Error", JOptionPane.ERROR_MESSAGE);

@@ -171,13 +171,13 @@ public class Entrenador {
 
     @Override
     public String toString() {
-        return "Entrenador{" +
-        "\n Nombre: " + this.getNombre() + 
-        "\n Identificador: " + this.getIdentificador() + 
-        "\n Pokemons: " + 
-        "\n \t" + this.pokemons.get(0).getNombre() +
-        "\n \t" + this.pokemons.get(1).getNombre() +
-        "\n \t" + this.pokemons.get(2).getNombre() +
-        "}";
+        String nombresPokemons="";
+        for (Pokemon pokemon : pokemons) {
+            nombresPokemons += pokemon.getNombre() + "\t";
+        }
+        return  nombre + 
+                "\t" + this.getIdentificador() +
+                "\t" + nombresPokemons;
+
     }
 }

@@ -3,6 +3,7 @@ package GUI;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
 
 public class VentanaInicio implements ActionListener {
     private JButton crearMundoNuevo;
@@ -33,7 +34,7 @@ public class VentanaInicio implements ActionListener {
         crearMundoNuevo.setFocusable(false);
         crearMundoNuevo.setForeground(cLetra);
         crearMundoNuevo.setBackground(cBotonesOscuro);
-        crearMundoNuevo.setBorder(BorderFactory.createEtchedBorder());
+        crearMundoNuevo.setBorder(BorderFactory.createRaisedSoftBevelBorder());
         crearMundoNuevo.addActionListener(this);
         
         cargarMundo = new JButton("CARGAR MUNDO");
@@ -43,7 +44,8 @@ public class VentanaInicio implements ActionListener {
         cargarMundo.setFocusable(false);
         cargarMundo.setForeground(cLetra);
         cargarMundo.setBackground(cBotonesOscuro);
-        cargarMundo.setBorder(BorderFactory.createEtchedBorder());
+        cargarMundo.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+        cargarMundo.addActionListener(this);
         
         salir = new JButton("SALIR");
         salir.setBounds(750,790,100,60);
@@ -64,6 +66,7 @@ public class VentanaInicio implements ActionListener {
         VentanaInicio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         VentanaInicio.getContentPane().setBackground(cFondo); 
         VentanaInicio.setLayout(null);
+        VentanaInicio.setUndecorated(true);
         VentanaInicio.add(tituloPrincipal);
         VentanaInicio.add(crearMundoNuevo);
         VentanaInicio.add(cargarMundo);
@@ -79,6 +82,14 @@ public class VentanaInicio implements ActionListener {
             VentanaInicio.dispose();
         }
         if (e.getSource()==cargarMundo){
+            JFileChooser seleccionadorArchivo = new JFileChooser();
+            seleccionadorArchivo.setCurrentDirectory(new File("."));
+            int respuesta = seleccionadorArchivo.showOpenDialog(null);
+            if (respuesta == seleccionadorArchivo.APPROVE_OPTION){
+                File archivo = new File(seleccionadorArchivo.getSelectedFile().getAbsolutePath());
+            }
+            VentanaMundo mundo = new VentanaMundo();
+            // mundo.cargarfichero(archivo);
             VentanaInicio.dispose();
         }
         if (e.getSource()==salir){

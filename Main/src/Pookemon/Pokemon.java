@@ -155,20 +155,19 @@ public class Pokemon {
 
     @Override
     public String toString() {
-        return "Pokemon{" +
-                "\t\n nombre: " + nombre +
-                "\t\n Nivel: " + nivel +
-                "\t\n Tipo: " + tipo +
-                "\t\n Entrenador: " + condicionExistenciaEntrenador() +
-                "\t\n Saludo: " + saludo + 
-                "\t\n Velocidad: " + velocidad +
-                "\t\n Poder: " + poder +
-                "\t\n PoderEspecial: " + poderEspecial +
-                "\t\n Defensa: " + defensa + 
-                "\t\n DefensaEspecial: " + defensaEspecial +  
-                "\t\n SaludActual: " + saludActual +
-                "\t\n SaludMax: " + saludMax + 
-                '}';
+        return  nombre +
+                "\t" + nivel +
+                "\t" + tipo +
+                "\t" + condicionExistenciaEntrenador() +
+                "\t" + velocidad +
+                "\t" + poder +
+                "\t" + poderEspecial +
+                "\t" + defensa + 
+                "\t" + defensaEspecial +  
+                "\t" + saludActual +
+                "\t" + saludMax +
+                "\t" + saludo
+                ;
     }
 
     public String condicionExistenciaEntrenador (){

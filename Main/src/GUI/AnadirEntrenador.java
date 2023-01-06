@@ -47,7 +47,7 @@ public class AnadirEntrenador implements ActionListener{
             botonAlejandro.addActionListener(this);
 
         botonLimpiar = new JButton("Quitar Selección");
-            botonLimpiar.setBounds(100,285,170,40);
+            botonLimpiar.setBounds(100,290,170,40);
             botonLimpiar.setFont(new Font("Courier New", Font.ITALIC, 12));
             botonLimpiar.setFocusable(false);
             botonLimpiar.setForeground(cLetra);
