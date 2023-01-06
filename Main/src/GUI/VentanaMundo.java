@@ -15,6 +15,7 @@ public class VentanaMundo implements ActionListener{
     private JFrame ventanaNuevoMundo = new JFrame();
     private JButton volver;
     private JLabel tituloMundo;
+    private boolean mundoGuardado;
     
     private JPanel panelPokemons;
     private JPanel panelListaPokemons;
@@ -186,12 +187,22 @@ public class VentanaMundo implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==volver){
-            int confirm = JOptionPane.showConfirmDialog(null, "¿Seguro que deseas salir del mundo?", "Atención", JOptionPane.YES_NO_OPTION);
-            if (confirm == JOptionPane.YES_OPTION){
+            if(mundoGuardado){
                 ventanaNuevoMundo.dispose();
                 new VentanaInicio();
+            } else{
+                int confirm = JOptionPane.showConfirmDialog(null, "¿Deseas guardar este mundo?", "Atención", JOptionPane.YES_NO_CANCEL_OPTION);
+                if (confirm == JOptionPane.YES_OPTION){
+                    // Añadir código para guardar mundo
+                    ventanaNuevoMundo.dispose();
+                    new VentanaInicio();
+                } else if (confirm == JOptionPane.NO_OPTION){
+                    ventanaNuevoMundo.dispose();
+                    new VentanaInicio();
+                }
             }
         }
+            
 
 
         if (e.getSource()==anadirEntrenador){
@@ -202,7 +213,7 @@ public class VentanaMundo implements ActionListener{
         if (e.getSource()==anadirPokemon){
             new AnadirPokemon();
         }
-
+        
 
         if(panelListaPokemons.getComponentCount()!=0){
             for(int i=0;i<panelListaPokemons.getComponentCount();i++){
@@ -492,7 +503,6 @@ public class VentanaMundo implements ActionListener{
             }
         }
 
-
         if(panelListaEntrenadores.getComponentCount()!=0){
             for(int i=0;i<panelListaEntrenadores.getComponentCount();i++){
                 if (e.getSource()==panelListaEntrenadores.getComponent(i)){
@@ -513,39 +523,56 @@ public class VentanaMundo implements ActionListener{
                         crearSlotPokemonDisponible(15,15,180,120);
                         crearSlotPokemonDisponible(210,15,180,120);
                         crearSlotPokemonDisponible(405,15,180,120);
+                        
                         asignarPokemon.setVisible(true);
-                    }else if (botonesEntrenador.get(i).getEntrenador().getPokemons().size()==1){
+                    }
+                    if (botonesEntrenador.get(i).getEntrenador().getPokemons().size()==1){
                         boton1Eliminar = new JButton(botonesEntrenador.get(i).getEntrenador().getPokemons().get(0).getNombre());
                             boton1Eliminar.setBounds(15,15,180,120);
                             mostrarIcono (boton1Eliminar,i,0);
+                            boton1Eliminar.addActionListener(iVentanaMundo);
                             panelControl.add(boton1Eliminar);
+                        
                         crearSlotPokemonDisponible(210,15,180,120);
                         crearSlotPokemonDisponible(405,15,180,120);
+                        
                         asignarPokemon.setVisible(true);
-                    }else if (botonesEntrenador.get(i).getEntrenador().getPokemons().size()==2){
+                    }
+                    if (botonesEntrenador.get(i).getEntrenador().getPokemons().size()==2){
                         boton1Eliminar = new JButton(botonesEntrenador.get(i).getEntrenador().getPokemons().get(0).getNombre());
                             boton1Eliminar.setBounds(15,15,180,120);
                             mostrarIcono (boton1Eliminar,i,0);
+                            boton1Eliminar.addActionListener(iVentanaMundo);
                             panelControl.add(boton1Eliminar);
-                            boton2Eliminar = new JButton(botonesEntrenador.get(i).getEntrenador().getPokemons().get(1).getNombre());
-                            boton2Eliminar.setBounds(210,15,180,120);
-                            mostrarIcono (boton2Eliminar,i,1);
-                            panelControl.add(boton2Eliminar);
-                        crearSlotPokemonDisponible(405,15,180,120);
-                        asignarPokemon.setVisible(true);
-                    }else if (botonesEntrenador.get(i).getEntrenador().getPokemons().size()==3){
-                        boton1Eliminar = new JButton(botonesEntrenador.get(i).getEntrenador().getPokemons().get(0).getNombre());
-                            boton1Eliminar.setBounds(15,15,180,120);
-                            mostrarIcono (boton1Eliminar,i,0);
-                            panelControl.add(boton1Eliminar);
+                        
                         boton2Eliminar = new JButton(botonesEntrenador.get(i).getEntrenador().getPokemons().get(1).getNombre());
                             boton2Eliminar.setBounds(210,15,180,120);
                             mostrarIcono (boton2Eliminar,i,1);
+                            boton2Eliminar.addActionListener(iVentanaMundo);
                             panelControl.add(boton2Eliminar);
+                        
+                            crearSlotPokemonDisponible(405,15,180,120);
+                        asignarPokemon.setVisible(true);
+                    }
+                    if (botonesEntrenador.get(i).getEntrenador().getPokemons().size()==3){
+                        boton1Eliminar = new JButton(botonesEntrenador.get(i).getEntrenador().getPokemons().get(0).getNombre());
+                            boton1Eliminar.setBounds(15,15,180,120);
+                            mostrarIcono (boton1Eliminar,i,0);
+                            boton1Eliminar.addActionListener(iVentanaMundo);
+                            panelControl.add(boton1Eliminar);
+                        
+                        boton2Eliminar = new JButton(botonesEntrenador.get(i).getEntrenador().getPokemons().get(1).getNombre());
+                            boton2Eliminar.setBounds(210,15,180,120);
+                            mostrarIcono (boton2Eliminar,i,1);
+                            boton2Eliminar.addActionListener(iVentanaMundo);
+                            panelControl.add(boton2Eliminar);
+                        
                         boton3Eliminar = new JButton(botonesEntrenador.get(i).getEntrenador().getPokemons().get(2).getNombre());
                             boton3Eliminar.setBounds(405,15,180,120);
                             mostrarIcono (boton3Eliminar,i,2);
+                            boton3Eliminar.addActionListener(iVentanaMundo);
                             panelControl.add(boton3Eliminar);
+                       
                         asignarPokemon.setVisible(false);
                     }
 
@@ -660,6 +687,51 @@ public class VentanaMundo implements ActionListener{
                                 botonesPokemonsDisponibles.clear();
                                 botonEntrenadorSeleccionado.doClick();
                             }
+                        }
+                    }
+                }
+            }
+
+            if(e.getSource()==boton1Eliminar){
+                Enumeration<AbstractButton> botones = grupoBotones1.getElements();
+                while (botones.hasMoreElements()) {
+                    AbstractButton botonEntrenadorSeleccionado = (AbstractButton)botones.nextElement();
+                    if (botonEntrenadorSeleccionado.isSelected()){
+                        int confirm = JOptionPane.showConfirmDialog(null, "¿Seguro que deseas devolver este Pokemon?", "Atención", JOptionPane.YES_NO_OPTION);
+                        if (confirm == JOptionPane.YES_OPTION){
+                            ((ToggleBotonPokemonEntrenador)botonEntrenadorSeleccionado).getEntrenador().getPokemons().get(0).setEntrenador(new Entrenador("-", 0));;
+                            ((ToggleBotonPokemonEntrenador)botonEntrenadorSeleccionado).getEntrenador().getPokemons().remove(0);
+                            botonEntrenadorSeleccionado.doClick();
+                        }
+                    }
+                }
+            }
+
+            if(e.getSource()==boton2Eliminar){
+                Enumeration<AbstractButton> botones = grupoBotones1.getElements();
+                while (botones.hasMoreElements()) {
+                    AbstractButton botonEntrenadorSeleccionado = (AbstractButton)botones.nextElement();
+                    if (botonEntrenadorSeleccionado.isSelected()){
+                        int confirm = JOptionPane.showConfirmDialog(null, "¿Seguro que deseas devolver este Pokemon?", "Atención", JOptionPane.YES_NO_OPTION);
+                        if (confirm == JOptionPane.YES_OPTION){
+                            ((ToggleBotonPokemonEntrenador)botonEntrenadorSeleccionado).getEntrenador().getPokemons().get(1).setEntrenador(new Entrenador("-", 0));;
+                            ((ToggleBotonPokemonEntrenador)botonEntrenadorSeleccionado).getEntrenador().getPokemons().remove(1);
+                            botonEntrenadorSeleccionado.doClick();
+                        }
+                    }
+                }
+            }
+
+            if(e.getSource()==boton3Eliminar){
+                Enumeration<AbstractButton> botones = grupoBotones1.getElements();
+                while (botones.hasMoreElements()) {
+                    AbstractButton botonEntrenadorSeleccionado = (AbstractButton)botones.nextElement();
+                    if (botonEntrenadorSeleccionado.isSelected()){
+                        int confirm = JOptionPane.showConfirmDialog(null, "¿Seguro que deseas devolver este Pokemon?", "Atención", JOptionPane.YES_NO_OPTION);
+                        if (confirm == JOptionPane.YES_OPTION){
+                            ((ToggleBotonPokemonEntrenador)botonEntrenadorSeleccionado).getEntrenador().getPokemons().get(2).setEntrenador(new Entrenador("-", 0));;
+                            ((ToggleBotonPokemonEntrenador)botonEntrenadorSeleccionado).getEntrenador().getPokemons().remove(2);
+                            botonEntrenadorSeleccionado.doClick();
                         }
                     }
                 }
