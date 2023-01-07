@@ -1,0 +1,4 @@
+Bulbasur	1	1	Planta	-	5	4	18	4	13	2	18	¿Quieres un briconsejo de jardinería?
+Charmander	2	1	Fuego	-	18	19	11	18	4	6	2	¡A quemar la universidad!
+Rattata	3	1	Normal	-	17	17	10	13	8	16	3	Mi bro de alcantarilla es el payaso de IT
+Squirtle	4	1	Agua	-	21	14	12	21	16	10	18	Lo que sube del cubata son los hielos

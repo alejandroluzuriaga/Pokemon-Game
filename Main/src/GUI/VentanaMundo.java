@@ -776,15 +776,16 @@ public class VentanaMundo implements ActionListener{
                                         boton.setBorder(BorderFactory.createRaisedSoftBevelBorder());
                                         boton.setFocusable(false);
                                         boton.setFont(new Font("Courier New", Font.BOLD, 15));
-                                        if (botonesEntrenador.get(j).getEntrenador().getNombre()=="LORETO"){
+                                        if (botonesEntrenador.get(j).getEntrenador().getNombre().equals("LORETO")){
                                             boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Entrenadores/Loreto_120.png"));
-                                        } else if (botonesEntrenador.get(j).getEntrenador().getNombre() == "SILVIA"){
+                                        } else if (botonesEntrenador.get(j).getEntrenador().getNombre().equals("SILVIA")){
                                             boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Entrenadores/Silvia_120.png"));
-                                        } else if (botonesEntrenador.get(j).getEntrenador().getNombre() == "OLEKSANDR"){
+                                        } else if (botonesEntrenador.get(j).getEntrenador().getNombre().equals("OLEKSANDR")){
                                             boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Entrenadores/Oleksandr_120.png"));
-                                        } else if (botonesEntrenador.get(j).getEntrenador().getNombre() == "ALEJANDRO"){
+                                        } else if (botonesEntrenador.get(j).getEntrenador().getNombre().equals("ALEJANDRO")){
                                             boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Entrenadores/Alejandro_120.png"));
                                         }
+
                                         boton.setIconTextGap(10);
                                         boton.setHorizontalTextPosition(JButton.CENTER);
                                         boton.setVerticalTextPosition(JButton.BOTTOM);
@@ -924,7 +925,6 @@ public class VentanaMundo implements ActionListener{
             String linea;
             
             while (((linea = lector.readLine()) != null) && !(linea.equals("---"))) {
-                System.out.println(linea);
                 String[] campos = linea.split("\t");
                 String clase = campos[0];
                 Pokemon pokemon;
@@ -985,10 +985,8 @@ public class VentanaMundo implements ActionListener{
             // cargaEntrenadores (lector);
             if (linea!=null){
 
-                while (((linea /*= lector.readLine() */) != null)) {
-                    System.out.println(lector.readLine().toString());
-                    String[] campos = lector.readLine().split("\t");
-                    System.out.println("La longitud es: "+campos.length);
+                while (((linea = lector.readLine() ) != null)) {
+                    String[] campos = linea.split("\t");
                     String nombreEntrenador = campos[0];
                     int identificador = Integer.parseInt(campos[1]);
                     ToggleBotonPokemonEntrenador botonEntrenador = new ToggleBotonPokemonEntrenador();
@@ -1018,6 +1016,7 @@ public class VentanaMundo implements ActionListener{
                         default:
                             break;
                         }
+                    
                     if(campos.length==3){
                         for (ToggleBotonPokemonEntrenador botonPokemon : botonesPokemon) {
                             if(campos[2].equals(botonPokemon.getPokemon().getNombre())){
@@ -1025,7 +1024,6 @@ public class VentanaMundo implements ActionListener{
                             }
                         }
                     }
-
                     if(campos.length==4){
                         for (ToggleBotonPokemonEntrenador botonPokemon : botonesPokemon) {
                             if(campos[2].equals(botonPokemon.getPokemon().getNombre())){
@@ -1036,8 +1034,7 @@ public class VentanaMundo implements ActionListener{
                             }
                         }
                     }
-
-                    if(campos.length==4){
+                    if(campos.length==5){
                         for (ToggleBotonPokemonEntrenador botonPokemon : botonesPokemon) {
                             if(campos[2].equals(botonPokemon.getPokemon().getNombre())){
                                 botonEntrenador.getEntrenador().anadirPokemon(botonPokemon.getPokemon());
@@ -1077,19 +1074,14 @@ public class VentanaMundo implements ActionListener{
         botonPokemon.addActionListener(VentanaMundo.iVentanaMundo);
         if (botonPokemon.getPokemon().getClass().getSimpleName().equals("Bulbasur")){
             botonPokemon.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Bulbasaur_60.png"));
-    
         } else if (botonPokemon.getPokemon().getClass().getSimpleName().equals("Charmander")){
             botonPokemon.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Charmander_60.png"));
-            
         } else if (botonPokemon.getPokemon().getClass().getSimpleName().equals("Rattata")){
             botonPokemon.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Rattata_60.png"));
-
         } else if (botonPokemon.getPokemon().getClass().getSimpleName().equals("Squirtle")){
             botonPokemon.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Squirtle_60.png"));
-    
         } else if (botonPokemon.getPokemon().getClass().getSimpleName().equals("Charmeleon")){
-            botonPokemon.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Charmeleon_60.png"));
-            
+            botonPokemon.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Charmeleon_60.png")); 
         } else if (botonPokemon.getPokemon().getClass().getSimpleName().equals("Blastoise")){
             botonPokemon.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Blastoise_60.png"));
         }
@@ -1097,7 +1089,6 @@ public class VentanaMundo implements ActionListener{
 
     private void crearCasillaCargaEntrenador(ToggleBotonPokemonEntrenador botonEntrenador) {
         String nombre = botonEntrenador.getEntrenador().getNombre();
-        
         botonEntrenador.setText(nombre);
         botonEntrenador.setPreferredSize(new Dimension(0,70));
         botonEntrenador.setBackground(cLetra);
@@ -1107,89 +1098,16 @@ public class VentanaMundo implements ActionListener{
         botonEntrenador.setHorizontalTextPosition(JButton.LEFT);
         botonEntrenador.setIconTextGap(20);
         botonEntrenador.addActionListener(VentanaMundo.iVentanaMundo);
-        if (nombre=="LORETO"){
+        if (nombre.equals("LORETO")){
             botonEntrenador.setIcon(new ImageIcon("./src/GUI/Imagenes/Entrenadores/Loreto_60.png"));
-        } else if (nombre == "SILVIA"){
+        } else if (nombre.equals("SILVIA")){
             botonEntrenador.setIcon(new ImageIcon("./src/GUI/Imagenes/Entrenadores/Silvia_60.png"));
-        } else if (nombre == "OLEKSANDR"){
+        } else if (nombre.equals("OLEKSANDR")){
             botonEntrenador.setIcon(new ImageIcon("./src/GUI/Imagenes/Entrenadores/Oleksandr_60.png"));
-        } else if (nombre == "ALEJANDRO"){
+        } else if (nombre.equals("ALEJANDRO")){
             botonEntrenador.setIcon(new ImageIcon("./src/GUI/Imagenes/Entrenadores/Alejandro_60.png"));
         }
     }
-
-
-    // public void cargaEntrenadores (BufferedReader lector) throws NumberFormatException, IOException{
-    //     try {
-    //         String linea;
-            
-    //         while (((linea = lector.readLine()) != null)) {
-    //             System.out.println(lector.readLine().toString());
-    //             String[] campos = linea.split("\t");
-    //             String nombre = campos[0];
-    //             int identificador = Integer.parseInt(campos[1]);
-    //             ToggleBotonPokemonEntrenador botonEntrenador = new ToggleBotonPokemonEntrenador();
-    //             Entrenador entrenador;
-    //             String nombreEntrenador = botonEntrenador.getEntrenador().getNombre();
-
-    //             switch(nombreEntrenador){
-    //                 case "LORETO":
-    //                     entrenador = new Entrenador(nombreEntrenador, identificador);
-    //                     botonEntrenador.setEntrenador(entrenador);
-    //                     break;
-
-    //                 case "SILVIA":
-    //                     entrenador = new Entrenador(nombre, identificador);
-    //                     botonEntrenador.setEntrenador(entrenador);
-    //                     break;
-
-    //                 case "OLEKSANDR":
-    //                     entrenador = new Entrenador(nombre, identificador);
-    //                     botonEntrenador.setEntrenador(entrenador);
-    //                     break;
-
-    //                 case "ALEJANDRO":
-    //                     entrenador = new Entrenador(nombre, identificador);
-    //                     botonEntrenador.setEntrenador(entrenador);
-    //                     break;
-
-    //                 default:
-    //                     break;
-    //                 }
-                
-    //             if(campos[2]!=null){
-    //                 for (ToggleBotonPokemonEntrenador botonPokemon : botonesPokemon) {
-    //                     if(campos[2].equals(botonPokemon.getPokemon().getNombre())){
-    //                         botonEntrenador.getEntrenador().anadirPokemon(botonPokemon.getPokemon());
-    //                     }
-    //                 }
-                
-    //                 if(campos[3]!=null){
-    //                     for (ToggleBotonPokemonEntrenador botonPokemon : botonesPokemon) {
-    //                         if(campos[3].equals(botonPokemon.getPokemon().getNombre())){
-    //                             botonEntrenador.getEntrenador().anadirPokemon(botonPokemon.getPokemon());
-    //                         }
-    //                     }
-
-    //                     if(campos[4]!=null){
-    //                         for (ToggleBotonPokemonEntrenador botonPokemon : botonesPokemon) {
-    //                             if(campos[4].equals(botonPokemon.getPokemon().getNombre())){
-    //                                 botonEntrenador.getEntrenador().anadirPokemon(botonPokemon.getPokemon());
-    //                             }
-    //                         }
-    //                     }
-    //                 }
-    //             }
-    //             botonesEntrenador.add(botonEntrenador);
-    //             panelListaEntrenadores.add(botonEntrenador);
-    //             grupoBotones1.add(botonEntrenador);
-
-    //             crearCasillaCargaEntrenador(botonEntrenador);
-    //         }
-    //     } catch(Exception e){
-
-    //     }
-    // }
 
 
     // Getters y Setters
