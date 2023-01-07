@@ -173,11 +173,9 @@ public class Entrenador {
     public String toString() {
         String nombresPokemons="";
         for (Pokemon pokemon : pokemons) {
-            nombresPokemons += pokemon.getNombre() + "\t";
+            nombresPokemons += "\t" + pokemon.getNombre();
         }
-        return  nombre + 
-                "\t" + this.getIdentificador() +
-                "\t" + nombresPokemons;
+        return  nombre + "\t" + this.getIdentificador() + nombresPokemons;
 
     }
 }

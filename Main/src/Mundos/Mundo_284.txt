@@ -1,0 +1,8 @@
+Bulbasur	1	1	Planta	LORETO	11	10	4	2	25	16	2	¿Quieres un briconsejo de jardinería?
+Charmander	2	1	Fuego	SILVIA	21	5	24	7	23	10	3	¡A quemar la universidad!
+Rattata	3	1	Normal	OLEKSANDR	19	12	2	4	18	8	16	Mi bro de alcantarilla es el payaso de IT
+Squirtle	4	1	Agua	OLEKSANDR	18	21	4	12	8	21	17	Lo que sube del cubata son los hielos
+---
+LORETO	0	1
+SILVIA	1	2
+OLEKSANDR	2	3	4

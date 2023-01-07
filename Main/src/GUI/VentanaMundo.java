@@ -916,15 +916,280 @@ public class VentanaMundo implements ActionListener{
         return aux;
     }
 
-    public void cargarDatos(File archivo){
-        //para cada linea
-        // AnadirPokemon.iAnadirPokemon.crearCasilla("",""); //tipo y nombre
-        // ((ToggleBotonPokemonEntrenador)panelListaPokemons.getComponent(0)).getPokemon().setNivel(0); //Pones el nivel que saques del fichero, hacer para cada atributo
-        // //No hagas nada con el campo de entrenador
+    public void cargarPokemons (String archivo) throws FileNotFoundException{
+        File file = new File(archivo);
+        BufferedReader lector = new BufferedReader(new FileReader(file));
+        try {
+            //Pokemon
+            String linea;
+            
+            while (((linea = lector.readLine()) != null) && !(linea.equals("---"))) {
+                System.out.println(linea);
+                String[] campos = linea.split("\t");
+                String clase = campos[0];
+                Pokemon pokemon;
+                ToggleBotonPokemonEntrenador botonPokemon = new ToggleBotonPokemonEntrenador();
 
-        // AnadirEntrenador.iAnadirEntrenador.crearCasilla(null); //Solo nombre del entrenador
-        // ((ToggleBotonPokemonEntrenador)panelListaEntrenadores.getComponent(0)).getEntrenador().anadirPokemon(null);
+                //---------------------Carga Pokemon-----------------------
+                switch(clase){
+                    case "Bulbasur":
+                        pokemon = new Bulbasur(1, campos[1]);
+                        botonPokemon.setPokemon(pokemon);
+                    break;
+
+                    case "Rattata":
+                        pokemon = new Rattata(1, campos[1]);
+                        botonPokemon.setPokemon(pokemon);
+                    break;
+                    
+                    case "Charmander":
+                        pokemon = new Charmander(1, campos[1]);
+                        botonPokemon.setPokemon(pokemon);
+                    break;
+                    
+                    case "Charmeleon":
+                        pokemon = new Charmeleon(1, campos[1]); 
+                        botonPokemon.setPokemon(pokemon);
+                    break;
+                    
+                    case "Squirtle":
+                        pokemon = new Squirtle(1, campos[1]);
+                        botonPokemon.setPokemon(pokemon);
+                    break;
+
+                    case "Blastoise":
+                        pokemon = new Blastoise(1, campos[1]);
+                        botonPokemon.setPokemon(pokemon);
+                    break;
+                    default:
+                        pokemon = new Pokemon();
+                    break;
+                }
+
+                botonPokemon.getPokemon().setNombre(campos[1]);
+                botonPokemon.getPokemon().setVelocidad(Integer.parseInt(campos[5]));
+                botonPokemon.getPokemon().setPoder(Integer.parseInt(campos[6]));
+                botonPokemon.getPokemon().setPoderEspecial(Integer.parseInt(campos[7]));
+                botonPokemon.getPokemon().setDefensa(Integer.parseInt(campos[8]));
+                botonPokemon.getPokemon().setDefensaEspecial(Integer.parseInt(campos[9]));
+                botonPokemon.getPokemon().setSaludActual(Integer.parseInt(campos[10]));
+                botonPokemon.getPokemon().setSaludMax(Integer.parseInt(campos[11]));
+
+                botonesPokemon.add(botonPokemon);
+                panelListaPokemons.add(botonPokemon);
+                grupoBotones1.add(botonPokemon);
+
+                crearCasillaCargaPokemon(botonPokemon);
+            }
+            
+            // cargaEntrenadores (lector);
+            if (linea!=null){
+
+                while (((linea /*= lector.readLine() */) != null)) {
+                    System.out.println(lector.readLine().toString());
+                    String[] campos = lector.readLine().split("\t");
+                    System.out.println("La longitud es: "+campos.length);
+                    String nombreEntrenador = campos[0];
+                    int identificador = Integer.parseInt(campos[1]);
+                    ToggleBotonPokemonEntrenador botonEntrenador = new ToggleBotonPokemonEntrenador();
+                    Entrenador entrenador;
+    
+                    switch(nombreEntrenador){
+                        case "LORETO":
+                            entrenador = new Entrenador(nombreEntrenador, identificador);
+                            botonEntrenador.setEntrenador(entrenador);
+                            break;
+    
+                        case "SILVIA":
+                            entrenador = new Entrenador(nombreEntrenador, identificador);
+                            botonEntrenador.setEntrenador(entrenador);
+                            break;
+    
+                        case "OLEKSANDR":
+                            entrenador = new Entrenador(nombreEntrenador, identificador);
+                            botonEntrenador.setEntrenador(entrenador);
+                            break;
+    
+                        case "ALEJANDRO":
+                            entrenador = new Entrenador(nombreEntrenador, identificador);
+                            botonEntrenador.setEntrenador(entrenador);
+                            break;
+    
+                        default:
+                            break;
+                        }
+                    if(campos.length==3){
+                        for (ToggleBotonPokemonEntrenador botonPokemon : botonesPokemon) {
+                            if(campos[2].equals(botonPokemon.getPokemon().getNombre())){
+                                botonEntrenador.getEntrenador().anadirPokemon(botonPokemon.getPokemon());
+                            }
+                        }
+                    }
+
+                    if(campos.length==4){
+                        for (ToggleBotonPokemonEntrenador botonPokemon : botonesPokemon) {
+                            if(campos[2].equals(botonPokemon.getPokemon().getNombre())){
+                                botonEntrenador.getEntrenador().anadirPokemon(botonPokemon.getPokemon());
+                            }
+                            if(campos[3].equals(botonPokemon.getPokemon().getNombre())){
+                                botonEntrenador.getEntrenador().anadirPokemon(botonPokemon.getPokemon());
+                            }
+                        }
+                    }
+
+                    if(campos.length==4){
+                        for (ToggleBotonPokemonEntrenador botonPokemon : botonesPokemon) {
+                            if(campos[2].equals(botonPokemon.getPokemon().getNombre())){
+                                botonEntrenador.getEntrenador().anadirPokemon(botonPokemon.getPokemon());
+                            }
+                            if(campos[3].equals(botonPokemon.getPokemon().getNombre())){
+                                botonEntrenador.getEntrenador().anadirPokemon(botonPokemon.getPokemon());
+                            }
+                            if(campos[4].equals(botonPokemon.getPokemon().getNombre())){
+                                botonEntrenador.getEntrenador().anadirPokemon(botonPokemon.getPokemon());
+                            }
+                        }
+                    }
+    
+                    botonesEntrenador.add(botonEntrenador);
+                    panelListaEntrenadores.add(botonEntrenador);
+                    grupoBotones1.add(botonEntrenador);
+    
+                    crearCasillaCargaEntrenador(botonEntrenador);
+                }
+            }
+    
+        } catch(Exception e){
+            System.out.println(e);
+        }
     }
+
+    public void crearCasillaCargaPokemon(ToggleBotonPokemonEntrenador botonPokemon){
+        botonPokemon.setText(botonPokemon.getPokemon().getNombre());
+        botonPokemon.setPreferredSize(new Dimension(0,70));
+        botonPokemon.setBackground(cLetra);
+        botonPokemon.setForeground(cBotonesOscuro);
+        botonPokemon.setFocusable(false);
+        botonPokemon.setFont(new Font("Courier New", Font.BOLD, 16));
+        botonPokemon.setHorizontalAlignment(JButton.CENTER);
+        botonPokemon.setHorizontalTextPosition(JButton.LEFT);
+        botonPokemon.setIconTextGap(20);
+        botonPokemon.addActionListener(VentanaMundo.iVentanaMundo);
+        if (botonPokemon.getPokemon().getClass().getSimpleName().equals("Bulbasur")){
+            botonPokemon.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Bulbasaur_60.png"));
+    
+        } else if (botonPokemon.getPokemon().getClass().getSimpleName().equals("Charmander")){
+            botonPokemon.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Charmander_60.png"));
+            
+        } else if (botonPokemon.getPokemon().getClass().getSimpleName().equals("Rattata")){
+            botonPokemon.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Rattata_60.png"));
+
+        } else if (botonPokemon.getPokemon().getClass().getSimpleName().equals("Squirtle")){
+            botonPokemon.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Squirtle_60.png"));
+    
+        } else if (botonPokemon.getPokemon().getClass().getSimpleName().equals("Charmeleon")){
+            botonPokemon.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Charmeleon_60.png"));
+            
+        } else if (botonPokemon.getPokemon().getClass().getSimpleName().equals("Blastoise")){
+            botonPokemon.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Blastoise_60.png"));
+        }
+    }
+
+    private void crearCasillaCargaEntrenador(ToggleBotonPokemonEntrenador botonEntrenador) {
+        String nombre = botonEntrenador.getEntrenador().getNombre();
+        
+        botonEntrenador.setText(nombre);
+        botonEntrenador.setPreferredSize(new Dimension(0,70));
+        botonEntrenador.setBackground(cLetra);
+        botonEntrenador.setFocusable(false);
+        botonEntrenador.setFont(new Font("Courier New", Font.BOLD, 16));
+        botonEntrenador.setHorizontalAlignment(JButton.CENTER);
+        botonEntrenador.setHorizontalTextPosition(JButton.LEFT);
+        botonEntrenador.setIconTextGap(20);
+        botonEntrenador.addActionListener(VentanaMundo.iVentanaMundo);
+        if (nombre=="LORETO"){
+            botonEntrenador.setIcon(new ImageIcon("./src/GUI/Imagenes/Entrenadores/Loreto_60.png"));
+        } else if (nombre == "SILVIA"){
+            botonEntrenador.setIcon(new ImageIcon("./src/GUI/Imagenes/Entrenadores/Silvia_60.png"));
+        } else if (nombre == "OLEKSANDR"){
+            botonEntrenador.setIcon(new ImageIcon("./src/GUI/Imagenes/Entrenadores/Oleksandr_60.png"));
+        } else if (nombre == "ALEJANDRO"){
+            botonEntrenador.setIcon(new ImageIcon("./src/GUI/Imagenes/Entrenadores/Alejandro_60.png"));
+        }
+    }
+
+
+    // public void cargaEntrenadores (BufferedReader lector) throws NumberFormatException, IOException{
+    //     try {
+    //         String linea;
+            
+    //         while (((linea = lector.readLine()) != null)) {
+    //             System.out.println(lector.readLine().toString());
+    //             String[] campos = linea.split("\t");
+    //             String nombre = campos[0];
+    //             int identificador = Integer.parseInt(campos[1]);
+    //             ToggleBotonPokemonEntrenador botonEntrenador = new ToggleBotonPokemonEntrenador();
+    //             Entrenador entrenador;
+    //             String nombreEntrenador = botonEntrenador.getEntrenador().getNombre();
+
+    //             switch(nombreEntrenador){
+    //                 case "LORETO":
+    //                     entrenador = new Entrenador(nombreEntrenador, identificador);
+    //                     botonEntrenador.setEntrenador(entrenador);
+    //                     break;
+
+    //                 case "SILVIA":
+    //                     entrenador = new Entrenador(nombre, identificador);
+    //                     botonEntrenador.setEntrenador(entrenador);
+    //                     break;
+
+    //                 case "OLEKSANDR":
+    //                     entrenador = new Entrenador(nombre, identificador);
+    //                     botonEntrenador.setEntrenador(entrenador);
+    //                     break;
+
+    //                 case "ALEJANDRO":
+    //                     entrenador = new Entrenador(nombre, identificador);
+    //                     botonEntrenador.setEntrenador(entrenador);
+    //                     break;
+
+    //                 default:
+    //                     break;
+    //                 }
+                
+    //             if(campos[2]!=null){
+    //                 for (ToggleBotonPokemonEntrenador botonPokemon : botonesPokemon) {
+    //                     if(campos[2].equals(botonPokemon.getPokemon().getNombre())){
+    //                         botonEntrenador.getEntrenador().anadirPokemon(botonPokemon.getPokemon());
+    //                     }
+    //                 }
+                
+    //                 if(campos[3]!=null){
+    //                     for (ToggleBotonPokemonEntrenador botonPokemon : botonesPokemon) {
+    //                         if(campos[3].equals(botonPokemon.getPokemon().getNombre())){
+    //                             botonEntrenador.getEntrenador().anadirPokemon(botonPokemon.getPokemon());
+    //                         }
+    //                     }
+
+    //                     if(campos[4]!=null){
+    //                         for (ToggleBotonPokemonEntrenador botonPokemon : botonesPokemon) {
+    //                             if(campos[4].equals(botonPokemon.getPokemon().getNombre())){
+    //                                 botonEntrenador.getEntrenador().anadirPokemon(botonPokemon.getPokemon());
+    //                             }
+    //                         }
+    //                     }
+    //                 }
+    //             }
+    //             botonesEntrenador.add(botonEntrenador);
+    //             panelListaEntrenadores.add(botonEntrenador);
+    //             grupoBotones1.add(botonEntrenador);
+
+    //             crearCasillaCargaEntrenador(botonEntrenador);
+    //         }
+    //     } catch(Exception e){
+
+    //     }
+    // }
 
 
     // Getters y Setters

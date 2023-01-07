@@ -1,6 +1,8 @@
 package GUI;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -82,13 +84,19 @@ public class VentanaInicio implements ActionListener {
             VentanaInicio.dispose();
         }
         if (e.getSource()==cargarMundo){
+            FileNameExtensionFilter filter = new FileNameExtensionFilter(".txt", "txt", "text");
             JFileChooser seleccionadorArchivo = new JFileChooser();
+            seleccionadorArchivo.setFileFilter(filter);
             seleccionadorArchivo.setCurrentDirectory(new File("./src/Mundos"));
             int respuesta = seleccionadorArchivo.showOpenDialog(null);
             if (respuesta == seleccionadorArchivo.APPROVE_OPTION){
-                File archivo = new File(seleccionadorArchivo.getSelectedFile().getAbsolutePath());
+                File archivo = new File(seleccionadorArchivo.getSelectedFile().getPath());
                 VentanaMundo mundo = new VentanaMundo();
-                mundo.cargarDatos(archivo);
+                try {
+                    mundo.cargarPokemons(archivo.toString());
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
                 VentanaInicio.dispose();
             }
             
