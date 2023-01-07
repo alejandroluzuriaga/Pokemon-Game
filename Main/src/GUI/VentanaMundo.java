@@ -15,7 +15,8 @@ public class VentanaMundo implements ActionListener{
     private JFrame ventanaNuevoMundo = new JFrame();
     private JButton volver;
     private JLabel tituloMundo;
-    private boolean mundoGuardado;
+    private int random = (int) Math.floor(Math.random()*1000+1);
+    private File ruta = new File("./src/Mundos/Mundo_" + random + ".txt");
     
     private JPanel panelPokemons;
     private JPanel panelListaPokemons;
@@ -67,99 +68,99 @@ public class VentanaMundo implements ActionListener{
         
         // VOLVER ///////////////////////////////////////////////////////////////////////////////////
         volver = new JButton("VOLVER");
-        volver.setBounds(15,15,135,40);
-        volver.setHorizontalAlignment(JButton.CENTER);
-        volver.setIcon(new ImageIcon("./src/GUI/Imagenes/volver.png"));
-        volver.setRolloverIcon(new ImageIcon("./src/GUI/Imagenes/volver_claro.png"));
-        volver.setFont(new Font("Courier New", Font.PLAIN, 18));
-        volver.setFocusable(false);
-        volver.setForeground(cLetra);
-        volver.setIconTextGap(10);
-        volver.setBackground(null);
-        volver.setBorder(null);       
-        volver.addActionListener(this);
+            volver.setBounds(15,15,135,40);
+            volver.setHorizontalAlignment(JButton.CENTER);
+            volver.setIcon(new ImageIcon("./src/GUI/Imagenes/volver.png"));
+            volver.setRolloverIcon(new ImageIcon("./src/GUI/Imagenes/volver_claro.png"));
+            volver.setFont(new Font("Courier New", Font.PLAIN, 18));
+            volver.setFocusable(false);
+            volver.setForeground(cLetra);
+            volver.setIconTextGap(10);
+            volver.setBackground(null);
+            volver.setBorder(null);       
+            volver.addActionListener(this);
         
 
         // TIUTLO MUNDO /////////////////////////////////////////////////////////////////////////////
         tituloMundo = new JLabel("MUNDO");
-        tituloMundo.setBounds(0,0,1600,100);
-        tituloMundo.setIcon(new ImageIcon("./src/GUI/Imagenes/createWorld.png"));
-        tituloMundo.setHorizontalAlignment(JLabel.CENTER);
-        tituloMundo.setFont(new Font("Courier New", Font.BOLD, 50));
-        tituloMundo.setForeground(cLetra);
-        tituloMundo.setIconTextGap(10);
+            tituloMundo.setBounds(0,0,1600,100);
+            tituloMundo.setIcon(new ImageIcon("./src/GUI/Imagenes/createWorld.png"));
+            tituloMundo.setHorizontalAlignment(JLabel.CENTER);
+            tituloMundo.setFont(new Font("Courier New", Font.BOLD, 50));
+            tituloMundo.setForeground(cLetra);
+            tituloMundo.setIconTextGap(10);
 
             
             // TITULO (PANEL POKEMONS) //////////////////////////////////////////////////////////////
             JLabel tituloPokemons = new JLabel("POKEMONS");
-            tituloPokemons.setHorizontalAlignment(JLabel.CENTER);
-            tituloPokemons.setPreferredSize(new Dimension(0,80));
-            tituloPokemons.setFont(new Font("Courier New", Font.BOLD, 24));
-            tituloPokemons.setForeground(cLetra);
+                tituloPokemons.setHorizontalAlignment(JLabel.CENTER);
+                tituloPokemons.setPreferredSize(new Dimension(0,80));
+                tituloPokemons.setFont(new Font("Courier New", Font.BOLD, 24));
+                tituloPokemons.setForeground(cLetra);
             
             // LISTA POKEMONS (PANEL POKEMONS) /////////////////////////////////////////////////////
             panelListaPokemons = new JPanel();
-            panelListaPokemons.setLayout(new GridLayout(0,1,0,5));
-            panelListaPokemons.setBackground(cLetra);
+                panelListaPokemons.setLayout(new GridLayout(0,1,0,5));
+                panelListaPokemons.setBackground(cLetra);
             
             // LISTA POKEMONS + SCROLL (PANEL POKEMONS) ///////////////////////////////////////////
             JScrollPane panelScrollPokemons = new JScrollPane(panelListaPokemons, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
             // ANADIR POKEMON (PANEL POKEMONS) /////////////////////////////////////////////////////
             anadirPokemon = new JButton("Añadir Pokemon");
-            anadirPokemon.setPreferredSize(new Dimension(0,40));
-            anadirPokemon.setHorizontalAlignment(JLabel.CENTER);
-            anadirPokemon.setFont(new Font("Courier New", Font.BOLD, 12));
-            anadirPokemon.setFocusable(false);
-            anadirPokemon.setForeground(cBotonesOscuro);
-            anadirPokemon.setBackground(cBotonesClaro);
-            anadirPokemon.addActionListener(this);
+                anadirPokemon.setPreferredSize(new Dimension(0,40));
+                anadirPokemon.setHorizontalAlignment(JLabel.CENTER);
+                anadirPokemon.setFont(new Font("Courier New", Font.BOLD, 12));
+                anadirPokemon.setFocusable(false);
+                anadirPokemon.setForeground(cBotonesOscuro);
+                anadirPokemon.setBackground(cBotonesClaro);
+                anadirPokemon.addActionListener(this);
 
         // PANEL POKEMONS ///////////////////////////////////////////////////////////////////////////
         panelPokemons = new JPanel();
-        panelPokemons.setBounds(150,170,300,500);
-        panelPokemons.setBackground(cBotonesOscuro);
-        panelPokemons.setBorder(BorderFactory.createEtchedBorder());
-        panelPokemons.setLayout(new BorderLayout());
-        panelPokemons.add(tituloPokemons, BorderLayout.NORTH);
-        panelPokemons.add(panelScrollPokemons, BorderLayout.CENTER);
-        panelPokemons.add(anadirPokemon, BorderLayout.SOUTH);
+            panelPokemons.setBounds(150,170,300,500);
+            panelPokemons.setBackground(cBotonesOscuro);
+            panelPokemons.setBorder(BorderFactory.createEtchedBorder());
+            panelPokemons.setLayout(new BorderLayout());
+            panelPokemons.add(tituloPokemons, BorderLayout.NORTH);
+            panelPokemons.add(panelScrollPokemons, BorderLayout.CENTER);
+            panelPokemons.add(anadirPokemon, BorderLayout.SOUTH);
         
         
             // TITULO (PANEL ENTRENADORES) /////////////////////////////////////////////////////////
             JLabel tituloEntrenadores = new JLabel("ENTRENADORES");
-            tituloEntrenadores.setHorizontalAlignment(JLabel.CENTER);
-            tituloEntrenadores.setPreferredSize(new Dimension(0,80));
-            tituloEntrenadores.setFont(new Font("Courier New", Font.BOLD, 25));
-            tituloEntrenadores.setForeground(cLetra);
+                tituloEntrenadores.setHorizontalAlignment(JLabel.CENTER);
+                tituloEntrenadores.setPreferredSize(new Dimension(0,80));
+                tituloEntrenadores.setFont(new Font("Courier New", Font.BOLD, 25));
+                tituloEntrenadores.setForeground(cLetra);
             
             // LISTA ENTRENADORES (PANEL ENTRENADORES) ////////////////////////////////////////////
             panelListaEntrenadores = new JPanel();
-            panelListaEntrenadores.setLayout(new GridLayout(0,1,0,5));
-            panelListaEntrenadores.setBackground(cLetra);
+                panelListaEntrenadores.setLayout(new GridLayout(0,1,0,5));
+                panelListaEntrenadores.setBackground(cLetra);
 
             // LISTA ENTRENADORES + SCROLL (PANEL ENTRENADORES) ///////////////////////////////////
             JScrollPane panelScrollEntrenadores = new JScrollPane(panelListaEntrenadores, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
             // ANADIR ENTRENADOR (PANEL ENTRENADORES) /////////////////////////////////////////////
             anadirEntrenador = new JButton("Añadir Entrenador");
-            anadirEntrenador.setPreferredSize(new Dimension(0,40));
-            anadirEntrenador.setHorizontalAlignment(JLabel.CENTER);
-            anadirEntrenador.setFont(new Font("Courier New", Font.BOLD, 12));
-            anadirEntrenador.setFocusable(false);
-            anadirEntrenador.setForeground(cBotonesOscuro);
-            anadirEntrenador.setBackground(cBotonesClaro);
-            anadirEntrenador.addActionListener(this);
+                anadirEntrenador.setPreferredSize(new Dimension(0,40));
+                anadirEntrenador.setHorizontalAlignment(JLabel.CENTER);
+                anadirEntrenador.setFont(new Font("Courier New", Font.BOLD, 12));
+                anadirEntrenador.setFocusable(false);
+                anadirEntrenador.setForeground(cBotonesOscuro);
+                anadirEntrenador.setBackground(cBotonesClaro);
+                anadirEntrenador.addActionListener(this);
 
         // PANEL ENTRENADORES ///////////////////////////////////////////////////////////////////////
         panelEntrenadores = new JPanel();
-        panelEntrenadores.setBounds(1150,170,300,500);
-        panelEntrenadores.setBackground(cBotonesOscuro);
-        panelEntrenadores.setBorder(BorderFactory.createEtchedBorder());
-        panelEntrenadores.setLayout(new BorderLayout());
-        panelEntrenadores.add(tituloEntrenadores, BorderLayout.NORTH);
-        panelEntrenadores.add(panelScrollEntrenadores, BorderLayout.CENTER);
-        panelEntrenadores.add(anadirEntrenador, BorderLayout.SOUTH);
+            panelEntrenadores.setBounds(1150,170,300,500);
+            panelEntrenadores.setBackground(cBotonesOscuro);
+            panelEntrenadores.setBorder(BorderFactory.createEtchedBorder());
+            panelEntrenadores.setLayout(new BorderLayout());
+            panelEntrenadores.add(tituloEntrenadores, BorderLayout.NORTH);
+            panelEntrenadores.add(panelScrollEntrenadores, BorderLayout.CENTER);
+            panelEntrenadores.add(anadirEntrenador, BorderLayout.SOUTH);
 
 
         // PANEL DETALLES ///////////////////////////////////////////////////////////////////////
@@ -171,14 +172,23 @@ public class VentanaMundo implements ActionListener{
             panelControl.setVisible(false);
 
         panelEntrenadoresCombate = new JPanel();
-            panelEntrenadoresCombate.setBounds(500,670,600,160);
+            panelEntrenadoresCombate.setBounds(500,670,600,190);
             panelEntrenadoresCombate.setLayout(new GridLayout(1,0,15,0));
-            panelEntrenadoresCombate.setBackground(cBotonesOscuro);
-            panelEntrenadoresCombate.setBorder(BorderFactory.createEtchedBorder());
+            panelEntrenadoresCombate.setBackground(cFondo);
+            panelEntrenadoresCombate.setBorder(null);
             panelEntrenadoresCombate.setVisible(false);
 
         botonGuardarMundo = new JButton("GUARDAR");
             botonGuardarMundo.setBounds(1455,15,130,40);
+            botonGuardarMundo.setHorizontalAlignment(JButton.CENTER);
+            botonGuardarMundo.setIcon(new ImageIcon("./src/GUI/Imagenes/guardar.png"));
+            botonGuardarMundo.setRolloverIcon(new ImageIcon("./src/GUI/Imagenes/guardar_claro.png"));
+            botonGuardarMundo.setFont(new Font("Courier New", Font.PLAIN, 18));
+            botonGuardarMundo.setFocusable(false);
+            botonGuardarMundo.setForeground(cLetra);
+            botonGuardarMundo.setIconTextGap(10);
+            botonGuardarMundo.setBackground(null);
+            botonGuardarMundo.setBorder(null);     
             botonGuardarMundo.addActionListener(this);
 
         // WORLD WINDOW ///////////////////////////////////////////////////////////////////////////
@@ -205,19 +215,19 @@ public class VentanaMundo implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==volver){
-            if(mundoGuardado){
-                ventanaNuevoMundo.dispose();
-                new VentanaInicio();
-            } else{
+            if(!(botonesPokemon.size()==0) || !(botonesEntrenador.size()==0)){
                 int confirm = JOptionPane.showConfirmDialog(null, "¿Deseas guardar este mundo?", "Atención", JOptionPane.YES_NO_CANCEL_OPTION);
                 if (confirm == JOptionPane.YES_OPTION){
-                    // Añadir código para guardar mundo
+                    botonGuardarMundo.doClick();
                     ventanaNuevoMundo.dispose();
                     new VentanaInicio();
                 } else if (confirm == JOptionPane.NO_OPTION){
                     ventanaNuevoMundo.dispose();
                     new VentanaInicio();
                 }
+            } else {
+                ventanaNuevoMundo.dispose();
+                    new VentanaInicio();
             }
         }
 
@@ -234,7 +244,7 @@ public class VentanaMundo implements ActionListener{
                 if (e.getSource()==panelListaPokemons.getComponent(i)){
                     panelControl.removeAll();
                     panelEntrenadoresCombate.setVisible(false);
-                    
+
                     panelControl.setLayout(new BorderLayout());
                     
                     panelDetalles = new JPanel();
@@ -524,13 +534,13 @@ public class VentanaMundo implements ActionListener{
 
                     asignarPokemon = new JButton("Asignar Pokemon");
                         asignarPokemon.setBounds(210,200,180,40);
-                        asignarPokemon.setBackground(cBotonesClaro);
-                        asignarPokemon.setForeground(cBotonesOscuro);
+                        asignarPokemon.setBackground(cBotonesOscuro);
+                        asignarPokemon.setForeground(cBotonesClaro);
                         asignarPokemon.setFont(new Font("Courier New", Font.PLAIN, 15));
                         asignarPokemon.setHorizontalTextPosition(JButton.CENTER);
                         asignarPokemon.setVerticalTextPosition(JButton.BOTTOM);
                         asignarPokemon.setFocusable(false);
-                        asignarPokemon.setBorder(BorderFactory.createEtchedBorder());
+                        asignarPokemon.setBorder(BorderFactory.createRaisedSoftBevelBorder());
                         asignarPokemon.addActionListener(iVentanaMundo);
                     
                     if(botonesEntrenador.get(i).getEntrenador().getPokemons().size()==0){
@@ -610,7 +620,7 @@ public class VentanaMundo implements ActionListener{
                         botonEliminarEntrenador.setHorizontalAlignment(JButton.CENTER);
                         botonEliminarEntrenador.setFocusable(false);
                         botonEliminarEntrenador.setBackground(new Color (221,83,83));
-                        botonEliminarEntrenador.setBorder(BorderFactory.createEtchedBorder());
+                        botonEliminarEntrenador.setBorder(BorderFactory.createRaisedSoftBevelBorder());
                         botonEliminarEntrenador.addActionListener(iVentanaMundo);
                     
                     panelControl.setLayout(null);
@@ -643,8 +653,6 @@ public class VentanaMundo implements ActionListener{
             }
 
             if(e.getSource()==asignarPokemon){
-                asignarPokemon.setVisible(false);
-
                 panelPokemonsDisponibles.removeAll();
                 panelPokemonsDisponibles.setLayout(new GridLayout(1,0,15,0));
                 panelPokemonsDisponibles.setBackground(cBotonesOscuro);
@@ -671,7 +679,7 @@ public class VentanaMundo implements ActionListener{
                 }
                 
                 if(!(panelPokemonsDisponibles.getComponentCount()==0)){
-
+                    asignarPokemon.setVisible(false);
                     panelScrollPokemonsDisponibles.setBounds(15, 150, 570, 135);
                     panelScrollPokemonsDisponibles.setBorder(BorderFactory.createEtchedBorder());
                     panelScrollPokemonsDisponibles.setBackground(cBotonesOscuro);
@@ -763,6 +771,25 @@ public class VentanaMundo implements ActionListener{
                             for (int j=0;j<botonesEntrenador.size();j++){
                                 if(botonesEntrenador.get(j)!=botonEntrenadorSeleccionado){
                                     JButton boton = new JButton(botonesEntrenador.get(j).getEntrenador().getNombre());
+                                        boton.setBackground(cBotonesOscuro);
+                                        boton.setForeground(cLetra);
+                                        boton.setBorder(BorderFactory.createRaisedSoftBevelBorder());
+                                        boton.setFocusable(false);
+                                        boton.setFont(new Font("Courier New", Font.BOLD, 15));
+                                        if (botonesEntrenador.get(j).getEntrenador().getNombre()=="LORETO"){
+                                            boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Entrenadores/Loreto_120.png"));
+                                        } else if (botonesEntrenador.get(j).getEntrenador().getNombre() == "SILVIA"){
+                                            boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Entrenadores/Silvia_120.png"));
+                                        } else if (botonesEntrenador.get(j).getEntrenador().getNombre() == "OLEKSANDR"){
+                                            boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Entrenadores/Oleksandr_120.png"));
+                                        } else if (botonesEntrenador.get(j).getEntrenador().getNombre() == "ALEJANDRO"){
+                                            boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Entrenadores/Alejandro_120.png"));
+                                        }
+                                        boton.setIconTextGap(10);
+                                        boton.setHorizontalTextPosition(JButton.CENTER);
+                                        boton.setVerticalTextPosition(JButton.BOTTOM);
+                                        boton.addActionListener(iVentanaMundo);
+
                                     panelEntrenadoresCombate.add(boton);
                                     panelEntrenadoresCombate.setVisible(true);
                                     actualizarVentana();
@@ -771,19 +798,56 @@ public class VentanaMundo implements ActionListener{
                         }
                     }
                 }
-                
+            }
+
+            if(panelEntrenadoresCombate.getComponentCount()!=0){
+                for(int i=0;i<panelEntrenadoresCombate.getComponentCount();i++){
+                    if (e.getSource()==panelEntrenadoresCombate.getComponent(i)){
+                        Enumeration<AbstractButton> botones = grupoBotones1.getElements();
+                        while (botones.hasMoreElements()) {
+                            AbstractButton botonEntrenadorSeleccionado = (AbstractButton)botones.nextElement();
+                            if (botonEntrenadorSeleccionado.isSelected()){
+                                Entrenador entrenadorDesafiante = ((ToggleBotonPokemonEntrenador)botonEntrenadorSeleccionado).getEntrenador();
+                                Entrenador entrenadorDesafiado = ((ToggleBotonPokemonEntrenador)panelEntrenadoresCombate.getComponent(i)).getEntrenador(); // CAMBIAR ESTA MIERDA
+                               
+                                if((entrenadorDesafiante.getPokemons().size()>0) && (entrenadorDesafiado.getPokemons().size()>0)){
+                                    panelEntrenadoresCombate.setVisible(false);
+                                    VentanaCombate combate = new VentanaCombate(entrenadorDesafiante, entrenadorDesafiado);
+                                } else{
+                                    JOptionPane.showMessageDialog(null, "Ha ocurrido un error. Cada entrenador tiene que tener al menos un pokemon asignado", "Error", JOptionPane.ERROR_MESSAGE);
+                                }     
+                            }
+                        }
+                    }
+                }
             }
         }
         
-        if(botonesEntrenador.size()>0 || botonesPokemon.size()>0){
-            if(e.getSource()==botonGuardarMundo){
-                JFileChooser seleccionadorArchivo = new JFileChooser();
-                seleccionadorArchivo.setCurrentDirectory(new File("./src/Mundos"));
-                int respuesta = seleccionadorArchivo.showSaveDialog(null);
-                if (respuesta == seleccionadorArchivo.APPROVE_OPTION){
-                guardarMundo();
-                mundoGuardado=true;
-            }
+        if(e.getSource()==botonGuardarMundo){
+            if(botonesEntrenador.size()>0  || botonesPokemon.size()>0){
+                try {
+                    BufferedWriter mundo = new BufferedWriter(new FileWriter(ruta));
+                    if(botonesPokemon.size()>0){
+                        for(ToggleBotonPokemonEntrenador toggleButtonPokemon : botonesPokemon){
+                            Pokemon pokemon = toggleButtonPokemon.getPokemon();
+                            mundo.write(pokemon.toString());
+                            mundo.newLine();
+                        }
+                    }
+                    if(botonesEntrenador.size()>0){
+                        mundo.write("---");
+                        mundo.newLine();
+                        for (ToggleBotonPokemonEntrenador toggleButtonEntrenador : botonesEntrenador){
+                            Entrenador entrenador = toggleButtonEntrenador.getEntrenador();
+                            mundo.write(entrenador.toString());
+                            mundo.newLine();
+                        }
+                    }
+                    mundo.close();
+                } catch (IOException n) {
+                    n.printStackTrace();
+                }
+                JOptionPane.showMessageDialog(null, "El mundo "+'"'+ruta.getName()+'"'+" ha sido guardado", "Atención", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }
@@ -808,6 +872,7 @@ public class VentanaMundo implements ActionListener{
         JLabel etiquetaAsignarPokemon = new JLabel();
         etiquetaAsignarPokemon.setBounds(x,y,ancho,alto);
         etiquetaAsignarPokemon.setIcon(new ImageIcon("./src/GUI/Imagenes/pokebola.png"));
+
         etiquetaAsignarPokemon.setHorizontalAlignment(JLabel.CENTER);
         etiquetaAsignarPokemon.setBorder(BorderFactory.createRaisedSoftBevelBorder());
         etiquetaAsignarPokemon.setBackground(cBotonesOscuro);
@@ -851,31 +916,16 @@ public class VentanaMundo implements ActionListener{
         return aux;
     }
 
-    public void guardarMundo(){
-        int random = (int) Math.floor(Math.random()*(1000-1+1)+1);
-        try {
-            BufferedWriter mundo = new BufferedWriter(new FileWriter("mundo_" + random + ".txt"));
-            if(botonesPokemon.size()>0){
-                for(ToggleBotonPokemonEntrenador toggleButtonPokemon : botonesPokemon){
-                    Pokemon pokemon = toggleButtonPokemon.getPokemon();
-                    mundo.write(pokemon.toString());
-                    mundo.newLine();
-                }
-            }
-            if(botonesEntrenador.size()>0){
-                mundo.write("---");
-                mundo.newLine();
-                for (ToggleBotonPokemonEntrenador toggleButtonEntrenador : botonesEntrenador){
-                    Entrenador entrenador = toggleButtonEntrenador.getEntrenador();
-                    mundo.write(entrenador.toString());
-                    mundo.newLine();
-                }
-            }
-            mundo.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void cargarDatos(File archivo){
+        //para cada linea
+        // AnadirPokemon.iAnadirPokemon.crearCasilla("",""); //tipo y nombre
+        // ((ToggleBotonPokemonEntrenador)panelListaPokemons.getComponent(0)).getPokemon().setNivel(0); //Pones el nivel que saques del fichero, hacer para cada atributo
+        // //No hagas nada con el campo de entrenador
+
+        // AnadirEntrenador.iAnadirEntrenador.crearCasilla(null); //Solo nombre del entrenador
+        // ((ToggleBotonPokemonEntrenador)panelListaEntrenadores.getComponent(0)).getEntrenador().anadirPokemon(null);
     }
+
 
     // Getters y Setters
 

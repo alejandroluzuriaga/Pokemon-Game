@@ -9,6 +9,8 @@ import java.awt.event.*;
 
 
 public class AnadirEntrenador implements ActionListener{
+    public static AnadirEntrenador iAnadirEntrenador;
+
     private JFrame VentanaNuevoEntrenador = new JFrame();
     private JToggleButton botonLoreto;
     private JToggleButton botonSilvia;
@@ -26,6 +28,8 @@ public class AnadirEntrenador implements ActionListener{
     private Color cFondo = new Color (48,56,65);
     
     AnadirEntrenador(){
+        iAnadirEntrenador=this;
+
         botonLoreto = new JToggleButton("LORETO");
             botonLoreto.setBounds(100,45,170,40);
             modificarBotonSeleccionEntrenador(botonLoreto);
@@ -137,28 +141,28 @@ public class AnadirEntrenador implements ActionListener{
                     crearCasilla("LORETO");
                     VentanaMundo.iVentanaMundo.actualizarVentana();
                 }else{
-                    VentanaNuevoEntrenador.dispose();
+                    JOptionPane.showMessageDialog(null, "El entrenador selecionado ya existe", "Atención", JOptionPane.ERROR_MESSAGE);
                 }
             } else if(botonSilvia.isSelected()){
                 if (!(VentanaMundo.iVentanaMundo.contieneEntrenador("SILVIA"))){
                     crearCasilla("SILVIA");
                     VentanaMundo.iVentanaMundo.actualizarVentana();
                 }else{
-                    VentanaNuevoEntrenador.dispose();
+                    JOptionPane.showMessageDialog(null, "El entrenador selecionado ya existe", "Atención", JOptionPane.ERROR_MESSAGE);
                 }
             } else if(botonOleksandr.isSelected()){
                 if (!(VentanaMundo.iVentanaMundo.contieneEntrenador("OLEKSANDR"))){
                     crearCasilla("OLEKSANDR");
                     VentanaMundo.iVentanaMundo.actualizarVentana();
                 }else{
-                    VentanaNuevoEntrenador.dispose();
+                    JOptionPane.showMessageDialog(null, "El entrenador selecionado ya existe", "Atención", JOptionPane.ERROR_MESSAGE);
                 }
             } else if(botonAlejandro.isSelected()){
                 if (!(VentanaMundo.iVentanaMundo.contieneEntrenador("ALEJANDRO"))){
                     crearCasilla("ALEJANDRO");
                     VentanaMundo.iVentanaMundo.actualizarVentana();
                 }else{
-                    VentanaNuevoEntrenador.dispose();
+                    JOptionPane.showMessageDialog(null, "El entrenador selecionado ya existe", "Atención", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }

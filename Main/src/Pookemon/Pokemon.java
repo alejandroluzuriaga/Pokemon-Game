@@ -155,7 +155,8 @@ public class Pokemon {
 
     @Override
     public String toString() {
-        return  nombre +
+        return  this.getClass().getSimpleName() +
+                "\t" + nombre +
                 "\t" + nivel +
                 "\t" + tipo +
                 "\t" + condicionExistenciaEntrenador() +

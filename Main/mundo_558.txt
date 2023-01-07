@@ -1,4 +1,0 @@
-1	1	Planta	LORETO	5	17	27	4	8	14	9	¿Quieres un briconsejo de jardinería?
-
----
-LORETO	0	1	

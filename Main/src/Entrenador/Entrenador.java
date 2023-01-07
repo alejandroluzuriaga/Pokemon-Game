@@ -90,7 +90,7 @@ public class Entrenador {
 
 
         if (this.getPokemonActivo().getVelocidad() > otroEntrenador.getPokemonActivo().getVelocidad()){
-            do{     
+            do{
                 this.elegirMovimiento(otroEntrenador);
                 if(this.comprobarSaludPokemons()){otroEntrenador.elegirMovimiento(this);}
                 combate.setNumRondas(combate.getNumRondas()+1);
@@ -145,7 +145,7 @@ public class Entrenador {
         System.out.println(this.getNombre() + ", elige el movimiento que quieres usar:");
         for (int i = 0; i < this.pokemonActivo.getMovimientos().size(); ++i)
             System.out.println("- Opción " + (i+1) + ": " + this.pokemonActivo.getMovimientos().get(i).getNombre());
-        
+
         System.out.println("- Opción 0: Abandonar combate");
 
         Scanner movimiento = new Scanner(System.in);

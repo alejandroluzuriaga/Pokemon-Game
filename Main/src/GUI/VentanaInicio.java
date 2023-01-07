@@ -83,14 +83,15 @@ public class VentanaInicio implements ActionListener {
         }
         if (e.getSource()==cargarMundo){
             JFileChooser seleccionadorArchivo = new JFileChooser();
-            seleccionadorArchivo.setCurrentDirectory(new File("."));
+            seleccionadorArchivo.setCurrentDirectory(new File("./src/Mundos"));
             int respuesta = seleccionadorArchivo.showOpenDialog(null);
             if (respuesta == seleccionadorArchivo.APPROVE_OPTION){
                 File archivo = new File(seleccionadorArchivo.getSelectedFile().getAbsolutePath());
+                VentanaMundo mundo = new VentanaMundo();
+                mundo.cargarDatos(archivo);
+                VentanaInicio.dispose();
             }
-            VentanaMundo mundo = new VentanaMundo();
-            // mundo.cargarfichero(archivo);
-            VentanaInicio.dispose();
+            
         }
         if (e.getSource()==salir){
             VentanaInicio.dispose();

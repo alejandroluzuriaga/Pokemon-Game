@@ -7,6 +7,8 @@ import Pookemon.*;
 
 
 public class AnadirPokemon implements ActionListener{
+    public static AnadirPokemon iAnadirPokemon;
+    
     private JFrame VentanaNuevoPokemon = new JFrame();
     private JToggleButton botonBulbasaur;
     private JToggleButton botonCharmander;
@@ -28,6 +30,8 @@ public class AnadirPokemon implements ActionListener{
     private Color cFondo = new Color (48,56,65);
     
     AnadirPokemon(){
+        iAnadirPokemon=this;
+
         botonBulbasaur = new JToggleButton("BULBASAUR");
             botonBulbasaur.setBounds(200,45,170,40);
             modificarBotonSeleccionPokemon(botonBulbasaur);
@@ -266,7 +270,6 @@ public class AnadirPokemon implements ActionListener{
     }
 
     public void crearCasilla (String tipo, String nombre){
-        
         if (!(nombre.length()==0) && !VentanaMundo.iVentanaMundo.existeNombre(nombre)){
             ToggleBotonPokemonEntrenador boton = new ToggleBotonPokemonEntrenador();
             boton.setText(nombre);
@@ -303,13 +306,17 @@ public class AnadirPokemon implements ActionListener{
             VentanaMundo.iVentanaMundo.getPanelListaPokemons().add(boton);
             VentanaMundo.iVentanaMundo.getGrupoBotones1().add(boton);
             VentanaNuevoPokemon.dispose();
-        
+
         } else if (VentanaMundo.iVentanaMundo.existeNombre(nombre)){
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error. No pueden haber dos nombres iguales", "Error", JOptionPane.ERROR_MESSAGE);
             nombrePokemon.setText("");
         } else{
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error. Tienes que especificar un nombre.", "Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    public JButton getBotonGuardarPokemon() {
+        return botonGuardarPokemon;
     }
 }
 
