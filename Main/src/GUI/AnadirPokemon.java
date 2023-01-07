@@ -270,7 +270,7 @@ public class AnadirPokemon implements ActionListener{
     }
 
     public void crearCasilla (String tipo, String nombre){
-        if (!(nombre.length()==0) && !VentanaMundo.iVentanaMundo.existeNombre(nombre)){
+        if (nombre.length()!=0 && !(VentanaMundo.iVentanaMundo.existeNombre(nombre))){
             ToggleBotonPokemonEntrenador boton = new ToggleBotonPokemonEntrenador();
             boton.setText(nombre);
             boton.setPreferredSize(new Dimension(0,70));
@@ -302,7 +302,7 @@ public class AnadirPokemon implements ActionListener{
                 boton.setPokemon(new Blastoise(1, nombre));
             }
 
-            VentanaMundo.iVentanaMundo.getBotonesP().add(boton);
+            VentanaMundo.iVentanaMundo.getBotonesPokemon().add(boton);
             VentanaMundo.iVentanaMundo.getPanelListaPokemons().add(boton);
             VentanaMundo.iVentanaMundo.getGrupoBotones1().add(boton);
             VentanaNuevoPokemon.dispose();

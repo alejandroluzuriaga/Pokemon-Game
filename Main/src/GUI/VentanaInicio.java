@@ -93,7 +93,7 @@ public class VentanaInicio implements ActionListener {
                 File archivo = new File(seleccionadorArchivo.getSelectedFile().getPath());
                 VentanaMundo mundo = new VentanaMundo();
                 try {
-                    mundo.cargarPokemons(archivo.toString());
+                    mundo.cargarDatos(archivo.toString());
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }

@@ -244,7 +244,7 @@ public class VentanaMundo implements ActionListener{
                 if (e.getSource()==panelListaPokemons.getComponent(i)){
                     panelControl.removeAll();
                     panelEntrenadoresCombate.setVisible(false);
-
+                    System.out.println(botonesPokemon.size());
                     panelControl.setLayout(new BorderLayout());
                     
                     panelDetalles = new JPanel();
@@ -855,8 +855,8 @@ public class VentanaMundo implements ActionListener{
 
     public boolean contieneEntrenador (String nombre) {
         boolean existe = false;
-        for (int i=0; i<botonesEntrenador.size(); i++){
-            if(botonesEntrenador.get(i).getText()==nombre){
+        for (ToggleBotonPokemonEntrenador boton : botonesEntrenador) {
+            if(boton.getText().equals(nombre)){
                 existe = true;
             }
         }
@@ -906,19 +906,18 @@ public class VentanaMundo implements ActionListener{
     }
 
     public boolean existeNombre (String nom){
-        Boolean aux=false;
-        for (int i=0; i<VentanaMundo.iVentanaMundo.getBotonesP().size(); i++){
-            if (VentanaMundo.iVentanaMundo.getBotonesP().get(i).getPokemon().getNombre().equals(nom)){
+        boolean aux=false;
+        for (ToggleBotonPokemonEntrenador boton : botonesPokemon) {
+            if (boton.getPokemon().getNombre().equals(nom)){
                 aux=true;
-            }else{
-                aux=false;
             }
         }
         return aux;
     }
 
-    public void cargarPokemons (String archivo) throws FileNotFoundException{
+    public void cargarDatos (String archivo) throws FileNotFoundException{
         File file = new File(archivo);
+        ruta = file;
         BufferedReader lector = new BufferedReader(new FileReader(file));
         try {
             //Pokemon
@@ -1047,7 +1046,6 @@ public class VentanaMundo implements ActionListener{
                             }
                         }
                     }
-    
                     botonesEntrenador.add(botonEntrenador);
                     panelListaEntrenadores.add(botonEntrenador);
                     grupoBotones1.add(botonEntrenador);
@@ -1055,7 +1053,6 @@ public class VentanaMundo implements ActionListener{
                     crearCasillaCargaEntrenador(botonEntrenador);
                 }
             }
-    
         } catch(Exception e){
             System.out.println(e);
         }
@@ -1120,11 +1117,11 @@ public class VentanaMundo implements ActionListener{
         return ventanaNuevoMundo;
     }
 
-    public ArrayList<ToggleBotonPokemonEntrenador> getBotonesE() {
+    public ArrayList<ToggleBotonPokemonEntrenador> getBotonesEntrenador() {
         return botonesEntrenador;
     }
 
-    public ArrayList<ToggleBotonPokemonEntrenador> getBotonesP() {
+    public ArrayList<ToggleBotonPokemonEntrenador> getBotonesPokemon() {
         return botonesPokemon;
     }
 

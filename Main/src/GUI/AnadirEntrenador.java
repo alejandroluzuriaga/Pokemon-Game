@@ -201,7 +201,7 @@ public class AnadirEntrenador implements ActionListener{
             boton.setEntrenador(new Entrenador(nombre, 3));
         }
 
-        VentanaMundo.iVentanaMundo.getBotonesE().add(boton);
+        VentanaMundo.iVentanaMundo.getBotonesEntrenador().add(boton);
         VentanaMundo.iVentanaMundo.getPanelListaEntrenadores().add(boton);
         VentanaMundo.iVentanaMundo.getGrupoBotones1().add(boton);
         VentanaNuevoEntrenador.dispose();
