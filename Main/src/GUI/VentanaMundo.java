@@ -16,7 +16,7 @@ public class VentanaMundo extends JFrame implements ActionListener{
     private JLabel tituloMundo;
     private int random = (int) Math.floor(Math.random()*1000+1);
     private File ruta = new File("./src/Mundos/Mundo_" + random + ".txt");
-    
+
     private JPanel panelPokemons;
     private JPanel panelListaPokemons;
     private ArrayList<ToggleBotonPokemonEntrenador> botonesPokemon = new ArrayList<>();

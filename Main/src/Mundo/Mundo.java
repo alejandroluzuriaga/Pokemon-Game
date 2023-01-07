@@ -1,7 +1,6 @@
 package Mundo;
 
 import java.util.ArrayList;
-
 import Combate.*;
 import Entrenador.*;
 import Pookemon.*;

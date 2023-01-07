@@ -189,20 +189,12 @@ public class Pokemon {
                     System.out.println("");
                     return new Charmeleon(11, "Charmeleon1", this);
                     
-                } else {
-                    System.out.println("No tienes suficiente nivel para evolucionar. Te quedas con el que estás");
-                    return this;
                 }
                 
             case "Squirtle":
                 if (this.nivel >= 10) {
-                    System.out.println("");
                     System.out.println("****SQUIRTLE EVOLUCIONA A BLASTOISE****");
-                    System.out.println("");
                     return new Blastoise(11, "Blastoise1", this);
-                } else {
-                    System.out.println("No tienes suficiente nivel para evolucionar. Te quedas con el que estás");
-                    return this;
                 }
 
             default: 
