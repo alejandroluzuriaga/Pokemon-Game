@@ -7,12 +7,11 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 
-public class VentanaInicio implements ActionListener {
+public class VentanaInicio extends JFrame implements ActionListener {
     private JButton crearMundoNuevo;
     private JButton cargarMundo;
     private JButton salir;
     private JLabel tituloPrincipal;
-    private JFrame VentanaInicio = new JFrame();
 
     private Color cLetra = new Color (240, 245, 249);
     private Color cBotonesOscuro = new Color (58,71,80);
@@ -61,27 +60,27 @@ public class VentanaInicio implements ActionListener {
         salir.setIconTextGap(10);
         salir.addActionListener(this);
 
-        VentanaInicio.setIconImage(new ImageIcon("./src/GUI/Imagenes/logo.png").getImage());
-        VentanaInicio.setTitle("POOkemon");
-        VentanaInicio.setResizable(false);
-        VentanaInicio.setSize(1600,900);
-        VentanaInicio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        VentanaInicio.getContentPane().setBackground(cFondo); 
-        VentanaInicio.setLayout(null);
-        VentanaInicio.setUndecorated(true);
-        VentanaInicio.add(tituloPrincipal);
-        VentanaInicio.add(crearMundoNuevo);
-        VentanaInicio.add(cargarMundo);
-        VentanaInicio.add(salir);
-        VentanaInicio.setLocationRelativeTo(null);
-        VentanaInicio.setVisible(true);
+        this.setIconImage(new ImageIcon("./src/GUI/Imagenes/logo.png").getImage());
+        this.setTitle("POOkemon");
+        this.setResizable(false);
+        this.setSize(1600,900);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.getContentPane().setBackground(cFondo); 
+        this.setLayout(null);
+        this.setUndecorated(true);
+        this.add(tituloPrincipal);
+        this.add(crearMundoNuevo);
+        this.add(cargarMundo);
+        this.add(salir);
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==crearMundoNuevo){
             new VentanaMundo();
-            VentanaInicio.dispose();
+            this.dispose();
         }
         if (e.getSource()==cargarMundo){
             FileNameExtensionFilter filter = new FileNameExtensionFilter(".txt", "txt", "text");
@@ -97,12 +96,12 @@ public class VentanaInicio implements ActionListener {
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
-                VentanaInicio.dispose();
+                this.dispose();
             }
             
         }
         if (e.getSource()==salir){
-            VentanaInicio.dispose();
+            this.dispose();
         }
     }
 

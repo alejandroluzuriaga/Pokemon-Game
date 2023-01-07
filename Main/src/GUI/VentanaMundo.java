@@ -9,10 +9,9 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
-public class VentanaMundo implements ActionListener{
+public class VentanaMundo extends JFrame implements ActionListener{
     public static VentanaMundo iVentanaMundo;
 
-    private JFrame ventanaNuevoMundo = new JFrame();
     private JButton volver;
     private JLabel tituloMundo;
     private int random = (int) Math.floor(Math.random()*1000+1);
@@ -193,23 +192,23 @@ public class VentanaMundo implements ActionListener{
 
         // WORLD WINDOW ///////////////////////////////////////////////////////////////////////////
         ImageIcon imageWindow = new ImageIcon("./src/GUI/Imagenes/logo.png");
-        ventanaNuevoMundo.setIconImage(imageWindow.getImage());
-        ventanaNuevoMundo.setTitle("POOkemon");
-        ventanaNuevoMundo.setResizable(false);
-        ventanaNuevoMundo.setSize(1600,900);
-        ventanaNuevoMundo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventanaNuevoMundo.getContentPane().setBackground(cFondo);
-        ventanaNuevoMundo.setLayout(null);
-        ventanaNuevoMundo.add(volver);
-        ventanaNuevoMundo.setUndecorated(true);
-        ventanaNuevoMundo.add(tituloMundo);
-        ventanaNuevoMundo.add(panelPokemons);
-        ventanaNuevoMundo.add(panelEntrenadores);
-        ventanaNuevoMundo.add(panelControl);
-        ventanaNuevoMundo.add(panelEntrenadoresCombate);
-        ventanaNuevoMundo.add(botonGuardarMundo);
-        ventanaNuevoMundo.setLocationRelativeTo(null);
-        ventanaNuevoMundo.setVisible(true);
+        this.setIconImage(imageWindow.getImage());
+        this.setTitle("POOkemon");
+        this.setResizable(false);
+        this.setSize(1600,900);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.getContentPane().setBackground(cFondo);
+        this.setLayout(null);
+        this.add(volver);
+        this.setUndecorated(true);
+        this.add(tituloMundo);
+        this.add(panelPokemons);
+        this.add(panelEntrenadores);
+        this.add(panelControl);
+        this.add(panelEntrenadoresCombate);
+        this.add(botonGuardarMundo);
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
 
     @Override
@@ -219,14 +218,14 @@ public class VentanaMundo implements ActionListener{
                 int confirm = JOptionPane.showConfirmDialog(null, "¿Deseas guardar este mundo?", "Atención", JOptionPane.YES_NO_CANCEL_OPTION);
                 if (confirm == JOptionPane.YES_OPTION){
                     botonGuardarMundo.doClick();
-                    ventanaNuevoMundo.dispose();
+                    this.dispose();
                     new VentanaInicio();
                 } else if (confirm == JOptionPane.NO_OPTION){
-                    ventanaNuevoMundo.dispose();
+                    this.dispose();
                     new VentanaInicio();
                 }
             } else {
-                ventanaNuevoMundo.dispose();
+                this.dispose();
                     new VentanaInicio();
             }
         }
@@ -244,7 +243,6 @@ public class VentanaMundo implements ActionListener{
                 if (e.getSource()==panelListaPokemons.getComponent(i)){
                     panelControl.removeAll();
                     panelEntrenadoresCombate.setVisible(false);
-                    System.out.println(botonesPokemon.size());
                     panelControl.setLayout(new BorderLayout());
                     
                     panelDetalles = new JPanel();
@@ -809,11 +807,24 @@ public class VentanaMundo implements ActionListener{
                             AbstractButton botonEntrenadorSeleccionado = (AbstractButton)botones.nextElement();
                             if (botonEntrenadorSeleccionado.isSelected()){
                                 Entrenador entrenadorDesafiante = ((ToggleBotonPokemonEntrenador)botonEntrenadorSeleccionado).getEntrenador();
-                                Entrenador entrenadorDesafiado = ((ToggleBotonPokemonEntrenador)panelEntrenadoresCombate.getComponent(i)).getEntrenador(); // CAMBIAR ESTA MIERDA
-                               
+                                Entrenador entrenadorDesafiado = new Entrenador("", 0);
+
+                                String nombredesafiado = ((JButton)panelEntrenadoresCombate.getComponent(i)).getText();
+                                for (int j=0;j<panelListaEntrenadores.getComponentCount();j++){
+                                    String nombreDesafiante = ((ToggleBotonPokemonEntrenador)panelListaEntrenadores.getComponent(j)).getEntrenador().getNombre();
+                                    
+                                    if (nombredesafiado.equals(nombreDesafiante)){
+                                        entrenadorDesafiado = ((ToggleBotonPokemonEntrenador)panelListaEntrenadores.getComponent(j)).getEntrenador();
+                                    }
+                                }
+                                
+                                System.out.println(entrenadorDesafiante.getPokemons().size());
+                                System.out.println(entrenadorDesafiado.getPokemons().size());
+
                                 if((entrenadorDesafiante.getPokemons().size()>0) && (entrenadorDesafiado.getPokemons().size()>0)){
                                     panelEntrenadoresCombate.setVisible(false);
-                                    VentanaCombate combate = new VentanaCombate(entrenadorDesafiante, entrenadorDesafiado);
+                                    // VentanaCombate combate = new VentanaCombate(entrenadorDesafiante, entrenadorDesafiado);
+                                    entrenadorDesafiante.combatir(entrenadorDesafiado);
                                 } else{
                                     JOptionPane.showMessageDialog(null, "Ha ocurrido un error. Cada entrenador tiene que tener al menos un pokemon asignado", "Error", JOptionPane.ERROR_MESSAGE);
                                 }     
@@ -852,6 +863,7 @@ public class VentanaMundo implements ActionListener{
             }
         }
     }
+    
 
     public boolean contieneEntrenador (String nombre) {
         boolean existe = false;
@@ -864,9 +876,9 @@ public class VentanaMundo implements ActionListener{
     }
 
     public void actualizarVentana(){
-        ventanaNuevoMundo.invalidate();
-        ventanaNuevoMundo.validate();
-        ventanaNuevoMundo.repaint();
+        this.invalidate();
+        this.validate();
+        this.repaint();
     }
 
     public void crearSlotPokemonDisponible (int x, int y, int ancho, int alto){
@@ -1052,6 +1064,7 @@ public class VentanaMundo implements ActionListener{
     
                     crearCasillaCargaEntrenador(botonEntrenador);
                 }
+                lector.close();
             }
         } catch(Exception e){
             System.out.println(e);
@@ -1113,8 +1126,8 @@ public class VentanaMundo implements ActionListener{
         return panelListaEntrenadores;
     }
 
-    public JFrame getventanaNuevoMundo() {
-        return ventanaNuevoMundo;
+    public JFrame getthis() {
+        return this;
     }
 
     public ArrayList<ToggleBotonPokemonEntrenador> getBotonesEntrenador() {

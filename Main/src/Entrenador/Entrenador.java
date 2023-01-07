@@ -63,8 +63,8 @@ public class Entrenador {
             System.out.println("- Opción "+(i+1)+ ": " + this.pokemons.get(i).getNombre());
             
             Scanner pokemon = new Scanner(System.in);
-            int opcion = pokemon.nextInt();
-            this.pokemonActivo = pokemons.get(opcion-1);
+                int opcion = pokemon.nextInt();
+                this.pokemonActivo = pokemons.get(opcion-1);
         }
         System.out.println("El pokemon activo es:" + this.pokemonActivo.getNombre());
     }
@@ -150,13 +150,11 @@ public class Entrenador {
 
         Scanner movimiento = new Scanner(System.in);
         int opcion = movimiento.nextInt();
-        
         if (opcion!=0){
             this.pokemonActivo.getMovimientos().get(opcion-1).activar(this.pokemonActivo, otroEntrenador.pokemonActivo);
         }else {
             this.abandono();
         }
-        System.out.println(this.getPokemonActivo().toString());
     }
 
     public boolean comprobarSaludPokemons () {

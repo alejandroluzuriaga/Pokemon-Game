@@ -1,6 +1,8 @@
 package Mundo;
 
 import java.util.ArrayList;
+
+import Combate.*;
 import Entrenador.*;
 import Pookemon.*;
 import GUI.*;
@@ -10,6 +12,7 @@ public class Mundo {
 
     private ArrayList<Entrenador> listaEntrenadores;
     private ArrayList<Pokemon> listaPokemons;
+    private ArrayList<Combate> combates;
 
     public Mundo(){
         iMundo=this;
@@ -26,4 +29,7 @@ public class Mundo {
         return listaEntrenadores;
     }
 
+    public ArrayList<Combate> getCombates(){
+        return combates;
+    }
 }
