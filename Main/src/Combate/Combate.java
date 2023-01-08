@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import Entrenador.*;
+import Pookemon.*;
 
 public class Combate {
     private String fecha;
@@ -23,6 +24,11 @@ public class Combate {
         setFecha(now.format(dtf));
     }
 
+    public void subirNivelPokemons(){
+        for (Pokemon pokemon : ganador.getPokemons()) {
+            pokemon.setNivel(pokemon.getNivel()+3);
+        }
+    }
 
     //SETTERS Y GETTERS
 

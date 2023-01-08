@@ -21,4 +21,12 @@ public abstract class Movimiento {
         "\n Es Especial = " + this.usoEspecial;
     };
 
+    public int getUsos() {
+        return usos;
+    }
+
+    public int getUsosMaximos() {
+        return usosMaximos;
+    }
+
 }

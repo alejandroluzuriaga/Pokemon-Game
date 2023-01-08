@@ -52,7 +52,7 @@ public class AnadirPokemon implements ActionListener{
             modificarBotonSeleccionPokemon(botonSquirtle);
             botonSquirtle.addActionListener(this);
 
-        botonCharmeleon = new JToggleButton("CHARMALEON");
+        botonCharmeleon = new JToggleButton("CHARMELEON");
             botonCharmeleon.setBounds(200,270,170,40);
             modificarBotonSeleccionPokemon(botonCharmeleon);
             botonCharmeleon.addActionListener(this);
@@ -223,7 +223,7 @@ public class AnadirPokemon implements ActionListener{
                 crearCasilla("SQUIRTLE",nombrePokemon.getText());
                 VentanaMundo.iVentanaMundo.actualizarVentana();
             } else if(botonCharmeleon.isSelected()){
-                crearCasilla("CHARMALEON",nombrePokemon.getText());
+                crearCasilla("CHARMELEON",nombrePokemon.getText());
                 VentanaMundo.iVentanaMundo.actualizarVentana();
             } else if(botonBlastoise.isSelected()){
                 crearCasilla("BLASTOISE",nombrePokemon.getText());
@@ -245,7 +245,7 @@ public class AnadirPokemon implements ActionListener{
                         tipo="SQUIRTLE";
                         break;
                     case 5: 
-                        tipo="CHARMALEON";
+                        tipo="CHARMELEON";
                         break;
                     case 6: 
                         tipo="BLASTOISE";
@@ -294,7 +294,7 @@ public class AnadirPokemon implements ActionListener{
             } else if (tipo == "SQUIRTLE"){
                 boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Squirtle_60.png"));
                 boton.setPokemon(new Squirtle(1, nombre));
-            } else if (tipo == "CHARMALEON"){
+            } else if (tipo == "CHARMELEON"){
                 boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Charmeleon_60.png"));
                 boton.setPokemon(new Charmeleon(1, nombre));
             } else if (tipo == "BLASTOISE"){

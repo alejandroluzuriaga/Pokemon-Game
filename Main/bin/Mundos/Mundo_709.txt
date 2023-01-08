@@ -1,0 +1,19 @@
+Charmeleon	Coyoros	1	Fuego	LORETO	11	28	35	29	29	17	29	DRACARYSSSSSSSS
+Charmander	Charmandius	4	Fuego	-	55	26	14	4	4	20	4	¡A quemar la universidad!
+Bulbasur	Bolba	1	Planta	LORETO	14	9	18	10	19	4	5	¿Quieres un briconsejo de jardinería?
+Rattata	Rat	1	Normal	ALEJANDRO	8	10	20	19	22	2	2	Mi bro de alcantarilla es el payaso de IT
+Blastoise	Blast	1	Agua	ALEJANDRO	15	28	20	15	30	28	25	Toma agua pa Murcia que hace mucha falta
+Charmander	Charmu	1	Fuego	-	11	21	23	20	8	10	8	¡A quemar la universidad!
+Charmander	Wintilla	1	Fuego	OLEKSANDR	12	18	18	13	22	5	6	¡A quemar la universidad!
+Bulbasur	Bisora	1	Planta	OLEKSANDR	11	17	17	9	18	18	4	¿Quieres un briconsejo de jardinería?
+Blastoise	Chimekey	10	Agua	SILVIA	92	17	23	15	15	12	19	Toma agua pa Murcia que hace mucha falta
+Squirtle	Ashhopper	1	Agua	-	12	4	3	3	4	4	4	Lo que sube del cubata son los hielos
+Blastoise	Slowican	7	Agua	OLEKSANDR	42	15	2	26	26	10	15	Toma agua pa Murcia que hace mucha falta
+Charmeleon	Spinish	1	Fuego	LORETO	10	30	23	5	9	29	22	DRACARYSSSSSSSS
+Squirtle	Panthug	1	Agua	ALEJANDRO	10	3	4	9	19	3	13	Lo que sube del cubata son los hielos
+Charmeleon	Penguinite	10	Fuego	SILVIA	154	21	26	12	31	16	8	DRACARYSSSSSSSS
+---
+LORETO	0	Coyoros	Bolba	Spinish
+SILVIA	1	Chimekey	Penguinite
+OLEKSANDR	2	Wintilla	Bisora	Slowican
+ALEJANDRO	3	Rat	Blast	Panthug

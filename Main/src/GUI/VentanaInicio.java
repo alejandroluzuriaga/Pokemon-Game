@@ -88,7 +88,7 @@ public class VentanaInicio extends JFrame implements ActionListener {
             seleccionadorArchivo.setFileFilter(filter);
             seleccionadorArchivo.setCurrentDirectory(new File("./src/Mundos"));
             int respuesta = seleccionadorArchivo.showOpenDialog(null);
-            if (respuesta == seleccionadorArchivo.APPROVE_OPTION){
+            if (respuesta == JFileChooser.APPROVE_OPTION){
                 File archivo = new File(seleccionadorArchivo.getSelectedFile().getPath());
                 VentanaMundo mundo = new VentanaMundo();
                 try {

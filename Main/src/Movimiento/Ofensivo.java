@@ -11,7 +11,6 @@ public class Ofensivo extends Movimiento {
                 this.tipo = "Fuego";
                 this.usos = 0;
                 this.usosMaximos = 20;
-                // this.valor = 7;
                 this.valor = 100;
                 this.usoEspecial = false;
                 break;
@@ -28,7 +27,6 @@ public class Ofensivo extends Movimiento {
                 this.tipo = "Planta";
                 this.usos = 0;
                 this.usosMaximos = 25;
-                // this.valor = 7;
                 this.valor = 100;
                 this.usoEspecial = false;
                 break;
@@ -45,7 +43,7 @@ public class Ofensivo extends Movimiento {
                 this.tipo = "Agua";
                 this.usos = 0;
                 this.usosMaximos = 25;
-                this.valor = 10;
+                this.valor = 100;
                 this.usoEspecial = false;
                 break;
             case "aguabenditaEsp":
@@ -78,13 +76,19 @@ public class Ofensivo extends Movimiento {
     @Override
     public void activar(Pokemon pok1, Pokemon pok2) {
         if (this.usos < this.usosMaximos) {
-            pok2.setSaludActual((int) (pok2.getSaludActual() - Damage(pok1, pok2)));
-            System.out.println(Damage(pok1, pok2));
+            System.out.println();
+            System.out.print("SALUD " + pok2.getNombre() + " = " + pok2.getSaludActual());
+            
+            int dano = (int)damage(pok1, pok2);
+            pok2.setSaludActual((int)(pok2.getSaludActual() - dano));
+            
+            System.out.println("HP --> " + pok2.getSaludActual() + "HP (DAÑO hecho por "+ pok1.getNombre() +" - " + dano +")");
+            
             usos++;
         }
     }
 
-    private double Damage(Pokemon pookemon1, Pokemon pookemon2) {
+    private double damage(Pokemon pookemon1, Pokemon pookemon2) {
         double modEfecto;
         double x = Math.floor(Math.random() * (85 - 100 + 1) + 100);
         double CH = Math.floor(Math.random() * (0 - 100 + 1) + 100);

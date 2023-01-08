@@ -179,27 +179,49 @@ public class Pokemon {
         }
     }
 
-    public Pokemon evolucionar() {
-        String opcion = this.getClass().getSimpleName();
-        switch (opcion){
-            case "Charmander":
-                if (this.nivel >= 10) {
-                    System.out.println("");
-                    System.out.println("****CHARMANDER EVOLUCIONA A CHARMELEON****");
-                    System.out.println("");
-                    return new Charmeleon(11, "Charmeleon1", this);
-                    
-                }
-                
-            case "Squirtle":
-                if (this.nivel >= 10) {
-                    System.out.println("****SQUIRTLE EVOLUCIONA A BLASTOISE****");
-                    return new Blastoise(11, "Blastoise1", this);
-                }
+    public void crearValoresBase (){
+        this.setPoder ((int) ((nivel) * (Math.random()*10+6)));     
+        this.setDefensa ((int) ((nivel) * (Math.random()*10+6)));
+        this.setVelocidad((int) ((nivel) * (Math.random()*10+6)));        
+        this.setSaludMax((int) ((nivel) * (Math.random()*10+6)));       
+        this.setSaludActual((int) ((nivel) * (Math.random()*10+6)));   
+        this.setPoderEspecial((int) (((nivel*1.5)) * (Math.random()*10+6)));
+        this.setDefensaEspecial((int) (((nivel*1.5)) * (Math.random()*10+6)));
+    }
 
+    public Pokemon evolucionar() {
+        switch (this.getClass().getSimpleName()){
+            case "Charmander":
+                if (this.nivel >= 3) {
+                    return new Charmeleon(this.getNivel(), this.getNombre(), this);
+                }
+                break;
+            case "Squirtle":
+                if (this.nivel >= 3) {
+                    return new Blastoise(this.getNivel(), this.getNombre(), this);
+                }
+                break;
             default: 
-                System.out.println("No existe evolución para ese Pokemon. Te quedas con el que estás");
                 return this;
         }
+        return this;
+    }
+
+    public Pokemon clonarPokemon (){
+        Pokemon pokemonClon = new Pokemon();
+        pokemonClon.setNombre(this.getNombre());
+        pokemonClon.setTipo(this.getTipo());
+        pokemonClon.setEntrenador(this.getEntrenador());
+        pokemonClon.setNivel(this.getNivel());
+        pokemonClon.setSaludo(this.getSaludo());
+        pokemonClon.setPoder(this.getPoder());
+        pokemonClon.setPoderEspecial(this.getPoderEspecial());
+        pokemonClon.setDefensa(this.getDefensa());
+        pokemonClon.setDefensaEspecial(this.getDefensaEspecial());
+        pokemonClon.setVelocidad(this.getVelocidad());
+        pokemonClon.setSaludActual(this.getSaludMax());
+        pokemonClon.setSaludMax(this.getSaludMax());
+        pokemonClon.setMovimientos(this.getMovimientos());
+        return pokemonClon;
     }
 }

@@ -1,9 +1,9 @@
-import Mundo.*;
+import GUI.*;
 
 
 public class Main{
 
     public static void main (String [] args){
-        new Mundo();
+        new VentanaInicio();
     }
 }

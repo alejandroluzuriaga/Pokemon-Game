@@ -3,6 +3,9 @@ package Entrenador;
 import Pookemon.*;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
+import GUI.*;
 import Combate.*;
 import java.util.ArrayList;
 
@@ -57,16 +60,23 @@ public class Entrenador {
     public void setPokemonActivo() {
         if (this.pokemons.size()==1) {
             this.pokemonActivo=pokemons.get(0);
-        }else{   
+        }else{
+            System.out.println();
             System.out.println(this.getNombre() + ", elige el pokemon que quieres usar:");
-            for (int i = 0; i < pokemons.size(); ++i)
-            System.out.println("- Opción "+(i+1)+ ": " + this.pokemons.get(i).getNombre());
+            for (int i = 0; i < this.pokemons.size(); ++i){
+                if (this.pokemons.get(i).getSaludActual()>0){
+                    System.out.println("- Opción "+ (i+1) + ": " + this.pokemons.get(i).getNombre());
+                }
+            }
             
+            System.out.print("Opción ");
             Scanner pokemon = new Scanner(System.in);
-                int opcion = pokemon.nextInt();
-                this.pokemonActivo = pokemons.get(opcion-1);
+            int opcion = pokemon.nextInt();
+            this.pokemonActivo = pokemons.get(opcion-1);
         }
-        System.out.println("El pokemon activo es:" + this.pokemonActivo.getNombre());
+        System.out.println();
+        System.out.println("El pokemon activo de "+ this.getNombre() +" es " + this.pokemonActivo.getNombre());
+
     }
 
     public void setTurno(int turno) {
@@ -81,47 +91,66 @@ public class Entrenador {
     // OTROS MÉTODOS
 
     public Combate combatir (Entrenador otroEntrenador){
-        // Entrenador turno;
+        System.out.println("-----------------------------------------------");
+        System.out.println("---------------------COMBATE-------------------");
+        System.out.println("-----------------------------------------------");
         Combate combate = new Combate(this, otroEntrenador);
-        this.setPokemonActivo();
-        otroEntrenador.setPokemonActivo();        
+        Entrenador entrenadorDesafiante = clonarEntrenador(this);
+        Entrenador entrenadorDesafiado = clonarEntrenador(otroEntrenador);
+
+        entrenadorDesafiante.setPokemonActivo();
+        entrenadorDesafiado.setPokemonActivo();        
         boolean sinPokemonsE1;
         boolean sinPokemonsE2;
 
 
-        if (this.getPokemonActivo().getVelocidad() > otroEntrenador.getPokemonActivo().getVelocidad()){
+        if (entrenadorDesafiante.getPokemonActivo().getVelocidad() > entrenadorDesafiado.getPokemonActivo().getVelocidad()){
+            System.out.println();
+            System.out.println("El pokemon seleccionador por " + entrenadorDesafiante.getNombre() + " es más rápido, por tanto empieza el combate");
             do{
-                this.elegirMovimiento(otroEntrenador);
-                if(this.comprobarSaludPokemons()){otroEntrenador.elegirMovimiento(this);}
+                entrenadorDesafiante.elegirMovimiento(entrenadorDesafiado);
+                if(entrenadorDesafiante.comprobarSaludPokemons()){
+                    entrenadorDesafiado.elegirMovimiento(entrenadorDesafiante);
+                }
                 combate.setNumRondas(combate.getNumRondas()+1);
-                sinPokemonsE1 = this.comprobarSaludPokemons();
-                sinPokemonsE2 = otroEntrenador.comprobarSaludPokemons();
+                sinPokemonsE1 = entrenadorDesafiante.comprobarSaludPokemons();
+                sinPokemonsE2 = entrenadorDesafiado.comprobarSaludPokemons();
                 if (sinPokemonsE1 && sinPokemonsE2){
-                    this.setPokemonActivo();
-                    otroEntrenador.setPokemonActivo();
+                    entrenadorDesafiante.setPokemonActivo();
+                    entrenadorDesafiado.setPokemonActivo();
                 }
             }while (sinPokemonsE1 && sinPokemonsE2);
         }else{
+            System.out.println();
+            System.out.println("El pokemon seleccionador por " + entrenadorDesafiado.getNombre() + " es más rápido, por tanto empieza el combate");
             do{
-                otroEntrenador.elegirMovimiento(otroEntrenador);
-                if (otroEntrenador.comprobarSaludPokemons()){this.elegirMovimiento(otroEntrenador);}
+                entrenadorDesafiado.elegirMovimiento(entrenadorDesafiante);
+                if (entrenadorDesafiado.comprobarSaludPokemons()){
+                    entrenadorDesafiante.elegirMovimiento(entrenadorDesafiado);
+                }
                 combate.setNumRondas(combate.getNumRondas()+1);
-                sinPokemonsE1 = this.comprobarSaludPokemons();
-                sinPokemonsE2 = otroEntrenador.comprobarSaludPokemons();
+                sinPokemonsE1 = entrenadorDesafiante.comprobarSaludPokemons();
+                sinPokemonsE2 = entrenadorDesafiado.comprobarSaludPokemons();
                 if (sinPokemonsE1 && sinPokemonsE2){
-                    otroEntrenador.setPokemonActivo();
-                    this.setPokemonActivo();
+                    entrenadorDesafiado.setPokemonActivo();
+                    entrenadorDesafiante.setPokemonActivo();
                 }
             }while (sinPokemonsE1 && sinPokemonsE2);
         }
 
         if (sinPokemonsE1){
             combate.setGanador(this);
-            System.out.println("El ganador es, " + this.getNombre());
+            System.out.println();
+            System.out.println("Ha ganado, " + this.getNombre());
+            combate.subirNivelPokemons();
+            JOptionPane.showMessageDialog(null, "El combate ha terminado, ha ganado " + combate.getGanador().getNombre(), "Atención", JOptionPane.INFORMATION_MESSAGE);
             return combate;
         } else{
             combate.setGanador(otroEntrenador);
-            System.out.println("El ganador es, " + otroEntrenador.getNombre());
+            System.out.println();
+            System.out.println("Ha ganado, " + otroEntrenador.getNombre());
+            combate.subirNivelPokemons();
+            JOptionPane.showMessageDialog(null, "El combate ha terminado, ha ganado " + combate.getGanador().getNombre(), "Atención", JOptionPane.INFORMATION_MESSAGE);
             return combate;
         }
     } 
@@ -142,18 +171,21 @@ public class Entrenador {
     }
 
     public void elegirMovimiento (Entrenador otroEntrenador){
-        System.out.println(this.getNombre() + ", elige el movimiento que quieres usar:");
-        for (int i = 0; i < this.pokemonActivo.getMovimientos().size(); ++i)
-            System.out.println("- Opción " + (i+1) + ": " + this.pokemonActivo.getMovimientos().get(i).getNombre());
-
-        System.out.println("- Opción 0: Abandonar combate");
-
-        Scanner movimiento = new Scanner(System.in);
-        int opcion = movimiento.nextInt();
-        if (opcion!=0){
-            this.pokemonActivo.getMovimientos().get(opcion-1).activar(this.pokemonActivo, otroEntrenador.pokemonActivo);
-        }else {
-            this.abandono();
+        if(!(otroEntrenador.getPokemonActivo().getSaludActual()<=0) && !(this.getPokemonActivo().getSaludActual()<=0)){    
+            System.out.println();
+            System.out.println(this.getNombre()+ " (con pokemon activo " + this.getPokemonActivo().getNombre()+ "), elige el movimiento que quieras usar:");
+            for (int i = 0; i < this.pokemonActivo.getMovimientos().size(); ++i)
+                System.out.println("- Opción " + (i+1) + ": " + this.pokemonActivo.getMovimientos().get(i).getNombre() + " [" + this.pokemonActivo.getMovimientos().get(i).getUsos() + "/" + this.pokemonActivo.getMovimientos().get(i).getUsosMaximos()+"]");
+            System.out.println("- Opción 0: Abandonar combate");
+            
+            System.out.print("Opción ");
+            Scanner movimiento = new Scanner(System.in);
+            int opcion = movimiento.nextInt();
+            if (opcion!=0){
+                this.pokemonActivo.getMovimientos().get(opcion-1).activar(this.pokemonActivo, otroEntrenador.pokemonActivo);
+            }else {
+                this.abandono();
+            }
         }
     }
 
@@ -165,6 +197,17 @@ public class Entrenador {
             }
         }
         return !(numeroPokemonsConVida==0);
+    }
+
+    public Entrenador clonarEntrenador(Entrenador entrenadorOriginal){
+        Entrenador entrenadorClon = new Entrenador(entrenadorOriginal.getNombre(), entrenadorOriginal.getIdentificador());
+
+        ArrayList<Pokemon> pokemonsClon = new ArrayList<>();
+        for (Pokemon pokemon : entrenadorOriginal.pokemons) {
+            pokemonsClon.add(pokemon.clonarPokemon());
+        }
+        entrenadorClon.setPokemons(pokemonsClon);
+        return entrenadorClon;
     }
 
     @Override
