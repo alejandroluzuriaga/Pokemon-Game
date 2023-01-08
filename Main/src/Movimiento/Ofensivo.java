@@ -11,64 +11,48 @@ public class Ofensivo extends Movimiento {
                 this.tipo = "Fuego";
                 this.usos = 0;
                 this.usosMaximos = 20;
-                this.valor = 100;
+                this.valor = 62;
                 this.usoEspecial = false;
                 break;
-            case "BarridoEsp":
+            case "Barrido Especial":
                 this.nombre = nombre;
                 this.tipo = "Fuego";
                 this.usos = 0;
                 this.usosMaximos = 20;
-                this.valor = 7;
+                this.valor = 75;
                 this.usoEspecial = true;
                 break;
-            case "lanzasemen":
+            case "Viento":
                 this.nombre = nombre;
                 this.tipo = "Planta";
                 this.usos = 0;
                 this.usosMaximos = 25;
-                this.valor = 100;
+                this.valor = 58;
                 this.usoEspecial = false;
                 break;
-            case "lanzasemenEsp":
-                this.nombre = nombre;
-                this.tipo = "Planta";
-                this.usos = 0;
-                this.usosMaximos = 25;
-                this.valor = 4;
-                this.usoEspecial = true;
-                break;
-            case "aguabendita":
+            case "Martillo":
                 this.nombre = nombre;
                 this.tipo = "Agua";
                 this.usos = 0;
                 this.usosMaximos = 25;
-                this.valor = 100;
+                this.valor = 65;
                 this.usoEspecial = false;
                 break;
-            case "aguabenditaEsp":
+            case "Martillo Especial":
                 this.nombre = nombre;
                 this.tipo = "Agua";
                 this.usos = 0;
                 this.usosMaximos = 25;
-                this.valor = 10;
+                this.valor = 75;
                 this.usoEspecial = true;
                 break;
-            case "culo":
+            case "Zumbido":
                 this.nombre = nombre;
                 this.tipo = "Normal";
                 this.usos = 0;
                 this.usosMaximos = 25;
-                this.valor = 10;
+                this.valor = 58;
                 this.usoEspecial = false;
-                break;
-            case "culoEsp":
-                this.nombre = nombre;
-                this.tipo = "Normal";
-                this.usos = 0;
-                this.usosMaximos = 25;
-                this.valor = 10;
-                this.usoEspecial = true;
                 break;
         }
     }

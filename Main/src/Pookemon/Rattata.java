@@ -11,9 +11,9 @@ public class Rattata extends Pokemon {
         this.setSaludo("Mi bro de alcantarilla es el payaso de IT");
         this.crearValoresBase();
 
-        Ofensivo ofensivo = new Ofensivo("culo");
-        ModificadorDefensa modificador_defensa = new ModificadorDefensa("Latigo");
-        ModificadorPoder modificador_Poder = new ModificadorPoder("Poder + 2");
+        Ofensivo ofensivo = new Ofensivo("Zumbido");
+        ModificadorDefensa modificador_defensa = new ModificadorDefensa("Envenenamiento");
+        ModificadorPoder modificador_Poder = new ModificadorPoder("Aliento Acido");
 
         ArrayList<Movimiento> movimientos = new ArrayList<Movimiento>();
         movimientos.add(ofensivo);

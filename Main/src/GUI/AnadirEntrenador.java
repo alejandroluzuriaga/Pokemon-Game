@@ -138,28 +138,28 @@ public class AnadirEntrenador implements ActionListener{
         }
         if(e.getSource()==botonGuardarEntrenador){
             if(botonLoreto.isSelected()){
-                if (!(VentanaMundo.iVentanaMundo.contieneEntrenador("LORETO"))){
+                if (!(VentanaMundo.iVentanaMundo.existeNombreEntrenador("LORETO"))){
                     crearCasilla("LORETO");
                     VentanaMundo.iVentanaMundo.actualizarVentana();
                 }else{
                     JOptionPane.showMessageDialog(null, "El entrenador selecionado ya existe", "Atención", JOptionPane.ERROR_MESSAGE);
                 }
             } else if(botonSilvia.isSelected()){
-                if (!(VentanaMundo.iVentanaMundo.contieneEntrenador("SILVIA"))){
+                if (!(VentanaMundo.iVentanaMundo.existeNombreEntrenador("SILVIA"))){
                     crearCasilla("SILVIA");
                     VentanaMundo.iVentanaMundo.actualizarVentana();
                 }else{
                     JOptionPane.showMessageDialog(null, "El entrenador selecionado ya existe", "Atención", JOptionPane.ERROR_MESSAGE);
                 }
             } else if(botonOleksandr.isSelected()){
-                if (!(VentanaMundo.iVentanaMundo.contieneEntrenador("OLEKSANDR"))){
+                if (!(VentanaMundo.iVentanaMundo.existeNombreEntrenador("OLEKSANDR"))){
                     crearCasilla("OLEKSANDR");
                     VentanaMundo.iVentanaMundo.actualizarVentana();
                 }else{
                     JOptionPane.showMessageDialog(null, "El entrenador selecionado ya existe", "Atención", JOptionPane.ERROR_MESSAGE);
                 }
             } else if(botonAlejandro.isSelected()){
-                if (!(VentanaMundo.iVentanaMundo.contieneEntrenador("ALEJANDRO"))){
+                if (!(VentanaMundo.iVentanaMundo.existeNombreEntrenador("ALEJANDRO"))){
                     crearCasilla("ALEJANDRO");
                     VentanaMundo.iVentanaMundo.actualizarVentana();
                 }else{
@@ -180,13 +180,13 @@ public class AnadirEntrenador implements ActionListener{
     public void crearCasilla (String nombre){
         ToggleBotonPokemonEntrenador boton = new ToggleBotonPokemonEntrenador();
         boton.setText(nombre);
-        boton.setPreferredSize(new Dimension(0,70));
         boton.setBackground(cLetra);
         boton.setFocusable(false);
         boton.setFont(new Font("Courier New", Font.BOLD, 16));
         boton.setHorizontalAlignment(JButton.CENTER);
         boton.setHorizontalTextPosition(JButton.LEFT);
         boton.setIconTextGap(20);
+        boton.setBorder(BorderFactory.createRaisedSoftBevelBorder());
         boton.addActionListener(VentanaMundo.iVentanaMundo);
         if (nombre=="LORETO"){
             boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Entrenadores/Loreto_60.png"));
@@ -202,9 +202,8 @@ public class AnadirEntrenador implements ActionListener{
             boton.setEntrenador(new Entrenador(nombre, 3));
         }
 
-        VentanaMundo.iVentanaMundo.getBotonesEntrenador().add(boton);
         VentanaMundo.iVentanaMundo.getPanelListaEntrenadores().add(boton);
-        VentanaMundo.iVentanaMundo.getGrupoBotones1().add(boton);
+        VentanaMundo.iVentanaMundo.getGrupoBotonesSeleccionar().add(boton);
         VentanaNuevoEntrenador.dispose();
     }
 

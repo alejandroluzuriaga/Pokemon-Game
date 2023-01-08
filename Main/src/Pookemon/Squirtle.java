@@ -13,9 +13,9 @@ public class Squirtle extends Pokemon {
         this.setSaludo("Lo que sube del cubata son los hielos");
         this.crearValoresBase();
 
-        Ofensivo ofensivo = new Ofensivo("aguabendita");
-        ModificadorDefensa modificador_defensa = new ModificadorDefensa("Pocion_Defensa");
-        ModificadorPoder modificador_Poder = new ModificadorPoder("Poder - 4");
+        Ofensivo ofensivo = new Ofensivo("Martillo");
+        ModificadorDefensa modificador_defensa = new ModificadorDefensa("Escudo");
+        ModificadorPoder modificador_Poder = new ModificadorPoder("Grito Sonico");
 
         ArrayList<Movimiento> movimientos = new ArrayList<Movimiento>();
         movimientos.add(ofensivo);

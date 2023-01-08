@@ -14,8 +14,8 @@ public class Charmander extends Pokemon {
         this.crearValoresBase();
 
         Ofensivo ofensivo = new Ofensivo("Barrido");
-        ModificadorDefensa modificador_defensa = new ModificadorDefensa("Pocion_Defensa");
-        ModificadorPoder modificador_Poder = new ModificadorPoder("Poder +8 TAPOTENTE");
+        ModificadorDefensa modificador_defensa = new ModificadorDefensa("Escudo");
+        ModificadorPoder modificador_Poder = new ModificadorPoder("Super Torta");
 
         ArrayList<Movimiento> movimientos = new ArrayList<Movimiento>();
         movimientos.add(ofensivo);

@@ -5,19 +5,19 @@ public class ModificadorPoder extends Movimiento{
     
     public ModificadorPoder (String nombre) {
         switch (nombre){
-            case "Poder + 2":
+            case "Aliento Acido": 
                 this.nombre=nombre;
                 usos=0;
                 usosMaximos=15;
                 valor=2;
             break;
-            case "Poder - 4":
+            case "Grito Sonico":
                 this.nombre=nombre;
                 usos=0;
                 usosMaximos=20;
                 valor=-4;
             break;
-            case "Poder +8 TAPOTENTE":
+            case "Super Torta":
                 this.nombre=nombre;
                 usos=0;
                 usosMaximos=20;
@@ -29,10 +29,16 @@ public class ModificadorPoder extends Movimiento{
     @Override
     public void activar(Pokemon emisor, Pokemon receptor){
         if (usos<usosMaximos){
+            System.out.println();
+            
             if (valor<0){
-                receptor.setPoder(receptor.getPoder()+valor);
+                System.out.print("PODER " + receptor.getNombre() + " = " + receptor.getPoder());
+                receptor.setPoder(receptor.getPoder() + valor);
+                System.out.println(" --> " + receptor.getPoder());
             } else{
-                emisor.setPoder(emisor.getPoder()+valor);
+                System.out.print("PODER " + emisor.getNombre() + " = " + emisor.getPoder());
+                emisor.setPoder(emisor.getPoder() + valor);
+                System.out.println(" --> " + emisor.getPoder());
             }
             usos++;
         } 

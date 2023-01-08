@@ -1,0 +1,16 @@
+*********** COMBATE Nº658 ***********
+
+******** DATOS DEL COMBATE ********
+FECHA: 08/01/2023 07:53 PM
+Numero de rondas: 9
+
+*********** PERSONAJES INVOLUCRADOS ***********
+Entrenador desafiante: OLEKSANDR
+Pokemons de este entrenador: Slowican Spinish Panthug 
+
+Entrenador desafiado: LORETO
+Pokemons de este entrenador: Coyoros Wintilla Bisora 
+
+*********** GANADOR DEL COMBATE ***********
+El ganador del combate ha sido: OLEKSANDR
+¡¡SE LLEVA UN APLAUSO Y UN APROBADO EN POO!!

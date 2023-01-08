@@ -6,6 +6,8 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 import Combate.*;
+import Movimiento.Movimiento;
+
 import java.util.ArrayList;
 
 public class Entrenador {
@@ -75,7 +77,6 @@ public class Entrenador {
         }
         System.out.println();
         System.out.println("El pokemon activo de "+ this.getNombre() +" es " + this.pokemonActivo.getNombre());
-
     }
 
     public void setTurno(int turno) {
@@ -89,6 +90,15 @@ public class Entrenador {
 
     // OTROS MÉTODOS
 
+    public void anadirPokemon(Pokemon pokemon){
+        if ((pokemons.size() < 3)){
+                pokemons.add(pokemon);
+                pokemon.setEntrenador(this);
+        } else{
+            System.out.println("Lista de pokemons llena");
+        }
+    }
+
     public Combate combatir (Entrenador otroEntrenador){
         System.out.println("-----------------------------------------------");
         System.out.println("---------------------COMBATE-------------------");
@@ -101,9 +111,6 @@ public class Entrenador {
         entrenadorDesafiado.setPokemonActivo();        
         boolean sinPokemonsE1;
         boolean sinPokemonsE2;
-
-        String ganador;
-
 
         if (entrenadorDesafiante.getPokemonActivo().getVelocidad() > entrenadorDesafiado.getPokemonActivo().getVelocidad()){
             System.out.println();
@@ -145,7 +152,6 @@ public class Entrenador {
             System.out.println("Ha ganado, " + this.getNombre());
             combate.subirNivelPokemons();
             JOptionPane.showMessageDialog(null, "El combate ha terminado, ha ganado " + combate.getGanador().getNombre(), "Atención", JOptionPane.INFORMATION_MESSAGE);
-            ganador = combate.getGanador().getNombre();
             combate.escribirFicheroCombate();
             return combate;
         } else{
@@ -154,29 +160,10 @@ public class Entrenador {
             System.out.println("Ha ganado, " + otroEntrenador.getNombre());
             combate.subirNivelPokemons();
             JOptionPane.showMessageDialog(null, "El combate ha terminado, ha ganado " + combate.getGanador().getNombre(), "Atención", JOptionPane.INFORMATION_MESSAGE);
-            ganador = combate.getGanador().getNombre();
             combate.escribirFicheroCombate();
             return combate;
         }
-
-       
-        
     } 
-
-    private void abandono (){
-        for (int i =0; i<this.pokemons.size(); ++i){
-            this.pokemons.get(i).setSaludActual(0);
-        }
-    }
-
-    public void anadirPokemon(Pokemon pokemon){
-        if ((pokemons.size() < 3)){
-                pokemons.add(pokemon);
-                pokemon.setEntrenador(this);
-        } else{
-            System.out.println("Lista de pokemons llena");
-        }
-    }
 
     public void elegirMovimiento (Entrenador otroEntrenador){
         if(!(otroEntrenador.getPokemonActivo().getSaludActual()<=0) && !(this.getPokemonActivo().getSaludActual()<=0)){    
@@ -194,6 +181,12 @@ public class Entrenador {
             }else {
                 this.abandono();
             }
+
+            for (Movimiento movimientoLimiteUsos : this.getPokemonActivo().getMovimientos()) {
+                if(movimientoLimiteUsos.getUsos()==movimientoLimiteUsos.getUsosMaximos()){
+                    this.getPokemonActivo().getMovimientos().remove(movimientoLimiteUsos);
+                }
+            }
         }
     }
 
@@ -205,6 +198,12 @@ public class Entrenador {
             }
         }
         return !(numeroPokemonsConVida==0);
+    }
+
+    private void abandono (){
+        for (int i =0; i<this.pokemons.size(); ++i){
+            this.pokemons.get(i).setSaludActual(0);
+        }
     }
 
     public Entrenador clonarEntrenador(Entrenador entrenadorOriginal){

@@ -17,9 +17,10 @@ public class Blastoise extends Pokemon {
     
     public Blastoise(int nivel, String nombre, Pokemon pokemonSinEvolucionar){
         this.setNombre(nombre);
-        this.setSaludo("Toma agua pa Murcia que hace mucha falta");
         this.setTipo("Agua");
         this.setNivel(nivel);
+        this.setEntrenador(pokemonSinEvolucionar.getEntrenador());
+        this.setSaludo("Toma agua pa Murcia que hace mucha falta");
         
         this.setPoder((int)(pokemonSinEvolucionar.getPoder() * 1.2));   
         this.setDefensa((int)(pokemonSinEvolucionar.getDefensa() * 1.2));
@@ -28,14 +29,17 @@ public class Blastoise extends Pokemon {
         this.setSaludActual((int)(pokemonSinEvolucionar.getSaludActual() * 1.2));   
         this.setPoderEspecial((int)(pokemonSinEvolucionar.getPoderEspecial() * 1.2));
         this.setDefensaEspecial((int)(pokemonSinEvolucionar.getDefensaEspecial() * 1.2));
+        this.setEntrenador(pokemonSinEvolucionar.getEntrenador());
+        this.getEntrenador().getPokemons().remove(pokemonSinEvolucionar);
+        this.getEntrenador().getPokemons().add(this);
         setMovimientosPrivate();
     }
     
     private void setMovimientosPrivate () {
-        Ofensivo ofensivo = new Ofensivo("aguabendita");
-        Ofensivo ofensivoEspecial = new Ofensivo("aguabenditaEsp");
-        ModificadorDefensa modificador_defensa = new ModificadorDefensa("Pocion_Defensa");
-        ModificadorPoder modificador_Poder = new ModificadorPoder("Poder - 4");
+        Ofensivo ofensivo = new Ofensivo("Martillo");
+        Ofensivo ofensivoEspecial = new Ofensivo("Martillo Especial");
+        ModificadorDefensa modificador_defensa = new ModificadorDefensa("Escudo");
+        ModificadorPoder modificador_Poder = new ModificadorPoder("Grito Sonico");
 
         ArrayList<Movimiento> movimientos = new ArrayList<Movimiento>();
         movimientos.add(ofensivo);

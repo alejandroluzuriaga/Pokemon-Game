@@ -193,12 +193,12 @@ public class Pokemon {
         switch (this.getClass().getSimpleName()){
             case "Charmander":
                 if (this.nivel >= 3) {
-                    return new Charmeleon(this.getNivel(), this.getNombre(), this);
+                    return new Charmeleon(1, this.getNombre(), this);
                 }
                 break;
             case "Squirtle":
                 if (this.nivel >= 3) {
-                    return new Blastoise(this.getNivel(), this.getNombre(), this);
+                    return new Blastoise(1, this.getNombre(), this);
                 }
                 break;
             default: 

@@ -73,7 +73,6 @@ public class Combate {
         try{
             BufferedWriter combate = new BufferedWriter(new FileWriter(ruta));
 
-            combate.newLine();
             combate.write("*********** COMBATE Nº" + random + " ***********");
             combate.newLine();
             combate.newLine();
@@ -93,7 +92,7 @@ public class Combate {
             combate.write("Pokemons de este entrenador: ");
 
             for (int i = 0; i < (this.personajesInvolucrados.get(0).getPokemons().size()); i++) {
-                combate.write(this.personajesInvolucrados.get(0).getPokemons().get(i).getNombre() + "   ");
+                combate.write(this.personajesInvolucrados.get(0).getPokemons().get(i).getNombre() + " ");
             }
             
             combate.newLine();
@@ -103,7 +102,7 @@ public class Combate {
             combate.write("Pokemons de este entrenador: ");
 
             for (int i = 0; i < (this.personajesInvolucrados.get(1).getPokemons().size()); i++) {
-                combate.write(this.personajesInvolucrados.get(1).getPokemons().get(i).getNombre()+ "   ");
+                combate.write(this.personajesInvolucrados.get(1).getPokemons().get(i).getNombre()+ " ");
             }
             combate.newLine();
             combate.newLine();

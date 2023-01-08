@@ -270,18 +270,20 @@ public class AnadirPokemon implements ActionListener{
     }
 
     public void crearCasilla (String tipo, String nombre){
-        if (nombre.length()!=0 && !(VentanaMundo.iVentanaMundo.existeNombre(nombre))){
+        if (nombre.length()!=0 && !(VentanaMundo.iVentanaMundo.existeNombrePokemon(nombre))){
             ToggleBotonPokemonEntrenador boton = new ToggleBotonPokemonEntrenador();
             boton.setText(nombre);
-            boton.setPreferredSize(new Dimension(0,70));
+            boton.setPreferredSize(new Dimension(0,90));
             boton.setBackground(cLetra);
             boton.setForeground(cBotonesOscuro);
             boton.setFocusable(false);
             boton.setFont(new Font("Courier New", Font.BOLD, 16));
             boton.setHorizontalAlignment(JButton.CENTER);
-            boton.setHorizontalTextPosition(JButton.LEFT);
+            boton.setHorizontalTextPosition(JButton.RIGHT);
             boton.setIconTextGap(20);
+            boton.setBorder(BorderFactory.createRaisedSoftBevelBorder());
             boton.addActionListener(VentanaMundo.iVentanaMundo);
+
             if (tipo=="BULBASAUR"){
                 boton.setIcon(new ImageIcon("./src/GUI/Imagenes/Pokemons/Bulbasaur_60.png"));
                 boton.setPokemon(new Bulbasur(1, nombre));
@@ -302,12 +304,11 @@ public class AnadirPokemon implements ActionListener{
                 boton.setPokemon(new Blastoise(1, nombre));
             }
 
-            VentanaMundo.iVentanaMundo.getBotonesPokemon().add(boton);
             VentanaMundo.iVentanaMundo.getPanelListaPokemons().add(boton);
-            VentanaMundo.iVentanaMundo.getGrupoBotones1().add(boton);
+            VentanaMundo.iVentanaMundo.getGrupoBotonesSeleccionar().add(boton);
             VentanaNuevoPokemon.dispose();
 
-        } else if (VentanaMundo.iVentanaMundo.existeNombre(nombre)){
+        } else if (VentanaMundo.iVentanaMundo.existeNombrePokemon(nombre)){
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error. No pueden haber dos nombres iguales", "Error", JOptionPane.ERROR_MESSAGE);
             nombrePokemon.setText("");
         } else{

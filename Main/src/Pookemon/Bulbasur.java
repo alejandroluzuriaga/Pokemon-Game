@@ -13,9 +13,9 @@ public class Bulbasur extends Pokemon {
         this.setSaludo("¿Quieres un briconsejo de jardinería?");
         this.crearValoresBase();
 
-        Ofensivo ofensivo = new Ofensivo("lanzasemen");
-        ModificadorDefensa modificador_defensa = new ModificadorDefensa("Latigoa");
-        ModificadorPoder modificador_Poder = new ModificadorPoder("Poder - 4");
+        Ofensivo ofensivo = new Ofensivo("Viento");
+        ModificadorDefensa modificador_defensa = new ModificadorDefensa("Envenenamiento");
+        ModificadorPoder modificador_Poder = new ModificadorPoder("Grito Sonico");
 
         ArrayList<Movimiento> movimientos = new ArrayList<Movimiento>();
         movimientos.add(ofensivo);

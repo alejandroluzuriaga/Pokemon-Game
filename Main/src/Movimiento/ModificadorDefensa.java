@@ -5,13 +5,13 @@ public class ModificadorDefensa extends Movimiento {
 
     public ModificadorDefensa (String nombre) {
         switch (nombre){
-            case "Pocion_Defensa": //Sube defensa al emisor
+            case "Escudo": //Sube defensa al emisor 
                 this.nombre=nombre;
                 this.usos=0;
                 this.usosMaximos=10;
                 this.valor=5;
             break;
-            case "Latigo": //Baja defensa del receptor
+            case "Envenenamiento": //Baja defensa del receptor
                 this.nombre=nombre;
                 this.usos=0;
                 this.usosMaximos=15;
@@ -24,9 +24,13 @@ public class ModificadorDefensa extends Movimiento {
 	public void activar(Pokemon emisor, Pokemon receptor) {
 		if (this.usos<this.usosMaximos){
             if (this.valor<0){
-                receptor.setDefensa(receptor.getDefensa()+this.valor);
+                System.out.print("DEFENSA " + receptor.getNombre() + " = " + receptor.getDefensa());
+                receptor.setDefensa(receptor.getDefensa() + this.valor);
+                System.out.println(" --> " + receptor.getDefensa());
             } else{
-                emisor.setDefensa(emisor.getDefensa()+this.valor);
+                System.out.print("DEFENSA " + emisor.getNombre() + " = " + emisor.getDefensa());
+                emisor.setDefensa(emisor.getDefensa() + this.valor);
+                System.out.println(" --> " + emisor.getDefensa());
             }
             usos++;
         }

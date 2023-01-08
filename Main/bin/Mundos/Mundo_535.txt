@@ -1,2 +1,0 @@
-Bulbasur	1	1	Planta	-	12	13	16	14	18	14	15	¿Quieres un briconsejo de jardinería?
-Squirtle	3	5	Agua	-	11	8	16	21	21	15	8	Lo que sube del cubata son los hielos

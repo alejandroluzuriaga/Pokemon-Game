@@ -17,7 +17,7 @@ public class Charmeleon extends Pokemon {
         this.setNombre(nombre);
         this.setTipo("Fuego");
         this.setNivel(nivel);
-        this.setSaludo("DRACARYSSSSSSSS"); 
+        this.setSaludo("DRACARYSSSSSSSS");
         
         this.setPoder((int)(pokemonSinEvolucionar.getPoder() * 1.2)); 
         this.setDefensa((int)(pokemonSinEvolucionar.getDefensa() * 1.2));
@@ -26,14 +26,17 @@ public class Charmeleon extends Pokemon {
         this.setSaludActual((int)(pokemonSinEvolucionar.getSaludActual() * 1.2));
         this.setPoderEspecial((int)(pokemonSinEvolucionar.getPoderEspecial() * 1.2));
         this.setDefensaEspecial((int)(pokemonSinEvolucionar.getDefensaEspecial() * 1.2));
+        this.setEntrenador(pokemonSinEvolucionar.getEntrenador());
+        this.getEntrenador().getPokemons().remove(pokemonSinEvolucionar);
+        this.getEntrenador().getPokemons().add(this);
         setMovimientosPrivate();
     }
 
     private void setMovimientosPrivate() {
         Ofensivo ofensivo = new Ofensivo("Barrido");
-        Ofensivo ofensivoEspecial = new Ofensivo("BarridoEsp");
-        ModificadorDefensa modificador_defensa = new ModificadorDefensa("Pocion_Defensa");
-        ModificadorPoder modificador_Poder = new ModificadorPoder("Poder +8 TAPOTENTE");
+        Ofensivo ofensivoEspecial = new Ofensivo("Barrido Especial");
+        ModificadorDefensa modificador_defensa = new ModificadorDefensa("Escudo");
+        ModificadorPoder modificador_Poder = new ModificadorPoder("Super Torta");
 
         ArrayList<Movimiento> movimientos = new ArrayList<Movimiento>();
         movimientos.add(ofensivo);
