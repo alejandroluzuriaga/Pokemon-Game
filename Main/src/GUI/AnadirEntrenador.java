@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 
+
 public class AnadirEntrenador implements ActionListener{
     public static AnadirEntrenador iAnadirEntrenador;
 

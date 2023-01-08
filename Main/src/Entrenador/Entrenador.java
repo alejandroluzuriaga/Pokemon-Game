@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
-import GUI.*;
 import Combate.*;
 import java.util.ArrayList;
 
@@ -103,6 +102,8 @@ public class Entrenador {
         boolean sinPokemonsE1;
         boolean sinPokemonsE2;
 
+        String ganador;
+
 
         if (entrenadorDesafiante.getPokemonActivo().getVelocidad() > entrenadorDesafiado.getPokemonActivo().getVelocidad()){
             System.out.println();
@@ -144,6 +145,8 @@ public class Entrenador {
             System.out.println("Ha ganado, " + this.getNombre());
             combate.subirNivelPokemons();
             JOptionPane.showMessageDialog(null, "El combate ha terminado, ha ganado " + combate.getGanador().getNombre(), "Atención", JOptionPane.INFORMATION_MESSAGE);
+            ganador = combate.getGanador().getNombre();
+            combate.escribirFicheroCombate();
             return combate;
         } else{
             combate.setGanador(otroEntrenador);
@@ -151,8 +154,13 @@ public class Entrenador {
             System.out.println("Ha ganado, " + otroEntrenador.getNombre());
             combate.subirNivelPokemons();
             JOptionPane.showMessageDialog(null, "El combate ha terminado, ha ganado " + combate.getGanador().getNombre(), "Atención", JOptionPane.INFORMATION_MESSAGE);
+            ganador = combate.getGanador().getNombre();
+            combate.escribirFicheroCombate();
             return combate;
         }
+
+       
+        
     } 
 
     private void abandono (){
