@@ -15,7 +15,7 @@ public class Combate {
     private Entrenador ganador;
 
     private int random = (int) Math.floor(Math.random()*1000+1);
-    private File ruta= new File("./src/Combates/Combates_" + random + ".txt");
+    private File ruta= new File("./src/Combates/Combate_" + random + ".txt");
 
 
     //CONSTRUCTOR
